@@ -86,6 +86,8 @@
 
     /* Section layout: "page-like" but continuous */
     .section{
+      padding:22px 0;
+
       position:relative;
       margin-top:18px;
       border:1px solid var(--line);
@@ -95,7 +97,7 @@
       overflow:hidden;
       min-height:100svh; /* phone friendly */
       display:flex;
-      align-items:center;
+      align-items:stretch;
     }
     .section::before{
       content:"";
@@ -122,31 +124,32 @@
     /* Inner card (no "tag/chip" like you requested) */
     .page{
       width:100%;
-      padding:28px 18px 24px;
+      padding:0;
       position:relative;
       z-index:1;
-      display:flex;
-      justify-content:center;
+      display:block;
     }
+
+    /* Make each section itself the page (no inner card) */
     .content{
       width:100%;
-      border:1px solid var(--line);
-      border-radius:24px;
-      background:rgba(255,255,255,.72);
-      box-shadow: 0 10px 30px rgba(0,0,0,.06);
-      overflow:hidden;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none;
+      overflow:visible;
       position:relative;
     }
+
     .content::before{
       content:"";
       position:absolute; inset:0;
-      background:
-        radial-gradient(460px 240px at 10% 12%, rgba(184,155,94,.12), transparent 55%),
-        radial-gradient(460px 240px at 90% 88%, rgba(111,123,106,.10), transparent 55%);
+      background:transparent;
       pointer-events:none;
     }
+
     .content > *{position:relative; z-index:1}
-    .pad{ padding:24px 18px; }
+    .pad{ padding:38px 18px; max-width:720px; margin:0 auto; }
 
     .kicker{
       font-size:12px;
