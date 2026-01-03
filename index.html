@@ -406,11 +406,228 @@
     .hero:before, .section:before{ top:-40px; left:-40px; }
     .hero:after, .section:after{ bottom:-45px; right:-45px; transform: rotate(180deg); }
     .section > * , .hero > * { position:relative; z-index:1; }
+    /* ===== Creative upgrades: section ornaments, progress nav, botanical drift ===== */
+    body{
+      background:
+        radial-gradient(1200px 500px at 20% -10%, rgba(184,155,94,.10), transparent 55%),
+        radial-gradient(900px 420px at 90% 10%, rgba(111,123,106,.10), transparent 52%),
+        var(--bg);
+    }
+
+    /* right-side progress (mobile-friendly; hides on very small screens) */
+    .progressNav{
+      position:fixed;
+      right:14px;
+      top:50%;
+      transform:translateY(-50%);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      z-index:20;
+      padding:10px 8px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.65);
+      backdrop-filter: blur(8px);
+    }
+    @media (max-width:420px){
+      .progressNav{ display:none; }
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:50%;
+      border:1px solid rgba(184,155,94,.55);
+      background:rgba(184,155,94,.12);
+      cursor:pointer;
+      transition:transform .15s ease, background .2s ease, border-color .2s ease;
+    }
+    .dot.active{
+      transform:scale(1.25);
+      background:rgba(184,155,94,.35);
+      border-color:rgba(184,155,94,.9);
+    }
+    .dot:hover{ transform:scale(1.15); }
+
+    /* Section title ornament */
+    .section h2{
+      position:relative;
+      display:inline-block;
+      padding-bottom:10px;
+    }
+    .section h2:after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:0;
+      width:100%;
+      height:10px;
+      opacity:.9;
+      background-repeat:no-repeat;
+      background-size:contain;
+      background-position:left bottom;
+      /* elegant botanical divider (inline SVG) */
+      background-image:url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="22" viewBox="0 0 420 22">\
+<path d="M10 11 C45 2, 75 2, 110 11 C145 20, 175 20, 210 11 C245 2, 275 2, 310 11 C345 20, 375 20, 410 11" fill="none" stroke="%23B89B5E" stroke-width="1.4" stroke-linecap="round" opacity="0.9"/>\
+<path d="M210 11 C206 7, 202 5, 198 5 C202 8, 205 10, 210 11 Z" fill="%23B89B5E" opacity="0.35"/>\
+<path d="M210 11 C214 7, 218 5, 222 5 C218 8, 215 10, 210 11 Z" fill="%23B89B5E" opacity="0.35"/>\
+</svg>');
+    }
+
+    /* Make sections feel like “chapters” */
+    .section{
+      padding:32px 22px;
+    }
+    .divider{ opacity:.85; }
+
+    /* Softer reveal + subtle lift */
+    .reveal{
+      opacity:0;
+      transform: translateY(18px);
+      filter: blur(2px);
+      transition: opacity .9s ease, transform .9s ease, filter .9s ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    /* Botanical drift overlay (very subtle) */
+    .botanical{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      opacity:.18;
+      background-repeat:no-repeat;
+      background-size:520px 520px, 460px 460px, 380px 380px;
+      background-position:-120px -90px, calc(100% + 120px) 140px, 50% calc(100% + 160px);
+      background-image:
+        url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="520" viewBox="0 0 520 520">\
+<g fill="none" stroke="%23B89B5E" stroke-width="1.2" opacity="0.9">\
+<path d="M110 400 C170 330, 210 280, 240 220 C270 160, 310 120, 370 90" />\
+<path d="M240 220 C210 210, 185 195, 170 175" />\
+<path d="M255 205 C290 195, 320 175, 340 150" />\
+<path d="M185 250 C205 255, 220 265, 235 285" />\
+<path d="M285 165 C305 160, 325 148, 342 130" />\
+</g>\
+<g fill="%23B89B5E" opacity="0.12">\
+<circle cx="170" cy="175" r="5"/><circle cx="235" cy="285" r="5"/><circle cx="342" cy="130" r="5"/>\
+</g>\
+</svg>'),
+        url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="460" viewBox="0 0 460 460">\
+<g fill="none" stroke="%236F7B6A" stroke-width="1.2" opacity="0.7">\
+<path d="M360 360 C330 320, 300 290, 260 260 C220 230, 190 200, 160 150" />\
+<path d="M260 260 C240 250, 225 235, 215 215" />\
+<path d="M285 245 C305 235, 322 220, 335 200" />\
+</g>\
+</svg>'),
+        url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="380" height="380" viewBox="0 0 380 380">\
+<g fill="none" stroke="%23B89B5E" stroke-width="1.1" opacity="0.65">\
+<path d="M190 330 C180 290, 175 260, 165 230 C155 200, 140 170, 115 150" />\
+<path d="M165 230 C145 225, 128 214, 118 198" />\
+</g>\
+</svg>');
+      animation: drift 18s ease-in-out infinite;
+    }
+    @keyframes drift{
+      0%{ transform:translateY(0px); }
+      50%{ transform:translateY(-14px); }
+      100%{ transform:translateY(0px); }
+    }
+
+    /* ensure content over botanical layer */
+    .wrap, #cover{ position:relative; z-index:2; }
+
+    /* RSVP accordion */
+    .accordionBtn{
+      margin-top:14px;
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      border-radius:16px;
+      border:1px solid rgba(184,155,94,.35);
+      background:rgba(184,155,94,.10);
+      cursor:pointer;
+      font-size:14px;
+    }
+    .accordionBtn span{ color:var(--text); }
+    .chev{
+      width:10px; height:10px;
+      border-right:2px solid rgba(0,0,0,.45);
+      border-bottom:2px solid rgba(0,0,0,.45);
+      transform:rotate(45deg);
+      transition:transform .25s ease;
+      margin-right:4px;
+    }
+    .accordionBtn.open .chev{ transform:rotate(225deg); }
+
+    .accordionPanel{
+      overflow:hidden;
+      max-height:0;
+      opacity:0;
+      transform: translateY(-6px);
+      transition:max-height .5s ease, opacity .45s ease, transform .45s ease;
+    }
+    .accordionPanel.open{
+      max-height:1200px;
+      opacity:1;
+      transform: translateY(0);
+      margin-top:12px;
+    }
+
+    /* Copy-to-clipboard */
+    .copyRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+      align-items:center;
+    }
+    .copyBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      cursor:pointer;
+      font-size:13px;
+    }
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%) translateY(12px);
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(28,28,28,.92);
+      color:#fff;
+      font-size:13px;
+      opacity:0;
+      z-index:50;
+      transition:opacity .25s ease, transform .25s ease;
+      pointer-events:none;
+    }
+    .toast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
+    }
+
 
   </style>
 </head>
 
 <body>
+  <div class="botanical" aria-hidden="true"></div>
 
   <div id="cover" class="cover">
     <div class="coverCard">
@@ -439,6 +656,14 @@
     </div>
   </div>
 
+
+  <div class="progressNav" aria-label="Section navigation">
+    <div class="dot" data-target="main" title="Top"></div>
+    <div class="dot" data-target="parents" title="Families"></div>
+    <div class="dot" data-target="details" title="Details"></div>
+    <div class="dot" data-target="rsvp" title="RSVP"></div>
+    <div class="dot" data-target="contact" title="Contact"></div>
+  </div>
 
   <div class="wrap">
     <div class="topline">
@@ -530,6 +755,10 @@
             <div class="value">Grandeur Beling Glasshall</div>
             <div class="muted" style="margin-top:6px;">Lorong Melati, 47000 Sungai Buloh, Selangor</div>
 
+            <div class="copyRow">
+              <button class="copyBtn" type="button" id="copyVenue" data-bm="Salin alamat" data-en="Copy address">Salin alamat</button>
+            </div>
+
             <div class="btnRow">
               <a class="btn primary" href="https://maps.app.goo.gl/9H7ujsBQ5UV1V9kw8?g_st=iw" target="_blank" rel="noopener">Google Maps</a>
               <a class="btn" href="https://waze.com/ul/hw284qgfv2" target="_blank" rel="noopener">Waze</a>
@@ -555,7 +784,14 @@
         </p>
 
         <!-- Hidden iframe for Google Form submit (no CORS issues) -->
-        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+        
+        <button class="accordionBtn" type="button" id="rsvpToggle">
+          <span data-bm="Buka borang RSVP" data-en="Open RSVP form">Buka borang RSVP</span>
+          <i class="chev" aria-hidden="true"></i>
+        </button>
+
+<div class="accordionPanel" id="rsvpPanel">
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
         <form id="rsvpForm"
               action="https://docs.google.com/forms/d/e/1FAIpQLSd2HP0NJ58am3Py63pIBG1Qn_DdlFZKw9gHF7sSU39N17yEKQ/formResponse"
@@ -614,6 +850,7 @@
             Nota: RSVP ini akan direkodkan terus ke Google Sheet melalui Google Form.
           </div>
         </form>
+        </div>
       </div>
 
       <hr class="divider" />
@@ -663,6 +900,14 @@
           el.innerHTML = el.getAttribute('data-en');
         }
       });
+    
+
+      // refresh dynamic UI strings
+      try{ checkDeadline(); }catch(e){}
+      try{
+        const isOpen = document.getElementById('rsvpPanel')?.classList.contains('open');
+        if(typeof setRsvpOpen === 'function') setRsvpOpen(!!isOpen);
+      }catch(e){}
     }
     bmBtn.addEventListener('click', ()=>applyLang('bm'));
     enBtn.addEventListener('click', ()=>applyLang('en'));
@@ -789,6 +1034,96 @@
         form.reset();
       }, 1500);
     });
+
+    // ===== Progress nav (dots) =====
+    const dots = Array.from(document.querySelectorAll('.dot'));
+    function scrollToId(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    dots.forEach(d=>{
+      d.addEventListener('click', ()=> scrollToId(d.getAttribute('data-target')));
+    });
+
+    // Observe key sections to highlight dot
+    const watchIds = ['main','parents','details','rsvp','contact'];
+    const watchEls = watchIds.map(id => document.getElementById(id)).filter(Boolean);
+    const dotById = new Map(dots.map(d=>[d.getAttribute('data-target'), d]));
+
+    const activeObs = new IntersectionObserver((entries)=>{
+      // pick the most visible entry
+      let best = null;
+      for(const e of entries){
+        if(!e.isIntersecting) continue;
+        if(!best || e.intersectionRatio > best.intersectionRatio) best = e;
+      }
+      if(!best) return;
+      const id = best.target.id;
+      dots.forEach(d=>d.classList.remove('active'));
+      const dot = dotById.get(id);
+      if(dot) dot.classList.add('active');
+    }, { threshold:[0.2,0.35,0.5,0.65] });
+
+    watchEls.forEach(el => activeObs.observe(el));
+
+    // Set initial active dot
+    setTimeout(()=>{ dotById.get('main')?.classList.add('active'); }, 200);
+
+    // ===== RSVP accordion =====
+    const rsvpToggle = document.getElementById('rsvpToggle');
+    const rsvpPanel = document.getElementById('rsvpPanel');
+    function setRsvpOpen(open){
+      if(!rsvpToggle || !rsvpPanel) return;
+      rsvpToggle.classList.toggle('open', open);
+      rsvpPanel.classList.toggle('open', open);
+      const label = rsvpToggle.querySelector('span');
+      if(label){
+        label.innerHTML = (lang === 'bm')
+          ? (open ? 'Tutup borang RSVP' : 'Buka borang RSVP')
+          : (open ? 'Close RSVP form' : 'Open RSVP form');
+      }
+    }
+    rsvpToggle?.addEventListener('click', ()=>{
+      const open = !rsvpPanel.classList.contains('open');
+      setRsvpOpen(open);
+      if(open){
+        setTimeout(()=>{ document.getElementById('rsvpForm')?.scrollIntoView({behavior:'smooth', block:'start'}); }, 150);
+      }
+    });
+
+    // If user jumps to RSVP via dot, auto-open
+    dotById.get('rsvp')?.addEventListener('click', ()=>{
+      setTimeout(()=> setRsvpOpen(true), 250);
+    });
+
+    // ===== Copy address + toast =====
+    const toast = document.getElementById('toast');
+    function showToast(msg){
+      if(!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 1400);
+    }
+    const copyVenue = document.getElementById('copyVenue');
+    copyVenue?.addEventListener('click', async ()=>{
+      const text = "Grandeur Beling Glasshall, Lorong Melati, 47000 Sungai Buloh, Selangor";
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast(lang === 'bm' ? 'Alamat disalin' : 'Address copied');
+      }catch(e){
+        // fallback
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        showToast(lang === 'bm' ? 'Alamat disalin' : 'Address copied');
+      }
+    });
+
   </script>
+  <div id="toast" class="toast" role="status" aria-live="polite">Copied</div>
 </body>
 </html>
