@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Walimatulurus | Alif Aimran & Wan Nadhirah</title>
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -12,23 +13,23 @@
   <style>
     :root{
       --bg:#F7F5F2;
-      --paper:#FFFFFF;
+      --paper:#FCFBF8;
+      --card:#FFFFFF;
       --text:#1C1C1C;
       --muted:#6B6B6B;
       --line:rgba(0,0,0,.08);
-      --accent:#B89B5E;
-      --olive:#6F7B6A;
-      --shadow: 0 16px 48px rgba(0,0,0,.10);
+      --accent:#B89B5E; /* champagne */
+      --accent2:#6F7B6A; /* muted olive */
+      --shadow: 0 18px 50px rgba(0,0,0,.10);
       --radius: 22px;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
+    html,body{height:100%;}
     body{
       margin:0;
-      background:
-        radial-gradient(900px 520px at 15% 0%, rgba(184,155,94,.10), transparent 60%),
-        radial-gradient(900px 520px at 85% 10%, rgba(111,123,106,.08), transparent 60%),
-        var(--bg);
+      background: radial-gradient(900px 500px at 50% -10%, rgba(184,155,94,.10), transparent 60%),
+                  radial-gradient(700px 450px at 10% 15%, rgba(111,123,106,.08), transparent 55%),
+                  var(--bg);
       color:var(--text);
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       -webkit-font-smoothing:antialiased;
@@ -36,541 +37,879 @@
       overflow-x:hidden;
     }
     a{color:inherit; text-decoration:none}
-    .wrap{max-width:900px; margin:0 auto; padding:18px 16px 70px; position:relative;}
+    .wrap{
+      max-width:860px;
+      margin:0 auto;
+      padding:20px 16px 80px;
+    }
 
+    /* Top mini controls */
     .topbar{
-      display:flex; justify-content:space-between; align-items:center; gap:12px;
-      color:var(--muted); font-size:13px; letter-spacing:.08em; text-transform:uppercase;
-      margin:10px 0 14px;
+      position:sticky;
+      top:10px;
+      z-index:50;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(252,251,248,.70);
+      backdrop-filter: blur(10px);
+    }
+    .brand{
+      font-size:12px;
+      color:var(--muted);
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      white-space:nowrap;
+      padding-left:4px;
     }
     .lang{
       display:flex; gap:8px; align-items:center;
-      padding:6px; border:1px solid var(--line); border-radius:999px;
-      background:rgba(255,255,255,.70);
+      padding:4px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.65);
     }
     .lang button{
-      border:0; background:transparent; padding:8px 12px; border-radius:999px; cursor:pointer;
-      font-size:13px; color:var(--muted);
+      border:0;
+      background:transparent;
+      padding:8px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:13px;
+      color:var(--muted);
     }
-    .lang button.active{background:rgba(184,155,94,.16); color:var(--text);}
-
-    .chapter{
-      margin:14px 0;
-      border-radius:var(--radius);
-      border:1px solid var(--line);
-      background:linear-gradient(to bottom, rgba(255,255,255,.92), rgba(255,255,255,.98));
-      box-shadow:var(--shadow);
-      overflow:hidden;
+    .lang button.active{
+      background:rgba(184,155,94,.16);
+      color:var(--text);
     }
-    .chapter .inner{padding:26px 22px; position:relative;}
-    @media (min-width:760px){ .chapter .inner{padding:30px 34px;} }
 
-    .chapterHeader{display:flex; justify-content:space-between; align-items:flex-start; gap:14px; margin-bottom:14px;}
-    .chapterTag{font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted);}
-    .chapterTitle{
-      margin:8px 0 0;
-      font-family:"Cormorant Garamond", serif;
-      font-weight:600;
-      font-size:34px;
-      line-height:1.05;
-    }
-    .chapterSub{margin-top:10px; color:var(--muted); font-size:14px; line-height:1.75; max-width:62ch;}
-
-    .dividerOrn{
-      height:34px;
-      display:flex; align-items:center; justify-content:center;
-      background:linear-gradient(to right, transparent, rgba(0,0,0,.05), transparent);
-    }
-    .dividerOrn svg{opacity:.55}
-
-    .reveal{opacity:0; transform: translateY(18px); transition: opacity .75s ease, transform .75s ease;}
-    .reveal.show{opacity:1; transform:translateY(0);}
-
+    /* Cover overlay (like "Buka Undangan") */
     .cover{
-      text-align:center;
+      position:fixed;
+      inset:0;
+      z-index:100;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
       background:
-        radial-gradient(1100px 420px at 50% -10%, rgba(184,155,94,.16), transparent 60%),
-        radial-gradient(900px 420px at 50% 110%, rgba(111,123,106,.10), transparent 55%),
-        linear-gradient(to bottom, rgba(255,255,255,.92), rgba(255,255,255,.98));
+        radial-gradient(900px 520px at 50% 0%, rgba(184,155,94,.18), transparent 60%),
+        linear-gradient(180deg, rgba(247,245,242,.96), rgba(247,245,242,.90));
     }
-    .kicker{font-size:12px; letter-spacing:.20em; text-transform:uppercase; color:var(--muted);}
-    h1{
-      margin:14px 0 0;
+    .cover.hidden{ display:none; }
+    .coverCard{
+      width:min(560px, 100%);
+      border-radius:28px;
+      background:
+        radial-gradient(900px 340px at 50% 0%, rgba(184,155,94,.12), transparent 55%),
+        var(--paper);
+      border:1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding:26px 20px 22px;
+      position:relative;
+      overflow:hidden;
+      text-align:center;
+    }
+    .coverCard:before,
+    .coverCard:after{
+      content:"";
+      position:absolute;
+      inset:-60px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23B89B5E' stroke-opacity='0.22' stroke-width='2'%3E%3Cpath d='M120 180c70 10 120 60 130 130-70-10-120-60-130-130Z'/%3E%3Cpath d='M170 230c30 20 55 45 75 75'/%3E%3Cpath d='M680 180c-70 10-120 60-130 130 70-10 120-60 130-130Z'/%3E%3Cpath d='M630 230c-30 20-55 45-75 75'/%3E%3Cpath d='M120 620c70-10 120-60 130-130-70 10-120 60-130 130Z'/%3E%3Cpath d='M170 570c30-20 55-45 75-75'/%3E%3Cpath d='M680 620c-70-10-120-60-130-130 70 10 120 60 130 130Z'/%3E%3Cpath d='M630 570c-30-20-55-45-75-75'/%3E%3C/g%3E%3C/svg%3E");
+      background-size:800px 800px;
+      background-position:center;
+      background-repeat:no-repeat;
+      pointer-events:none;
+    }
+    .coverCard:before{ opacity:.9; transform:rotate(8deg); }
+    .coverCard:after{ opacity:.6; transform:rotate(-10deg) scale(1.04); }
+    .kicker{
+      position:relative;
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:10px;
+      z-index:1;
+    }
+    .names{
+      position:relative;
+      z-index:1;
       font-family:"Cormorant Garamond", serif;
       font-weight:600;
-      font-size:48px;
+      font-size:44px;
       line-height:1.02;
+      margin:0;
     }
-    @media (max-width:420px){ h1{font-size:42px;} }
-    .dateChip{
-      margin:18px auto 0;
-      display:inline-flex; flex-direction:column; gap:6px;
-      padding:14px 16px;
+    .coverSub{
+      position:relative;
+      z-index:1;
+      margin-top:12px;
+      color:var(--muted);
+      line-height:1.6;
+      font-size:14px;
+    }
+    .pill{
+      display:inline-flex;
+      flex-direction:column;
+      gap:6px;
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.65);
+      position:relative;
+      z-index:1;
+    }
+    .pill strong{ font-weight:500; letter-spacing:.03em; }
+    .btnPrimary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      margin-top:16px;
+      padding:12px 16px;
+      border-radius:999px;
+      border:1px solid rgba(184,155,94,.35);
+      background:rgba(184,155,94,.18);
+      cursor:pointer;
+      font-size:14px;
+      font-weight:500;
+      position:relative;
+      z-index:1;
+      transition: transform .10s ease, background .2s ease;
+    }
+    .btnPrimary:hover{ transform: translateY(-1px); background:rgba(184,155,94,.22); }
+
+    /* Petals on cover only */
+    .petal{
+      position:absolute;
+      top:-40px;
+      width:18px;
+      height:18px;
+      opacity:.35;
+      pointer-events:none;
+      animation: fall linear forwards;
+      filter: drop-shadow(0 8px 10px rgba(0,0,0,.12));
+    }
+    @keyframes fall{
+      to{ transform: translate3d(var(--dx), 110vh, 0) rotate(var(--rot)); opacity:0.05; }
+    }
+
+    /* Main content card */
+    .sheet{
+      margin-top:16px;
+      border-radius:28px;
+      background: linear-gradient(180deg, rgba(252,251,248,.92), rgba(255,255,255,.92));
+      border:1px solid var(--line);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .sheet:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(700px 350px at 50% 0%, rgba(184,155,94,.10), transparent 55%),
+        radial-gradient(600px 350px at 15% 30%, rgba(111,123,106,.06), transparent 55%);
+      pointer-events:none;
+    }
+
+    /* Chapter sections */
+    .chapter{
+      position:relative;
+      padding:26px 20px;
+    }
+    .chapterInner{ position:relative; z-index:1; }
+    .chapter + .chapter{ border-top:1px solid var(--line); }
+
+    .chapterHeader{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .chapterTitle{
+      margin:0;
+      font-family:"Cormorant Garamond", serif;
+      font-weight:600;
+      font-size:30px;
+      letter-spacing:.01em;
+      line-height:1.1;
+    }
+    .chapterTag{
+      font-size:11px;
+      color:var(--muted);
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      white-space:nowrap;
+      padding-bottom:4px;
+    }
+
+    .ornament{
+      height:22px;
+      margin:10px 0 16px;
+      opacity:.9;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='80' viewBox='0 0 1200 80'%3E%3Cg fill='none' stroke='%23B89B5E' stroke-opacity='0.45' stroke-width='2'%3E%3Cpath d='M30 40h360'/%3E%3Cpath d='M810 40h360'/%3E%3Cpath d='M600 18c18 8 30 22 30 22s-12 14-30 22c-18-8-30-22-30-22s12-14 30-22z'/%3E%3Cpath d='M600 8c28 12 46 32 46 32s-18 20-46 32c-28-12-46-32-46-32s18-20 46-32z'/%3E%3Cpath d='M560 40c-18 0-40 10-60 30'/%3E%3Cpath d='M640 40c18 0 40 10 60 30'/%3E%3Cpath d='M560 40c-18 0-40-10-60-30'/%3E%3Cpath d='M640 40c18 0 40-10 60-30'/%3E%3C/g%3E%3C/svg%3E");
+      background-size:100% 100%;
+      background-repeat:no-repeat;
+      background-position:center;
+    }
+
+    .muted{ color:var(--muted); }
+    .lead{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    /* Information tiles */
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+    @media (min-width:720px){
+      .grid{ grid-template-columns:1fr 1fr; }
+    }
+    .tile{
+      background:rgba(255,255,255,.78);
       border:1px solid var(--line);
       border-radius:18px;
-      background:rgba(255,255,255,.72);
+      padding:14px 14px;
     }
-    .dateChip strong{font-weight:500; letter-spacing:.04em;}
-    .btnRow{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:16px;}
+    .label{
+      font-size:11px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:6px;
+    }
+    .value{
+      font-size:15px;
+      line-height:1.5;
+      color:var(--text);
+    }
+    .btnRow{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;
+    }
     .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:12px 16px; border-radius:999px; border:1px solid var(--line);
-      background:#fff; cursor:pointer; font-size:14px;
-      transition: transform .08s ease, background .2s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:11px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      cursor:pointer;
+      font-size:14px;
+      transition:transform .08s ease, background .2s ease;
     }
-    .btn:hover{transform:translateY(-1px); background:rgba(184,155,94,.08);}
-    .btn.primary{background:rgba(184,155,94,.16); border-color:rgba(184,155,94,.35);}
+    .btn:hover{ transform:translateY(-1px); background:rgba(184,155,94,.08); }
+    .btn.soft{
+      background:rgba(184,155,94,.12);
+      border-color:rgba(184,155,94,.28);
+    }
 
-    .countdown{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:16px;}
-    .timebox{min-width:92px; padding:12px 12px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.75); text-align:center;}
-    .timebox .num{font-size:22px; font-weight:500;}
-    .timebox .unit{margin-top:2px; font-size:12px; color:var(--muted); letter-spacing:.12em; text-transform:uppercase;}
+    /* Countdown */
+    .countdown{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .timebox{
+      min-width:90px;
+      padding:12px 12px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(255,255,255,.70);
+      text-align:center;
+    }
+    .timebox .num{ font-size:22px; font-weight:500; }
+    .timebox .unit{
+      margin-top:2px;
+      font-size:11px;
+      color:var(--muted);
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
 
-    .cards{display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px;}
-    @media (min-width:760px){ .cards{grid-template-columns:1fr 1fr;} }
-    .cardMini{padding:14px 14px; border:1px solid var(--line); border-radius:18px; background:rgba(247,245,242,.55);}
-    .label{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;}
-    .value{font-size:15px; line-height:1.55;}
-    .muted{color:var(--muted);}
-    .note{margin-top:12px; padding:12px 12px; border:1px solid var(--line); border-radius:18px; background:rgba(184,155,94,.08); font-size:13px; line-height:1.6;}
+    /* RSVP accordion */
+    .accordion{
+      margin-top:14px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(255,255,255,.76);
+      overflow:hidden;
+    }
+    .accHead{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:14px 14px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .accHead b{ font-weight:500; }
+    .chev{
+      width:26px; height:26px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid var(--line);
+      background:#fff;
+      transition: transform .2s ease;
+      flex:0 0 auto;
+    }
+    .accordion.open .chev{ transform: rotate(180deg); }
+    .accBody{
+      height:0;
+      overflow:hidden;
+      transition: height .25s ease;
+      border-top:1px solid var(--line);
+    }
+    .accInner{ padding:14px 14px; }
 
-    .accordion{margin-top:14px; border:1px solid var(--line); border-radius:18px; overflow:hidden; background:rgba(255,255,255,.80);}
-    .accHead{width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 14px; background:rgba(255,255,255,.90); border:0; cursor:pointer; font-size:14px;}
-    .accHead strong{font-weight:500}
-    .chev{transition: transform .25s ease;}
-    .accordion.open .chev{transform: rotate(180deg);}
-    .accBody{max-height:0; overflow:hidden; transition:max-height .35s ease;}
-    .accordion.open .accBody{max-height:1200px;}
-    form{padding:14px 14px 18px; display:grid; gap:12px;}
-    .row2{display:grid; gap:12px; grid-template-columns:1fr;}
-    @media (min-width:760px){ .row2{grid-template-columns:1fr 1fr;} }
-    input, select, textarea{width:100%; padding:12px 12px; border-radius:14px; border:1px solid var(--line); background:#fff; font-family:inherit; font-size:14px; outline:none;}
-    textarea{min-height:96px; resize:vertical;}
-    .help{font-size:12px; color:var(--muted); line-height:1.6;}
-    .status{display:none; margin-top:6px; padding:12px 12px; border-radius:18px; border:1px solid var(--line); background:rgba(111,123,106,.10); font-size:13px; line-height:1.6;}
-    .status.show{display:block;}
+    form{ display:grid; gap:12px; margin:0; }
+    .row2{
+      display:grid;
+      gap:12px;
+      grid-template-columns:1fr;
+    }
+    @media (min-width:720px){
+      .row2{ grid-template-columns:1fr 1fr; }
+    }
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-family:inherit;
+      font-size:14px;
+      outline:none;
+    }
+    textarea{ min-height:92px; resize:vertical; }
+    .help{ font-size:12px; color:var(--muted); line-height:1.6; }
+    .note{
+      padding:12px 12px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:rgba(184,155,94,.08);
+      font-size:13px;
+      line-height:1.6;
+      margin-top:10px;
+    }
+    .status{
+      display:none;
+      margin-top:8px;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(111,123,106,.10);
+      font-size:13px;
+      line-height:1.6;
+    }
+    .status.show{ display:block; }
 
-    .petalsWrap{position:absolute; inset:0; pointer-events:none; overflow:hidden;}
-    .petal{position:absolute; top:-40px; width:14px; height:10px; border-radius: 100% 0 100% 0; opacity:.22;
-      background: linear-gradient(135deg, rgba(184,155,94,.55), rgba(255,255,255,.0));
-      animation: fall var(--dur) linear infinite;}
-    .petal::after{content:""; position:absolute; inset:0; border-radius: 100% 0 100% 0; background: linear-gradient(135deg, rgba(255,255,255,.55), rgba(111,123,106,.0)); opacity:.35; transform: translate(2px,1px);}
-    @keyframes fall{0% { transform: translate(var(--x0), -40px) rotate(20deg); } 100% { transform: translate(var(--x1), 520px) rotate(220deg); } }
+    /* Scroll reveal */
+    .reveal{
+      opacity:0;
+      transform: translateY(10px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.in{
+      opacity:1;
+      transform:none;
+    }
 
-    @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none;} .petal{display:none;} .accBody{transition:none;} }
+    /* Floating nav dots (optional, like progress) */
+    .dots{
+      position:fixed;
+      right:10px;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:40;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      padding:10px 8px;
+      border-radius:999px;
+      background:rgba(252,251,248,.70);
+      border:1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.18);
+      background:rgba(255,255,255,.7);
+      cursor:pointer;
+    }
+    .dot.active{
+      background:rgba(184,155,94,.55);
+      border-color:rgba(184,155,94,.65);
+    }
 
-    .navDots{position:fixed; right:12px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:10px; z-index:20;}
-    .dot{width:10px; height:10px; border-radius:999px; border:1px solid rgba(0,0,0,.25); background:rgba(255,255,255,.65); cursor:pointer; transition: transform .12s ease, background .2s ease;}
-    .dot:hover{transform:scale(1.08);}
-    .dot.active{background:rgba(184,155,94,.38); border-color:rgba(184,155,94,.55);}
+    /* Small screens reduce dot nav */
+    @media (max-width:480px){
+      .dots{ right:6px; padding:8px 6px; }
+    }
 
-    footer{text-align:center; color:var(--muted); font-size:13px; line-height:1.7; padding:10px 0 2px;}
-    .tiny{font-size:12px; color:var(--muted);}
+    footer{
+      margin-top:14px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.7;
+    }
   </style>
 </head>
 
 <body>
-  <div class="navDots" aria-label="Quick navigation">
-    <div class="dot" data-to="cover" title="Cover"></div>
-    <div class="dot" data-to="families" title="Families"></div>
-    <div class="dot" data-to="details" title="Details"></div>
-    <div class="dot" data-to="rsvp" title="RSVP"></div>
-    <div class="dot" data-to="contact" title="Contact"></div>
+  <!-- Cover -->
+  <div class="cover" id="cover">
+    <div class="coverCard">
+      <div class="kicker" data-bm="Walimatulurus / Majlis Resepsi" data-en="Wedding Reception">Walimatulurus / Majlis Resepsi</div>
+      <h1 class="names">Alif Aimran<br>&amp; Wan Nadhirah</h1>
+
+      <div class="coverSub" data-bm="Dengan segala hormatnya menjemput anda." data-en="Cordially invite you.">
+        Dengan segala hormatnya menjemput anda.
+      </div>
+
+      <div class="pill">
+        <strong data-bm="Sabtu, 25 April 2026" data-en="Saturday, 25 April 2026">Sabtu, 25 April 2026</strong>
+        <div class="muted" data-bm="11:00 pagi – 4:00 petang" data-en="11:00 AM – 4:00 PM">11:00 pagi – 4:00 petang</div>
+        <div class="muted" style="font-size:13px;">Grandeur Beling Glasshall, Sungai Buloh</div>
+      </div>
+
+      <div class="countdown" aria-label="Countdown timer">
+        <div class="timebox"><div class="num" id="cd_d">--</div><div class="unit" data-bm="Hari" data-en="Days">Hari</div></div>
+        <div class="timebox"><div class="num" id="cd_h">--</div><div class="unit" data-bm="Jam" data-en="Hours">Jam</div></div>
+        <div class="timebox"><div class="num" id="cd_m">--</div><div class="unit" data-bm="Minit" data-en="Minutes">Minit</div></div>
+        <div class="timebox"><div class="num" id="cd_s">--</div><div class="unit" data-bm="Saat" data-en="Seconds">Saat</div></div>
+      </div>
+
+      <button class="btnPrimary" id="openBtn" type="button" data-bm="Buka Undangan" data-en="Open Invitation">Buka Undangan</button>
+      <div class="coverSub" style="font-size:12px;margin-top:8px;" data-bm="Skrol untuk melihat butiran majlis." data-en="Scroll to view the details.">Skrol untuk melihat butiran majlis.</div>
+    </div>
   </div>
 
   <div class="wrap">
     <div class="topbar">
-      <div>Digital Invitation</div>
-      <div class="lang" aria-label="Language toggle">
+      <div class="brand">A &amp; N • 25.04.2026</div>
+      <div class="lang">
         <button id="bmBtn" class="active" type="button">BM</button>
         <button id="enBtn" type="button">EN</button>
       </div>
     </div>
 
-    <section class="chapter cover reveal show" id="cover">
-      <div class="inner">
-        <div class="petalsWrap" id="petals"></div>
+    <!-- Progress dots -->
+    <div class="dots" aria-label="Quick navigation">
+      <div class="dot" data-target="#secFamilies" title="Families"></div>
+      <div class="dot" data-target="#secDetails" title="Details"></div>
+      <div class="dot" data-target="#secRSVP" title="RSVP"></div>
+      <div class="dot" data-target="#secContact" title="Contact"></div>
+    </div>
 
-        <div class="kicker" data-bm="Walimatulurus / Majlis Resepsi" data-en="Wedding Reception">Walimatulurus / Majlis Resepsi</div>
-        <h1>Alif Aimran<br>&amp; Wan Nadhirah</h1>
-
-        <div class="chapterSub" data-bm="Dengan segala hormatnya menjemput anda ke majlis resepsi kami." data-en="Cordially invite you to our wedding reception.">
-          Dengan segala hormatnya menjemput anda ke majlis resepsi kami.
-        </div>
-
-        <div class="dateChip">
-          <strong data-bm="Sabtu, 25 April 2026" data-en="Saturday, 25 April 2026">Sabtu, 25 April 2026</strong>
-          <div class="tiny" data-bm="11:00 pagi – 4:00 petang" data-en="11:00 AM – 4:00 PM">11:00 pagi – 4:00 petang</div>
-          <div class="tiny" data-bm="Grandeur Beling Glasshall, Sungai Buloh" data-en="Grandeur Beling Glasshall, Sungai Buloh">Grandeur Beling Glasshall, Sungai Buloh</div>
-        </div>
-
-        <div class="countdown" aria-label="Countdown timer">
-          <div class="timebox"><div class="num" id="d">--</div><div class="unit" data-bm="Hari" data-en="Days">Hari</div></div>
-          <div class="timebox"><div class="num" id="h">--</div><div class="unit" data-bm="Jam" data-en="Hours">Jam</div></div>
-          <div class="timebox"><div class="num" id="m">--</div><div class="unit" data-bm="Minit" data-en="Minutes">Minit</div></div>
-          <div class="timebox"><div class="num" id="s">--</div><div class="unit" data-bm="Saat" data-en="Seconds">Saat</div></div>
-        </div>
-
-        <div class="btnRow" style="margin-top:18px;">
-          <button class="btn primary" id="openInvite" data-bm="Buka Undangan" data-en="Open Invitation">Buka Undangan</button>
-          <a class="btn" href="https://maps.app.goo.gl/9H7ujsBQ5UV1V9kw8?g_st=iw" target="_blank" rel="noopener">Google Maps</a>
-          <a class="btn" href="https://waze.com/ul/hw284qgfv2" target="_blank" rel="noopener">Waze</a>
-        </div>
-
-        <div class="dividerOrn" aria-hidden="true">
-          <svg width="220" height="18" viewBox="0 0 220 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 9H72" stroke="rgba(0,0,0,.18)"/>
-            <path d="M148 9H219" stroke="rgba(0,0,0,.18)"/>
-            <path d="M110 2C114 6 116 7 118 9C116 11 114 12 110 16C106 12 104 11 102 9C104 7 106 6 110 2Z" fill="rgba(184,155,94,.55)"/>
-            <path d="M93 9C97 7 100 6 103 6C101 9 101 9 103 12C100 12 97 11 93 9Z" fill="rgba(111,123,106,.35)"/>
-            <path d="M127 9C123 7 120 6 117 6C119 9 119 9 117 12C120 12 123 11 127 9Z" fill="rgba(111,123,106,.35)"/>
-          </svg>
-        </div>
-
-        <footer class="tiny" data-bm="Kiraan detik menuju hari majlis." data-en="Countdown to our wedding day.">Kiraan detik menuju hari majlis.</footer>
-      </div>
-    </section>
-
-    <section class="chapter reveal" id="families">
-      <div class="inner">
-        <div class="chapterHeader">
-          <div>
+    <div class="sheet">
+      <!-- Families -->
+      <section class="chapter reveal" id="secFamilies">
+        <div class="chapterInner">
+          <div class="chapterHeader">
+            <h2 class="chapterTitle" data-bm="Keluarga" data-en="Families">Keluarga</h2>
             <div class="chapterTag" data-bm="Bab 1" data-en="Chapter 1">Bab 1</div>
-            <div class="chapterTitle" data-bm="Keluarga" data-en="Families">Keluarga</div>
-            <div class="chapterSub" data-bm="Dengan penuh hormat, kami menjemput Tuan/Puan untuk hadir memeriahkan majlis kami." data-en="With respect, we invite you to celebrate our special day with us.">
-              Dengan penuh hormat, kami menjemput Tuan/Puan untuk hadir memeriahkan majlis kami.
+          </div>
+          <div class="ornament" aria-hidden="true"></div>
+
+          <p class="lead"
+             data-bm="Dengan izin dan rahmat Allah SWT, kami menjemput Tuan/Puan/Saudara/Saudari untuk menghadiri Majlis Resepsi Perkahwinan kami."
+             data-en="With the blessings of Allah SWT, we invite you to attend our wedding reception.">
+            Dengan izin dan rahmat Allah SWT, kami menjemput Tuan/Puan/Saudara/Saudari untuk menghadiri Majlis Resepsi Perkahwinan kami.
+          </p>
+
+          <div class="grid">
+            <div class="tile" style="grid-column:1/-1">
+              <div class="label" data-bm="Pengantin Perempuan" data-en="Bride">Pengantin Perempuan</div>
+              <div class="value"><b>Wan Nadhirah</b></div>
+              <div class="muted" style="margin-top:8px;" data-bm="Anakanda kepada" data-en="Daughter of">Anakanda kepada</div>
+              <div class="value" style="margin-top:4px;">Wan Nazuri bin Wan Mohamad Zain</div>
+              <div class="value">Roshazlin binti Roslan</div>
+            </div>
+
+            <div class="tile" style="grid-column:1/-1">
+              <div class="label" data-bm="Pengantin Lelaki" data-en="Groom">Pengantin Lelaki</div>
+              <div class="value"><b>Alif Aimran</b></div>
+              <div class="muted" style="margin-top:8px;" data-bm="Anakanda kepada" data-en="Son of">Anakanda kepada</div>
+              <div class="value" style="margin-top:4px;">Ibrahim bin Salleh</div>
+              <div class="value">Basirah binti Hassan</div>
             </div>
           </div>
         </div>
+      </section>
 
-        <div class="cards">
-          <div class="cardMini">
-            <div class="label" data-bm="Ibu Bapa Pengantin Perempuan" data-en="Bride's Parents">Ibu Bapa Pengantin Perempuan</div>
-            <div class="value"><strong>Wan Nazuri bin Wan Mohamad Zain</strong></div>
-            <div class="value">Roshazlin binti Roslan</div>
-          </div>
-
-          <div class="cardMini">
-            <div class="label" data-bm="Ibu Bapa Pengantin Lelaki" data-en="Groom's Parents">Ibu Bapa Pengantin Lelaki</div>
-            <div class="value"><strong>Ibrahim bin Salleh</strong></div>
-            <div class="value">Basirah binti Hassan</div>
-          </div>
-        </div>
-
-        <div class="note" data-bm="Semoga kehadiran dan doa anda mengiringi keberkatan dalam perkahwinan kami." data-en="May your presence and prayers bring blessings to our marriage.">
-          Semoga kehadiran dan doa anda mengiringi keberkatan dalam perkahwinan kami.
-        </div>
-      </div>
-    </section>
-
-    <section class="chapter reveal" id="details">
-      <div class="inner">
-        <div class="chapterHeader">
-          <div>
+      <!-- Details -->
+      <section class="chapter reveal" id="secDetails">
+        <div class="chapterInner">
+          <div class="chapterHeader">
+            <h2 class="chapterTitle" data-bm="Butiran Majlis" data-en="Event Details">Butiran Majlis</h2>
             <div class="chapterTag" data-bm="Bab 2" data-en="Chapter 2">Bab 2</div>
-            <div class="chapterTitle" data-bm="Butiran Majlis" data-en="Event Details">Butiran Majlis</div>
-            <div class="chapterSub" data-bm="Maklumat ringkas majlis resepsi. Klik lokasi untuk navigasi." data-en="Reception details. Tap location for navigation.">
-              Maklumat ringkas majlis resepsi. Klik lokasi untuk navigasi.
+          </div>
+          <div class="ornament" aria-hidden="true"></div>
+
+          <div class="grid">
+            <div class="tile">
+              <div class="label" data-bm="Tarikh" data-en="Date">Tarikh</div>
+              <div class="value" data-bm="Sabtu, 25 April 2026" data-en="Saturday, 25 April 2026">Sabtu, 25 April 2026</div>
+            </div>
+            <div class="tile">
+              <div class="label" data-bm="Masa" data-en="Time">Masa</div>
+              <div class="value" data-bm="11:00 pagi – 4:00 petang" data-en="11:00 AM – 4:00 PM">11:00 pagi – 4:00 petang</div>
+            </div>
+
+            <div class="tile" style="grid-column:1/-1">
+              <div class="label" data-bm="Tempat" data-en="Venue">Tempat</div>
+              <div class="value">Grandeur Beling Glasshall</div>
+              <div class="muted" style="margin-top:6px;">Lorong Melati, 47000 Sungai Buloh, Selangor</div>
+
+              <div class="btnRow">
+                <a class="btn soft" href="https://maps.app.goo.gl/9H7ujsBQ5UV1V9kw8?g_st=iw" target="_blank" rel="noopener">Google Maps</a>
+                <a class="btn" href="https://waze.com/ul/hw284qgfv2" target="_blank" rel="noopener">Waze</a>
+                <button class="btn" type="button" id="copyAddrBtn" data-bm="Salin Alamat" data-en="Copy Address">Salin Alamat</button>
+              </div>
+
+              <div class="note" data-bm="Pax: Maksimum <b>2 orang dewasa</b> bagi setiap jemputan." data-en="Pax: Maximum <b>2 adults</b> per invitation.">
+                Pax: Maksimum <b>2 orang dewasa</b> bagi setiap jemputan.
+              </div>
+
+              <div class="status" id="toast"></div>
             </div>
           </div>
         </div>
+      </section>
 
-        <div class="cards">
-          <div class="cardMini">
-            <div class="label" data-bm="Tarikh" data-en="Date">Tarikh</div>
-            <div class="value" data-bm="Sabtu, 25 April 2026" data-en="Saturday, 25 April 2026">Sabtu, 25 April 2026</div>
-          </div>
-          <div class="cardMini">
-            <div class="label" data-bm="Masa" data-en="Time">Masa</div>
-            <div class="value" data-bm="11:00 pagi – 4:00 petang" data-en="11:00 AM – 4:00 PM">11:00 pagi – 4:00 petang</div>
-          </div>
-
-          <div class="cardMini" style="grid-column:1/-1">
-            <div class="label" data-bm="Tempat" data-en="Venue">Tempat</div>
-            <div class="value"><strong>Grandeur Beling Glasshall</strong></div>
-            <div class="value muted">Lorong Melati, 47000 Sungai Buloh, Selangor</div>
-
-            <div class="btnRow" style="justify-content:flex-start;">
-              <a class="btn primary" href="https://maps.app.goo.gl/9H7ujsBQ5UV1V9kw8?g_st=iw" target="_blank" rel="noopener">Google Maps</a>
-              <a class="btn" href="https://waze.com/ul/hw284qgfv2" target="_blank" rel="noopener">Waze</a>
-              <button class="btn" type="button" id="copyAddr" data-bm="Salin alamat" data-en="Copy address">Salin alamat</button>
-            </div>
-
-            <div class="note" id="paxNote" data-bm="Pax: Maksimum <b>2 orang dewasa</b> bagi setiap jemputan." data-en="Pax: Maximum <b>2 adults</b> per invitation.">
-              Pax: Maksimum <b>2 orang dewasa</b> bagi setiap jemputan.
-            </div>
-            <div class="status" id="toast"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="chapter reveal" id="rsvp">
-      <div class="inner">
-        <div class="chapterHeader">
-          <div>
+      <!-- RSVP -->
+      <section class="chapter reveal" id="secRSVP">
+        <div class="chapterInner">
+          <div class="chapterHeader">
+            <h2 class="chapterTitle">RSVP</h2>
             <div class="chapterTag" data-bm="Bab 3" data-en="Chapter 3">Bab 3</div>
-            <div class="chapterTitle">RSVP</div>
-            <div class="chapterSub" data-bm="Sila sahkan kehadiran sebelum <b>Sabtu, 11 April 2026</b>." data-en="Please respond by <b>Saturday, 11 April 2026</b>.">
-              Sila sahkan kehadiran sebelum <b>Sabtu, 11 April 2026</b>.
+          </div>
+          <div class="ornament" aria-hidden="true"></div>
+
+          <p class="lead" id="rsvpLead"
+             data-bm="Sila sahkan kehadiran sebelum <b>Sabtu, 11 April 2026</b>."
+             data-en="Please respond by <b>Saturday, 11 April 2026</b>.">
+            Sila sahkan kehadiran sebelum <b>Sabtu, 11 April 2026</b>.
+          </p>
+
+          <!-- Hidden iframe for Google Form submit -->
+          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+          <div class="accordion" id="acc">
+            <div class="accHead" id="accHead">
+              <div><b data-bm="Buka borang RSVP" data-en="Open RSVP form">Buka borang RSVP</b><div class="help" id="deadlineMsg"></div></div>
+              <div class="chev">⌄</div>
+            </div>
+            <div class="accBody" id="accBody">
+              <div class="accInner">
+                <form id="rsvpForm"
+                      action="https://docs.google.com/forms/d/e/1FAIpQLSd2HP0NJ58am3Py63pIBG1Qn_DdlFZKw9gHF7sSU39N17yEKQ/formResponse"
+                      method="POST"
+                      target="hidden_iframe">
+                  <div class="row2">
+                    <div>
+                      <div class="help" data-bm="Nama / Name" data-en="Name / Nama">Nama / Name</div>
+                      <input required maxlength="80" name="entry.1498135098" placeholder="Nama / Name" />
+                    </div>
+                    <div>
+                      <div class="help" data-bm="No. Telefon / Phone No." data-en="Phone No. / No. Telefon">No. Telefon / Phone No.</div>
+                      <input required maxlength="30" name="entry.1450191657" placeholder="Contoh: 01X-XXXXXXX" />
+                    </div>
+                  </div>
+
+                  <div class="row2">
+                    <div>
+                      <div class="help" data-bm="Kehadiran / Attendance" data-en="Attendance / Kehadiran">Kehadiran / Attendance</div>
+                      <select required name="entry.1424661284" id="attendance">
+                        <option value="" selected disabled>—</option>
+                        <option value="Hadir">Hadir / Attending</option>
+                        <option value="Tidak Hadir">Tidak Hadir / Unable to attend</option>
+                      </select>
+                    </div>
+                    <div>
+                      <div class="help" data-bm="Jumlah tetamu / Pax (1–2)" data-en="Pax (1–2)">Jumlah tetamu / Pax (1–2)</div>
+                      <select required name="entry.38316735" id="pax">
+                        <option value="" selected disabled>—</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="help" data-bm="Ucapan (optional) / Wishes (optional)" data-en="Wishes (optional) / Ucapan (optional)">Ucapan (optional) / Wishes (optional)</div>
+                    <textarea name="entry.2606285" placeholder="Ucapan ringkas / A short wish (optional)"></textarea>
+                  </div>
+
+                  <button class="btn soft" type="submit" id="submitBtn"
+                          data-bm="Hantar RSVP" data-en="Submit RSVP">
+                    Hantar RSVP
+                  </button>
+
+                  <div class="status" id="statusBox"></div>
+                  <div class="help" style="margin-top:6px;"
+                       data-bm="Nota: RSVP ini akan direkodkan terus ke Google Sheet melalui Google Form."
+                       data-en="Note: This RSVP will be recorded to a Google Sheet via Google Form.">
+                    Nota: RSVP ini akan direkodkan terus ke Google Sheet melalui Google Form.
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
+
+          <footer style="margin-top:14px;">
+            <div data-bm="Terima kasih atas doa dan kehadiran anda." data-en="Thank you for your prayers and presence.">
+              Terima kasih atas doa dan kehadiran anda.
+            </div>
+          </footer>
         </div>
+      </section>
 
-        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-
-        <div class="accordion" id="acc">
-          <button class="accHead" type="button" id="accBtn">
-            <strong data-bm="Buka borang RSVP" data-en="Open RSVP form">Buka borang RSVP</strong>
-            <span class="chev">⌄</span>
-          </button>
-
-          <div class="accBody">
-            <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSd2HP0NJ58am3Py63pIBG1Qn_DdlFZKw9gHF7sSU39N17yEKQ/formResponse" method="POST" target="hidden_iframe">
-              <div class="row2">
-                <div>
-                  <div class="help" data-bm="Nama / Name" data-en="Name / Nama">Nama / Name</div>
-                  <input required maxlength="80" name="entry.1498135098" placeholder="Nama / Name" />
-                </div>
-                <div>
-                  <div class="help" data-bm="No. Telefon / Phone No." data-en="Phone No. / No. Telefon">No. Telefon / Phone No.</div>
-                  <input required maxlength="30" name="entry.1450191657" placeholder="Contoh: 01X-XXXXXXX" />
-                </div>
-              </div>
-
-              <div class="row2">
-                <div>
-                  <div class="help" data-bm="Kehadiran / Attendance" data-en="Attendance / Kehadiran">Kehadiran / Attendance</div>
-                  <select required name="entry.1424661284" id="attendance">
-                    <option value="" selected disabled>—</option>
-                    <option value="Hadir">Hadir / Attending</option>
-                    <option value="Tidak Hadir">Tidak Hadir / Unable to attend</option>
-                  </select>
-                </div>
-                <div>
-                  <div class="help" data-bm="Jumlah tetamu / Pax (1–2)" data-en="Pax (1–2)">Jumlah tetamu / Pax (1–2)</div>
-                  <select required name="entry.38316735" id="pax">
-                    <option value="" selected disabled>—</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <div class="help" data-bm="Ucapan (optional) / Wishes (optional)" data-en="Wishes (optional) / Ucapan (optional)">Ucapan (optional) / Wishes (optional)</div>
-                <textarea name="entry.2606285" placeholder="Ucapan ringkas / A short wish (optional)"></textarea>
-              </div>
-
-              <button class="btn primary" type="submit" id="submitBtn" data-bm="Hantar RSVP" data-en="Submit RSVP">Hantar RSVP</button>
-
-              <div class="help" id="deadlineMsg"></div>
-              <div class="status" id="statusBox"></div>
-
-              <div class="tiny" style="margin-top:8px;" data-bm="Nota: RSVP ini akan direkodkan terus ke Google Sheet melalui Google Form." data-en="Note: This RSVP will be recorded to a Google Sheet via Google Form.">
-                Nota: RSVP ini akan direkodkan terus ke Google Sheet melalui Google Form.
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="chapter reveal" id="contact">
-      <div class="inner">
-        <div class="chapterHeader">
-          <div>
+      <!-- Contact -->
+      <section class="chapter reveal" id="secContact">
+        <div class="chapterInner">
+          <div class="chapterHeader">
+            <h2 class="chapterTitle" data-bm="Hubungi" data-en="Contact">Hubungi</h2>
             <div class="chapterTag" data-bm="Bab 4" data-en="Chapter 4">Bab 4</div>
-            <div class="chapterTitle" data-bm="Hubungi" data-en="Contact">Hubungi</div>
-            <div class="chapterSub" data-bm="Nombor WhatsApp akan dikemaskini. (TBC)" data-en="WhatsApp contacts will be updated. (TBC)">
-              Nombor WhatsApp akan dikemaskini. (TBC)
-            </div>
+          </div>
+          <div class="ornament" aria-hidden="true"></div>
+
+          <p class="lead" data-bm="Nombor WhatsApp akan dikemaskini. (TBC)" data-en="WhatsApp contacts will be updated. (TBC)">
+            Nombor WhatsApp akan dikemaskini. (TBC)
+          </p>
+
+          <div class="btnRow" style="opacity:.6; pointer-events:none; margin-top:14px;">
+            <a class="btn" href="#">WhatsApp (Bride’s side) — TBC</a>
+            <a class="btn" href="#">WhatsApp (Groom’s side) — TBC</a>
           </div>
         </div>
-
-        <div class="btnRow" style="justify-content:flex-start; opacity:.6; pointer-events:none;">
-          <a class="btn" href="#">WhatsApp (Bride’s side) — TBC</a>
-          <a class="btn" href="#">WhatsApp (Groom’s side) — TBC</a>
-        </div>
-
-        <footer>
-          <div data-bm="Terima kasih atas doa dan kehadiran anda." data-en="Thank you for your prayers and presence.">
-            Terima kasih atas doa dan kehadiran anda.
-          </div>
-        </footer>
-      </div>
-    </section>
-
+      </section>
+    </div>
   </div>
 
   <script>
-    // Language toggle
+    // ===== Constants (declare early to avoid TDZ errors) =====
+    // Countdown target: 25 April 2026, 11:00 AM MYT (UTC+8) => 03:00 UTC
+    const targetUTC = Date.UTC(2026, 3, 25, 3, 0, 0);
+    // RSVP deadline: 11 April 2026, 23:59 MYT => 15:59 UTC
+    const rsvpDeadlineUTC = Date.UTC(2026, 3, 11, 15, 59, 59);
+    const ADDR_TEXT = "Grandeur Beling Glasshall, Lorong Melati, 47000 Sungai Buloh, Selangor";
+
+    // ===== Cover petals (subtle, cover only) =====
+    const cover = document.getElementById('cover');
+    function spawnPetals(){
+      const card = cover?.querySelector('.coverCard');
+      if(!card) return;
+      for(let i=0;i<14;i++){
+        const p = document.createElement('div');
+        p.className = 'petal';
+        // rose-gold petal svg
+        p.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 3c3 3 6 5 6 9s-2.5 7-6 9c-3.5-2-6-5-6-9s3-6 6-9z" fill="rgba(184,155,94,.55)"/>
+        </svg>`;
+        const left = Math.random()*100;
+        const dur = 6 + Math.random()*6;
+        const delay = Math.random()*3;
+        const dx = (Math.random()*120 - 60).toFixed(0) + "px";
+        const rot = (Math.random()*360 - 180).toFixed(0) + "deg";
+        p.style.left = left + "%";
+        p.style.setProperty('--dx', dx);
+        p.style.setProperty('--rot', rot);
+        p.style.animationDuration = dur + "s";
+        p.style.animationDelay = delay + "s";
+        card.appendChild(p);
+        setTimeout(()=>p.remove(), (dur+delay)*1000 + 200);
+      }
+    }
+    spawnPetals();
+    setInterval(()=>{ if(!cover.classList.contains('hidden')) spawnPetals(); }, 3500);
+
+    // ===== Open invitation =====
+    const openBtn = document.getElementById('openBtn');
+    openBtn.addEventListener('click', ()=>{
+      cover.classList.add('hidden');
+      document.getElementById('secFamilies')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+
+    // ===== Language toggle =====
     const bmBtn = document.getElementById('bmBtn');
     const enBtn = document.getElementById('enBtn');
     let lang = 'bm';
 
-    // RSVP deadline: 11 April 2026, 23:59 MYT (UTC+8)
-    const rsvpDeadlineUTC = Date.UTC(2026, 3, 11, 15, 59, 59);
-
-
-    function applyLang(newLang) {
+    function applyLang(newLang){
       lang = newLang;
       bmBtn.classList.toggle('active', lang === 'bm');
       enBtn.classList.toggle('active', lang === 'en');
-      document.querySelectorAll('[data-bm]').forEach(el => {
+
+      document.querySelectorAll('[data-bm]').forEach(el=>{
         el.innerHTML = (lang === 'bm') ? el.getAttribute('data-bm') : el.getAttribute('data-en');
       });
     }
-    bmBtn.addEventListener('click', () => applyLang('bm'));
-    enBtn.addEventListener('click', () => applyLang('en'));
+    bmBtn.addEventListener('click', ()=>applyLang('bm'));
+    enBtn.addEventListener('click', ()=>applyLang('en'));
     applyLang('bm');
 
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('show');
-      });
-    }, { threshold: 0.12 });
-    reveals.forEach(r => io.observe(r));
+    // ===== Countdown (cover boxes) =====
+    const dEl = document.getElementById('cd_d');
+    const hEl = document.getElementById('cd_h');
+    const mEl = document.getElementById('cd_m');
+    const sEl = document.getElementById('cd_s');
 
-    // Quick nav dots
-    const dots = document.querySelectorAll('.dot');
-    dots.forEach(d => d.addEventListener('click', () => {
-      const id = d.getAttribute('data-to');
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }));
-
-    const sections = ['cover','families','details','rsvp','contact'].map(id => document.getElementById(id));
-    const io2 = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const id = e.target.id;
-          dots.forEach(d => d.classList.toggle('active', d.getAttribute('data-to') === id));
-        }
-      });
-    }, { threshold: 0.35 });
-    sections.forEach(s => io2.observe(s));
-
-    // Open invitation scroll
-    document.getElementById('openInvite').addEventListener('click', () => {
-      document.getElementById('families').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-
-    // Countdown (25 Apr 2026 11:00 MYT => 03:00 UTC)
-    const targetUTC = Date.UTC(2026, 3, 25, 3, 0, 0);
-    const dEl = document.getElementById('d');
-    const hEl = document.getElementById('h');
-    const mEl = document.getElementById('m');
-    const sEl = document.getElementById('s');
-
-    function tick() {
+    function tick(){
       const now = Date.now();
       let diff = targetUTC - now;
-      if (diff < 0) diff = 0;
+      if(diff < 0) diff = 0;
       const sec = Math.floor(diff / 1000);
       const days = Math.floor(sec / 86400);
-      const hrs = Math.floor((sec % 86400) / 3600);
+      const hrs  = Math.floor((sec % 86400) / 3600);
       const mins = Math.floor((sec % 3600) / 60);
       const secs = sec % 60;
 
       dEl.textContent = String(days);
-      hEl.textContent = String(hrs).padStart(2, '0');
-      mEl.textContent = String(mins).padStart(2, '0');
-      sEl.textContent = String(secs).padStart(2, '0');
+      hEl.textContent = String(hrs).padStart(2,'0');
+      mEl.textContent = String(mins).padStart(2,'0');
+      sEl.textContent = String(secs).padStart(2,'0');
     }
     tick();
     setInterval(tick, 1000);
 
-    // Copy address toast
+    // ===== Scroll reveal =====
+    const io = new IntersectionObserver((entries)=>{
+      for(const e of entries){
+        if(e.isIntersecting) e.target.classList.add('in');
+      }
+    }, {threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // ===== Dots nav =====
+    const dots = Array.from(document.querySelectorAll('.dot'));
+    dots.forEach(d=>{
+      d.addEventListener('click', ()=>{
+        const t = d.getAttribute('data-target');
+        document.querySelector(t)?.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    const sections = ['#secFamilies','#secDetails','#secRSVP','#secContact'].map(sel=>document.querySelector(sel));
+    const io2 = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const idx = sections.indexOf(e.target);
+          dots.forEach((d,i)=>d.classList.toggle('active', i===idx));
+        }
+      });
+    }, {threshold:0.35});
+    sections.forEach(s=>s && io2.observe(s));
+
+    // ===== Copy address + toast =====
     const toast = document.getElementById('toast');
-    const addr = "Grandeur Beling Glasshall, Lorong Melati, 47000 Sungai Buloh, Selangor";
-    document.getElementById('copyAddr').addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(addr);
-        toast.classList.add('show');
-        toast.textContent = (lang === 'bm') ? "Alamat disalin." : "Address copied.";
-        setTimeout(() => toast.classList.remove('show'), 1600);
-      } catch (err) {
-        toast.classList.add('show');
-        toast.textContent = (lang === 'bm') ? "Tak dapat salin alamat." : "Could not copy address.";
-        setTimeout(() => toast.classList.remove('show'), 1600);
+    const copyBtn = document.getElementById('copyAddrBtn');
+    function showToast(msg){
+      toast.classList.add('show');
+      toast.textContent = msg;
+      setTimeout(()=>toast.classList.remove('show'), 1800);
+    }
+    copyBtn.addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText(ADDR_TEXT);
+        showToast(lang==='bm' ? "Alamat disalin." : "Address copied.");
+      }catch{
+        showToast(lang==='bm' ? "Tidak dapat salin alamat." : "Could not copy.");
       }
     });
 
-    // RSVP accordion
+    // ===== RSVP accordion =====
     const acc = document.getElementById('acc');
-    document.getElementById('accBtn').addEventListener('click', () => {
-      acc.classList.toggle('open');
+    const accHead = document.getElementById('accHead');
+    const accBody = document.getElementById('accBody');
+    function setAcc(open){
+      acc.classList.toggle('open', open);
+      if(open){
+        accBody.style.height = accBody.scrollHeight + "px";
+      }else{
+        accBody.style.height = "0px";
+      }
+    }
+    accHead.addEventListener('click', ()=>{
+      setAcc(!acc.classList.contains('open'));
     });
 
-    // RSVP deadline
+    // ===== RSVP deadline enforcement =====
     const deadlineMsg = document.getElementById('deadlineMsg');
     const submitBtn = document.getElementById('submitBtn');
     const statusBox = document.getElementById('statusBox');
     const form = document.getElementById('rsvpForm');
     const pax = document.getElementById('pax');
 
-    function checkDeadline() {
+    function checkDeadline(){
       const now = Date.now();
-      if (now > rsvpDeadlineUTC) {
+      if(now > rsvpDeadlineUTC){
         submitBtn.disabled = true;
-        submitBtn.style.opacity = 0.55;
+        submitBtn.style.opacity = 0.5;
         submitBtn.style.cursor = 'not-allowed';
         deadlineMsg.textContent = (lang === 'bm')
-          ? "RSVP telah ditutup (selepas 11 April 2026)."
-          : "RSVP is closed (after 11 April 2026).";
+          ? "RSVP ditutup selepas 11 April 2026."
+          : "RSVP is closed after 11 April 2026.";
       } else {
         submitBtn.disabled = false;
         submitBtn.style.opacity = 1;
         submitBtn.style.cursor = 'pointer';
         deadlineMsg.textContent = (lang === 'bm')
-          ? "Maksimum 2 dewasa sahaja. Terima kasih!"
-          : "Maximum 2 adults only. Thank you!";
+          ? "Maksimum 2 dewasa. Terima kasih!"
+          : "Maximum 2 adults. Thank you!";
       }
-      deadlineMsg.style.marginTop = "8px";
     }
     checkDeadline();
-    setInterval(checkDeadline, 60000);
+    setInterval(checkDeadline, 60_000);
 
-    form.addEventListener('submit', (e) => {
-      const paxVal = pax.value ? parseInt(pax.value, 10) : 0;
-      if (paxVal < 1 || paxVal > 2) {
+    // ===== RSVP submit UX =====
+    form.addEventListener('submit', (e)=>{
+      const paxVal = pax.value ? parseInt(pax.value,10) : 0;
+      if(paxVal < 1 || paxVal > 2){
         e.preventDefault();
         statusBox.classList.add('show');
-        statusBox.textContent = (lang === 'bm') ? "Sila pilih pax 1 atau 2 sahaja." : "Please choose pax 1 or 2 only.";
+        statusBox.textContent = (lang==='bm') ? "Sila pilih pax 1 atau 2 sahaja." : "Please choose pax 1 or 2 only.";
         return;
       }
       statusBox.classList.add('show');
-      statusBox.textContent = (lang === 'bm') ? "Terima kasih! RSVP anda sedang dihantar…" : "Thank you! Your RSVP is being submitted…";
-      setTimeout(() => {
-        statusBox.textContent = (lang === 'bm') ? "RSVP diterima. Terima kasih atas maklum balas anda." : "RSVP received. Thank you for your response.";
+      statusBox.textContent = (lang==='bm') ? "Terima kasih! RSVP sedang dihantar…" : "Thank you! Submitting your RSVP…";
+      setTimeout(()=>{
+        statusBox.textContent = (lang==='bm') ? "RSVP diterima. Terima kasih!" : "RSVP received. Thank you!";
         form.reset();
-      }, 1400);
+      }, 1500);
     });
 
-    // Petals generator (subtle)
-    const petalsWrap = document.getElementById('petals');
-    const petalCount = 12;
-    for (let i=0; i<petalCount; i++) {
-      const p = document.createElement('span');
-      p.className = 'petal';
-      const left = Math.random() * 100;
-      const drift = (Math.random() * 160 - 80);
-      const drift2 = drift + (Math.random() * 120 - 60);
-      const dur = 10 + Math.random() * 8;
-      const delay = Math.random() * 6;
-
-      p.style.left = left + 'vw';
-      p.style.setProperty('--x0', drift + 'px');
-      p.style.setProperty('--x1', drift2 + 'px');
-      p.style.setProperty('--dur', dur + 's');
-      p.style.animationDelay = (-delay) + 's';
-      p.style.opacity = (0.14 + Math.random() * 0.14).toFixed(2);
-      p.style.transform = 'rotate(' + (Math.random() * 40).toFixed(1) + 'deg)';
-
-      petalsWrap.appendChild(p);
-    }
+    // Keep accordion height correct when opening on resize
+    window.addEventListener('resize', ()=>{
+      if(acc.classList.contains('open')){
+        accBody.style.height = accBody.scrollHeight + "px";
+      }
+    });
   </script>
 </body>
 </html>
