@@ -23,9 +23,12 @@
       --r:22px;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
+    html,body{height:100%; scroll-behavior:smooth;}
     body{
       margin:0;
+      scroll-snap-type: y mandatory;
+      overflow-y:auto;
+      overscroll-behavior-y: contain;
       background:var(--bg);
       color:var(--text);
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -363,8 +366,9 @@
   width:100%;
   display:flex;
   justify-content:center;
-  margin:28px 0 34px;
-}
+  margin:28px 0 34px;      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
 .divider svg{
   width:180px;
   height:24px;
@@ -376,6 +380,41 @@
 }
 .divider circle{
   fill: rgba(184,155,94,.6);
+}
+
+
+/* Vertical side lines (page rails) */
+.section .rails{
+  position:absolute;
+  left:50%;
+  top:0;
+  transform:translateX(-50%);
+  width:min(560px, calc(100% - 72px));
+  height:100%;
+  pointer-events:none;
+  opacity:.55;
+}
+.section .rails:before,
+.section .rails:after{
+  content:"";
+  position:absolute;
+  top:52px;
+  bottom:52px;
+  width:1px;
+  background: linear-gradient(to bottom,
+    transparent,
+    rgba(184,155,94,.55) 12%,
+    rgba(184,155,94,.55) 88%,
+    transparent);
+}
+.section .rails:before{ left:-22px; }
+.section .rails:after{ right:-22px; }
+
+/* On small phones, keep rails closer */
+@media (max-width:420px){
+  .section .rails{ width: calc(100% - 56px); }
+  .section .rails:before{ left:-14px; }
+  .section .rails:after{ right:-14px; }
 }
 
 </style>
@@ -393,7 +432,9 @@
 
     <!-- SECTION 0: COVER -->
     <section class="section" id="secCover">
-      <!-- floral corners -->
+      
+      <div class="rails" aria-hidden="true"></div>
+<!-- floral corners -->
       <svg class="bot tl" viewBox="0 0 200 200" aria-hidden="true">
         <g fill="none" stroke="rgba(184,155,94,.9)" stroke-width="1.2" stroke-linecap="round">
           <path d="M30 140c30-20 45-55 55-95"/>
@@ -467,7 +508,9 @@
 
     <!-- SECTION 1: FAMILIES -->
     <section class="section" id="secFamilies">
-      <svg class="bot tl" viewBox="0 0 200 200" aria-hidden="true">
+      
+      <div class="rails" aria-hidden="true"></div>
+<svg class="bot tl" viewBox="0 0 200 200" aria-hidden="true">
         <g fill="none" stroke="rgba(184,155,94,.9)" stroke-width="1.2" stroke-linecap="round">
           <path d="M30 140c30-20 45-55 55-95"/>
           <path d="M55 150c20-30 35-60 42-110"/>
@@ -537,7 +580,9 @@
 
     <!-- SECTION 2: DETAILS -->
     <section class="section" id="secDetails">
-      <svg class="bot tl" viewBox="0 0 200 200" aria-hidden="true">
+      
+      <div class="rails" aria-hidden="true"></div>
+<svg class="bot tl" viewBox="0 0 200 200" aria-hidden="true">
         <g fill="none" stroke="rgba(184,155,94,.9)" stroke-width="1.2" stroke-linecap="round">
           <path d="M30 140c30-20 45-55 55-95"/>
           <path d="M55 150c20-30 35-60 42-110"/>
@@ -604,7 +649,9 @@
 
     <!-- SECTION 3: RSVP -->
     <section class="section" id="secRSVP">
-      <svg class="bot tl" viewBox="0 0 200 200" aria-hidden="true">
+      
+      <div class="rails" aria-hidden="true"></div>
+<svg class="bot tl" viewBox="0 0 200 200" aria-hidden="true">
         <g fill="none" stroke="rgba(184,155,94,.9)" stroke-width="1.2" stroke-linecap="round">
           <path d="M30 140c30-20 45-55 55-95"/>
           <path d="M55 150c20-30 35-60 42-110"/>
@@ -717,7 +764,9 @@
 
     <!-- SECTION 4: CONTACT -->
     <section class="section" id="secContact">
-      <svg class="bot tl" viewBox="0 0 200 200" aria-hidden="true">
+      
+      <div class="rails" aria-hidden="true"></div>
+<svg class="bot tl" viewBox="0 0 200 200" aria-hidden="true">
         <g fill="none" stroke="rgba(184,155,94,.9)" stroke-width="1.2" stroke-linecap="round">
           <path d="M30 140c30-20 45-55 55-95"/>
           <path d="M55 150c20-30 35-60 42-110"/>
