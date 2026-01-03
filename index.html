@@ -409,6 +409,10 @@
     const enBtn = document.getElementById('enBtn');
     let lang = 'bm';
 
+    // RSVP deadline: 11 April 2026, 23:59 MYT (UTC+8)
+    const rsvpDeadlineUTC = Date.UTC(2026, 3, 11, 15, 59, 59);
+
+
     function applyLang(newLang) {
       lang = newLang;
       bmBtn.classList.toggle('active', lang === 'bm');
@@ -502,7 +506,6 @@
     });
 
     // RSVP deadline
-    const rsvpDeadlineUTC = Date.UTC(2026, 3, 11, 15, 59, 59);
     const deadlineMsg = document.getElementById('deadlineMsg');
     const submitBtn = document.getElementById('submitBtn');
     const statusBox = document.getElementById('statusBox');
