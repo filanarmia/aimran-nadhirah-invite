@@ -832,9 +832,7 @@
         deadlineMsg.textContent = (lang === 'bm')
           ? "RSVP telah ditutup (selepas 11 April 2026)."
           : "RSVP is closed (after 11 April 2026).";
-      }
-    window.__deadlineReady = true;
- else {
+      } else {
         submitBtn.disabled = false;
         submitBtn.style.opacity = 1;
         submitBtn.style.cursor = 'pointer';
@@ -842,6 +840,7 @@
           ? "Maksimum 2 dewasa sahaja. Terima kasih!"
           : "Maximum 2 adults only. Thank you!";
       }
+      window.__deadlineReady = true;
     }
     checkDeadline();
     setInterval(checkDeadline, 60_000);
