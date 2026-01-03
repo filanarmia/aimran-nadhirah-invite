@@ -86,26 +86,21 @@
 
     /* Section layout: "page-like" but continuous */
     .section{
-      padding:22px 0;
-
       position:relative;
-      margin-top:18px;
-      border:1px solid var(--line);
-      border-radius:28px;
-      background:linear-gradient(180deg, rgba(252,251,248,.92), rgba(255,255,255,.92));
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      min-height:100svh; /* phone friendly */
-      display:flex;
-      align-items:stretch;
+      margin-top:28px;
+      background:transparent;
+      box-shadow:none;
+      border:0;
+      border-radius:0;
+      overflow:visible;
+      min-height:100svh;
+      display:block;
     }
     .section::before{
       content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(900px 420px at 50% 0%, rgba(184,155,94,.10), transparent 55%),
-        radial-gradient(760px 420px at 15% 40%, rgba(111,123,106,.08), transparent 55%),
-        radial-gradient(760px 420px at 85% 65%, rgba(184,155,94,.06), transparent 55%);
+      position:absolute;
+      inset:0;
+      background:transparent;
       pointer-events:none;
     }
 
