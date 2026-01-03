@@ -288,10 +288,158 @@
       font-size:12px;
       color:var(--muted);
     }
+  
+    /* ===== Enhancements: cover, scroll reveal, floral ===== */
+    body.cover-locked{ overflow:hidden; }
+
+    .cover{
+      position:fixed;
+      inset:0;
+      z-index:50;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:22px;
+      background:
+        radial-gradient(900px 450px at 50% 0%, rgba(184,155,94,.14), transparent 58%),
+        linear-gradient(to bottom, rgba(247,245,242,.96), rgba(247,245,242,.98));
+      backdrop-filter: blur(8px);
+    }
+    .cover.hidden{
+      opacity:0;
+      pointer-events:none;
+      transform: translateY(-8px);
+      transition: opacity .35s ease, transform .35s ease;
+    }
+    .coverCard{
+      width:min(520px, 100%);
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:rgba(255,255,255,.85);
+      box-shadow: var(--shadow);
+      padding:26px 20px 20px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .coverCard:before,
+    .coverCard:after{
+      content:"";
+      position:absolute;
+      width:170px; height:170px;
+      opacity:.28;
+      pointer-events:none;
+      background-repeat:no-repeat;
+      background-size:contain;
+      filter: saturate(0.95);
+      background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22220%22%20height%3D%22220%22%20viewBox%3D%220%200%20220%20220%22%3E%0A%3Cg%20fill%3D%22none%22%20stroke%3D%22%23B89B5E%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%3E%0A%20%20%3Cpath%20d%3D%22M30%20170c40-70%2090-70%20140%200%22%20opacity%3D%22.25%22/%3E%0A%20%20%3Cpath%20d%3D%22M55%20170c15-35%2035-35%2050%200%22%20opacity%3D%22.35%22/%3E%0A%20%20%3Cpath%20d%3D%22M65%20140c10-20%2025-30%2045-30%22%20opacity%3D%22.18%22/%3E%0A%20%20%3Cpath%20d%3D%22M130%20150c-10-18-22-28-40-32%22%20opacity%3D%22.18%22/%3E%0A%20%20%3Ccircle%20cx%3D%22155%22%20cy%3D%22110%22%20r%3D%2216%22%20opacity%3D%22.10%22/%3E%0A%20%20%3Ccircle%20cx%3D%2295%22%20cy%3D%22105%22%20r%3D%2212%22%20opacity%3D%22.10%22/%3E%0A%3C/g%3E%3C/svg%3E");
+    }
+    .coverCard:before{ top:-42px; left:-42px; }
+    .coverCard:after{ bottom:-48px; right:-48px; transform: rotate(180deg); }
+
+    .coverTitle{
+      font-family:"Cormorant Garamond", serif;
+      font-weight:600;
+      font-size:40px;
+      line-height:1.05;
+      margin:8px 0 12px;
+    }
+    .coverMeta{
+      display:grid;
+      gap:8px;
+      margin:14px auto 16px;
+      max-width:420px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+    }
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.9);
+      margin:0 auto;
+      flex-wrap:wrap;
+    }
+    .openBtn{
+      width:100%;
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:999px;
+      border:1px solid rgba(184,155,94,.35);
+      background:rgba(184,155,94,.18);
+      cursor:pointer;
+      font-size:15px;
+      transition: transform .08s ease, background .2s ease;
+    }
+    .openBtn:hover{ transform: translateY(-1px); background:rgba(184,155,94,.24); }
+
+    /* Scroll reveal */
+    .reveal{
+      opacity:0;
+      transform: translateY(14px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.in{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* Subtle floral corners on hero + sections */
+    .hero, .section{ position:relative; }
+    .hero:before, .hero:after,
+    .section:before, .section:after{
+      content:"";
+      position:absolute;
+      width:150px; height:150px;
+      opacity:.16;
+      pointer-events:none;
+      background-repeat:no-repeat;
+      background-size:contain;
+      filter: saturate(0.95);
+      background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22220%22%20height%3D%22220%22%20viewBox%3D%220%200%20220%20220%22%3E%0A%3Cg%20fill%3D%22none%22%20stroke%3D%22%23B89B5E%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%3E%0A%20%20%3Cpath%20d%3D%22M30%20170c40-70%2090-70%20140%200%22%20opacity%3D%22.25%22/%3E%0A%20%20%3Cpath%20d%3D%22M55%20170c15-35%2035-35%2050%200%22%20opacity%3D%22.35%22/%3E%0A%20%20%3Cpath%20d%3D%22M65%20140c10-20%2025-30%2045-30%22%20opacity%3D%22.18%22/%3E%0A%20%20%3Cpath%20d%3D%22M130%20150c-10-18-22-28-40-32%22%20opacity%3D%22.18%22/%3E%0A%20%20%3Ccircle%20cx%3D%22155%22%20cy%3D%22110%22%20r%3D%2216%22%20opacity%3D%22.10%22/%3E%0A%20%20%3Ccircle%20cx%3D%2295%22%20cy%3D%22105%22%20r%3D%2212%22%20opacity%3D%22.10%22/%3E%0A%3C/g%3E%3C/svg%3E");
+    }
+    .hero:before, .section:before{ top:-40px; left:-40px; }
+    .hero:after, .section:after{ bottom:-45px; right:-45px; transform: rotate(180deg); }
+    .section > * , .hero > * { position:relative; z-index:1; }
+
   </style>
 </head>
 
 <body>
+
+  <div id="cover" class="cover">
+    <div class="coverCard">
+      <div class="kicker" data-bm="Walimatulurus / Majlis Resepsi" data-en="Wedding Reception">Walimatulurus / Majlis Resepsi</div>
+      <div class="coverTitle">Wan Nadhirah<br>&amp; Alif Aimran</div>
+
+      <div class="coverMeta">
+        <div class="pill">
+          <span data-bm="Sabtu, 25 April 2026" data-en="Saturday, 25 April 2026">Sabtu, 25 April 2026</span>
+          <span aria-hidden="true">•</span>
+          <span data-bm="11:00 pagi – 4:00 petang" data-en="11:00 AM – 4:00 PM">11:00 pagi – 4:00 petang</span>
+        </div>
+        <div data-bm="Grandeur Beling Glasshall, Sungai Buloh" data-en="Grandeur Beling Glasshall, Sungai Buloh">Grandeur Beling Glasshall, Sungai Buloh</div>
+      </div>
+
+      <button id="openInvite" class="openBtn" type="button"
+              data-bm="Buka Undangan" data-en="Open Invitation">
+        Buka Undangan
+      </button>
+
+      <div class="tiny" style="margin-top:10px;"
+           data-bm="Skrol selepas buka untuk lihat maklumat majlis."
+           data-en="Scroll after opening to view the details.">
+        Skrol selepas buka untuk lihat maklumat majlis.
+      </div>
+    </div>
+  </div>
+
+
   <div class="wrap">
     <div class="topline">
       <div>Digital Invitation</div>
@@ -301,7 +449,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" id="main">
       <div class="hero">
         <div class="kicker" data-bm="Walimatulurus / Majlis Resepsi" data-en="Wedding Reception">Walimatulurus / Majlis Resepsi</div>
 
@@ -334,7 +482,38 @@
 
       <hr class="divider" />
 
-      <div class="section">
+
+      <div class="section reveal" id="parents">
+        <h2 data-bm="Keluarga" data-en="Families">Keluarga</h2>
+        <p data-bm="Dengan penuh kesyukuran, kami menjemput Tuan/Puan ke majlis resepsi kami."
+           data-en="With gratitude, we invite you to our wedding reception.">
+          Dengan penuh kesyukuran, kami menjemput Tuan/Puan ke majlis resepsi kami.
+        </p>
+
+        <div class="grid" style="margin-top:16px;">
+          <div class="mini" style="grid-column:1/-1">
+            <div class="label" data-bm="Keluarga Pengantin Perempuan" data-en="Bride’s Family">Keluarga Pengantin Perempuan</div>
+            <div class="value" style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600;">Wan Nadhirah</div>
+            <div class="muted" style="margin-top:8px; line-height:1.7;">
+              <div><span data-bm="Bapa:" data-en="Father:">Bapa:</span> Wan Nazuri bin Wan Mohamad Zain</div>
+              <div><span data-bm="Ibu:" data-en="Mother:">Ibu:</span> Roshazlin binti Roslan</div>
+            </div>
+          </div>
+
+          <div class="mini" style="grid-column:1/-1">
+            <div class="label" data-bm="Keluarga Pengantin Lelaki" data-en="Groom’s Family">Keluarga Pengantin Lelaki</div>
+            <div class="value" style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600;">Alif Aimran</div>
+            <div class="muted" style="margin-top:8px; line-height:1.7;">
+              <div><span data-bm="Bapa:" data-en="Father:">Bapa:</span> Ibrahim bin Salleh</div>
+              <div><span data-bm="Ibu:" data-en="Mother:">Ibu:</span> Basirah binti Hassan</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="section reveal" id="details">
         <h2 data-bm="Butiran Majlis" data-en="Event Details">Butiran Majlis</h2>
 
         <div class="grid">
@@ -367,7 +546,7 @@
 
       <hr class="divider" />
 
-      <div class="section">
+      <div class="section reveal" id="rsvp">
         <h2 data-bm="RSVP" data-en="RSVP">RSVP</h2>
         <p id="rsvpText"
            data-bm="Sila sahkan kehadiran sebelum <b>Sabtu, 11 April 2026</b>."
@@ -439,7 +618,7 @@
 
       <hr class="divider" />
 
-      <div class="section">
+      <div class="section reveal" id="contact">
         <h2 data-bm="Hubungi" data-en="Contact">Hubungi</h2>
         <p data-bm="Nombor WhatsApp akan dikemaskini. (TBC)"
            data-en="WhatsApp contacts will be updated. (TBC)">
@@ -488,6 +667,36 @@
     bmBtn.addEventListener('click', ()=>applyLang('bm'));
     enBtn.addEventListener('click', ()=>applyLang('en'));
     applyLang('bm');
+
+
+    // ===== Cover open =====
+    const cover = document.getElementById('cover');
+    const openInvite = document.getElementById('openInvite');
+    document.body.classList.add('cover-locked');
+
+    function openCover(){
+      cover.classList.add('hidden');
+      document.body.classList.remove('cover-locked');
+      const main = document.getElementById('main');
+      if(main){ main.scrollIntoView({behavior:'smooth', block:'start'}); }
+      setTimeout(()=>{ window.dispatchEvent(new Event('scroll')); }, 150);
+    }
+    openInvite?.addEventListener('click', openCover);
+    cover.addEventListener('click', (e)=>{ if(e.target === cover) openCover(); });
+
+    // ===== Scroll reveal =====
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(ent=>{
+        if(ent.isIntersecting){
+          ent.target.classList.add('in');
+          io.unobserve(ent.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(el=>io.observe(el));
+
 
     // ===== Countdown =====
     // Target: 25 April 2026, 11:00 AM Malaysia time (Asia/Kuala_Lumpur, UTC+8)
@@ -583,5 +792,3 @@
   </script>
 </body>
 </html>
-
-
