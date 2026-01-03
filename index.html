@@ -420,7 +420,6 @@
       document.querySelectorAll('[data-bm]').forEach(el => {
         el.innerHTML = (lang === 'bm') ? el.getAttribute('data-bm') : el.getAttribute('data-en');
       });
-      checkDeadline();
     }
     bmBtn.addEventListener('click', () => applyLang('bm'));
     enBtn.addEventListener('click', () => applyLang('en'));
