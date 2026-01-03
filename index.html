@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Walimatulurus | Wan Nadhirah & Alif Aimran</title>
+  <title>Walimatulurus | Alif Aimran & Wan Nadhirah</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -13,660 +12,174 @@
   <style>
     :root{
       --bg:#F7F5F2;
-      --card:#FFFFFF;
+      --paper:#FFFFFF;
       --text:#1C1C1C;
       --muted:#6B6B6B;
       --line:rgba(0,0,0,.08);
-      --accent:#B89B5E; /* champagne */
-      --shadow: 0 14px 40px rgba(0,0,0,.08);
-      --radius: 18px;
+      --accent:#B89B5E;
+      --olive:#6F7B6A;
+      --shadow: 0 16px 48px rgba(0,0,0,.10);
+      --radius: 22px;
     }
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      background:var(--bg);
+      background:
+        radial-gradient(900px 520px at 15% 0%, rgba(184,155,94,.10), transparent 60%),
+        radial-gradient(900px 520px at 85% 10%, rgba(111,123,106,.08), transparent 60%),
+        var(--bg);
       color:var(--text);
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
+      overflow-x:hidden;
     }
     a{color:inherit; text-decoration:none}
-    .wrap{
-      max-width:820px;
-      margin:0 auto;
-      padding:28px 18px 60px;
-    }
-    .topline{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      margin-bottom:18px;
-      color:var(--muted);
-      font-size:13px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
+    .wrap{max-width:900px; margin:0 auto; padding:18px 16px 70px; position:relative;}
+
+    .topbar{
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      color:var(--muted); font-size:13px; letter-spacing:.08em; text-transform:uppercase;
+      margin:10px 0 14px;
     }
     .lang{
       display:flex; gap:8px; align-items:center;
-      padding:6px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      background:rgba(255,255,255,.6);
-      backdrop-filter: blur(6px);
+      padding:6px; border:1px solid var(--line); border-radius:999px;
+      background:rgba(255,255,255,.70);
     }
     .lang button{
-      border:0;
-      background:transparent;
-      padding:8px 12px;
-      border-radius:999px;
-      cursor:pointer;
-      font-size:13px;
-      color:var(--muted);
+      border:0; background:transparent; padding:8px 12px; border-radius:999px; cursor:pointer;
+      font-size:13px; color:var(--muted);
     }
-    .lang button.active{
-      background:rgba(184,155,94,.14);
-      color:var(--text);
-    }
+    .lang button.active{background:rgba(184,155,94,.16); color:var(--text);}
 
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
+    .chapter{
+      margin:14px 0;
       border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:linear-gradient(to bottom, rgba(255,255,255,.92), rgba(255,255,255,.98));
       box-shadow:var(--shadow);
       overflow:hidden;
     }
-    .hero{
-      padding:38px 26px 26px;
-      text-align:center;
-      background:
-        radial-gradient(1200px 400px at 50% 0%, rgba(184,155,94,.12), transparent 55%),
-        linear-gradient(to bottom, rgba(255,255,255,.85), rgba(255,255,255,.95));
-    }
-    .kicker{
-      font-size:12px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:var(--muted);
-      margin-bottom:14px;
-    }
-    h1{
-      margin:0;
+    .chapter .inner{padding:26px 22px; position:relative;}
+    @media (min-width:760px){ .chapter .inner{padding:30px 34px;} }
+
+    .chapterHeader{display:flex; justify-content:space-between; align-items:flex-start; gap:14px; margin-bottom:14px;}
+    .chapterTag{font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted);}
+    .chapterTitle{
+      margin:8px 0 0;
       font-family:"Cormorant Garamond", serif;
       font-weight:600;
-      font-size:44px;
+      font-size:34px;
       line-height:1.05;
-      letter-spacing:.01em;
     }
-    .sub{
-      margin-top:14px;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.6;
-    }
-    .dateRow{
-      margin-top:22px;
-      display:inline-flex;
-      flex-direction:column;
-      gap:6px;
-      padding:14px 16px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      background:rgba(255,255,255,.7);
-    }
-    .dateRow strong{
-      font-weight:500;
-      letter-spacing:.04em;
-    }
-    .divider{
-      height:1px;
-      background:var(--line);
-      margin:0;
-    }
+    .chapterSub{margin-top:10px; color:var(--muted); font-size:14px; line-height:1.75; max-width:62ch;}
 
-    .section{
-      padding:22px 22px;
+    .dividerOrn{
+      height:34px;
+      display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(to right, transparent, rgba(0,0,0,.05), transparent);
     }
-    .section h2{
-      margin:0 0 10px 0;
-      font-family:"Cormorant Garamond", serif;
-      font-weight:600;
-      font-size:28px;
-      letter-spacing:.01em;
-    }
-    .section p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.7;
-      font-size:14px;
-    }
+    .dividerOrn svg{opacity:.55}
 
-    .grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:14px;
-      margin-top:14px;
-    }
-    @media (min-width:680px){
-      .grid{ grid-template-columns:1fr 1fr; }
-    }
-    .mini{
-      padding:14px 14px;
-      border:1px solid var(--line);
-      border-radius:16px;
-      background:rgba(247,245,242,.55);
-    }
-    .label{
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:var(--muted);
-      margin-bottom:6px;
-    }
-    .value{
-      font-size:15px;
-      line-height:1.5;
-      color:var(--text);
-    }
-    .muted{ color:var(--muted); }
-
-    .btnRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:14px;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding:11px 14px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:#fff;
-      cursor:pointer;
-      font-size:14px;
-      transition:transform .08s ease, background .2s ease;
-    }
-    .btn:hover{ transform:translateY(-1px); background:rgba(184,155,94,.08); }
-    .btn.primary{
-      background:rgba(184,155,94,.14);
-      border-color:rgba(184,155,94,.35);
-    }
-
-    /* Countdown */
-    .countdown{
-      display:flex;
-      gap:10px;
-      justify-content:center;
-      flex-wrap:wrap;
-      margin-top:16px;
-    }
-    .timebox{
-      min-width:92px;
-      padding:12px 12px;
-      border:1px solid var(--line);
-      border-radius:16px;
-      background:rgba(255,255,255,.75);
-      text-align:center;
-    }
-    .timebox .num{
-      font-size:22px;
-      font-weight:500;
-      letter-spacing:.02em;
-    }
-    .timebox .unit{
-      margin-top:2px;
-      font-size:12px;
-      color:var(--muted);
-      letter-spacing:.12em;
-      text-transform:uppercase;
-    }
-
-    /* RSVP */
-    form{
-      margin-top:14px;
-      display:grid;
-      gap:12px;
-    }
-    .row2{
-      display:grid;
-      gap:12px;
-      grid-template-columns:1fr;
-    }
-    @media (min-width:680px){
-      .row2{ grid-template-columns:1fr 1fr; }
-    }
-    input, select, textarea{
-      width:100%;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background:#fff;
-      font-family:inherit;
-      font-size:14px;
-      outline:none;
-    }
-    textarea{ min-height:92px; resize:vertical; }
-    .help{
-      font-size:12px;
-      color:var(--muted);
-      line-height:1.6;
-    }
-    .note{
-      margin-top:10px;
-      padding:12px 12px;
-      border:1px solid var(--line);
-      border-radius:16px;
-      background:rgba(184,155,94,.08);
-      color:var(--text);
-      font-size:13px;
-      line-height:1.6;
-    }
-    .status{
-      display:none;
-      margin-top:10px;
-      padding:12px 12px;
-      border-radius:16px;
-      border:1px solid var(--line);
-      background:rgba(111,123,106,.10);
-      color:var(--text);
-      font-size:13px;
-      line-height:1.6;
-    }
-    .status.show{ display:block; }
-
-    footer{
-      margin-top:18px;
-      text-align:center;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.7;
-    }
-    .tiny{
-      font-size:12px;
-      color:var(--muted);
-    }
-  
-    /* ===== Enhancements: cover, scroll reveal, floral ===== */
-    body.cover-locked{ overflow:hidden; }
+    .reveal{opacity:0; transform: translateY(18px); transition: opacity .75s ease, transform .75s ease;}
+    .reveal.show{opacity:1; transform:translateY(0);}
 
     .cover{
-      position:fixed;
-      inset:0;
-      z-index:50;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:22px;
-      background:
-        radial-gradient(900px 450px at 50% 0%, rgba(184,155,94,.14), transparent 58%),
-        linear-gradient(to bottom, rgba(247,245,242,.96), rgba(247,245,242,.98));
-      backdrop-filter: blur(8px);
-    }
-    .cover.hidden{
-      opacity:0;
-      pointer-events:none;
-      transform: translateY(-8px);
-      transition: opacity .35s ease, transform .35s ease;
-    }
-    .coverCard{
-      width:min(520px, 100%);
-      border:1px solid var(--line);
-      border-radius:22px;
-      background:rgba(255,255,255,.85);
-      box-shadow: var(--shadow);
-      padding:26px 20px 20px;
       text-align:center;
-      position:relative;
-      overflow:hidden;
+      background:
+        radial-gradient(1100px 420px at 50% -10%, rgba(184,155,94,.16), transparent 60%),
+        radial-gradient(900px 420px at 50% 110%, rgba(111,123,106,.10), transparent 55%),
+        linear-gradient(to bottom, rgba(255,255,255,.92), rgba(255,255,255,.98));
     }
-    .coverCard:before,
-    .coverCard:after{
-      content:"";
-      position:absolute;
-      width:170px; height:170px;
-      opacity:.28;
-      pointer-events:none;
-      background-repeat:no-repeat;
-      background-size:contain;
-      filter: saturate(0.95);
-      background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22220%22%20height%3D%22220%22%20viewBox%3D%220%200%20220%20220%22%3E%0A%3Cg%20fill%3D%22none%22%20stroke%3D%22%23B89B5E%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%3E%0A%20%20%3Cpath%20d%3D%22M30%20170c40-70%2090-70%20140%200%22%20opacity%3D%22.25%22/%3E%0A%20%20%3Cpath%20d%3D%22M55%20170c15-35%2035-35%2050%200%22%20opacity%3D%22.35%22/%3E%0A%20%20%3Cpath%20d%3D%22M65%20140c10-20%2025-30%2045-30%22%20opacity%3D%22.18%22/%3E%0A%20%20%3Cpath%20d%3D%22M130%20150c-10-18-22-28-40-32%22%20opacity%3D%22.18%22/%3E%0A%20%20%3Ccircle%20cx%3D%22155%22%20cy%3D%22110%22%20r%3D%2216%22%20opacity%3D%22.10%22/%3E%0A%20%20%3Ccircle%20cx%3D%2295%22%20cy%3D%22105%22%20r%3D%2212%22%20opacity%3D%22.10%22/%3E%0A%3C/g%3E%3C/svg%3E");
-    }
-    .coverCard:before{ top:-42px; left:-42px; }
-    .coverCard:after{ bottom:-48px; right:-48px; transform: rotate(180deg); }
-
-    .coverTitle{
+    .kicker{font-size:12px; letter-spacing:.20em; text-transform:uppercase; color:var(--muted);}
+    h1{
+      margin:14px 0 0;
       font-family:"Cormorant Garamond", serif;
       font-weight:600;
-      font-size:40px;
-      line-height:1.05;
-      margin:8px 0 12px;
+      font-size:48px;
+      line-height:1.02;
     }
-    .coverMeta{
-      display:grid;
-      gap:8px;
-      margin:14px auto 16px;
-      max-width:420px;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.6;
-    }
-    .pill{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      justify-content:center;
-      padding:10px 14px;
-      border-radius:999px;
+    @media (max-width:420px){ h1{font-size:42px;} }
+    .dateChip{
+      margin:18px auto 0;
+      display:inline-flex; flex-direction:column; gap:6px;
+      padding:14px 16px;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.9);
-      margin:0 auto;
-      flex-wrap:wrap;
+      border-radius:18px;
+      background:rgba(255,255,255,.72);
     }
-    .openBtn{
-      width:100%;
-      margin-top:14px;
-      padding:12px 14px;
-      border-radius:999px;
-      border:1px solid rgba(184,155,94,.35);
-      background:rgba(184,155,94,.18);
-      cursor:pointer;
-      font-size:15px;
+    .dateChip strong{font-weight:500; letter-spacing:.04em;}
+    .btnRow{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:16px;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 16px; border-radius:999px; border:1px solid var(--line);
+      background:#fff; cursor:pointer; font-size:14px;
       transition: transform .08s ease, background .2s ease;
     }
-    .openBtn:hover{ transform: translateY(-1px); background:rgba(184,155,94,.24); }
+    .btn:hover{transform:translateY(-1px); background:rgba(184,155,94,.08);}
+    .btn.primary{background:rgba(184,155,94,.16); border-color:rgba(184,155,94,.35);}
 
-    /* Scroll reveal */
-    .reveal{
-      opacity:0;
-      transform: translateY(14px);
-      transition: opacity .55s ease, transform .55s ease;
-    }
-    .reveal.in{
-      opacity:1;
-      transform: translateY(0);
-    }
+    .countdown{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:16px;}
+    .timebox{min-width:92px; padding:12px 12px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.75); text-align:center;}
+    .timebox .num{font-size:22px; font-weight:500;}
+    .timebox .unit{margin-top:2px; font-size:12px; color:var(--muted); letter-spacing:.12em; text-transform:uppercase;}
 
-    /* Subtle floral corners on hero + sections */
-    .hero, .section{ position:relative; }
-    .hero:before, .hero:after,
-    .section:before, .section:after{
-      content:"";
-      position:absolute;
-      width:150px; height:150px;
-      opacity:.16;
-      pointer-events:none;
-      background-repeat:no-repeat;
-      background-size:contain;
-      filter: saturate(0.95);
-      background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22220%22%20height%3D%22220%22%20viewBox%3D%220%200%20220%20220%22%3E%0A%3Cg%20fill%3D%22none%22%20stroke%3D%22%23B89B5E%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%3E%0A%20%20%3Cpath%20d%3D%22M30%20170c40-70%2090-70%20140%200%22%20opacity%3D%22.25%22/%3E%0A%20%20%3Cpath%20d%3D%22M55%20170c15-35%2035-35%2050%200%22%20opacity%3D%22.35%22/%3E%0A%20%20%3Cpath%20d%3D%22M65%20140c10-20%2025-30%2045-30%22%20opacity%3D%22.18%22/%3E%0A%20%20%3Cpath%20d%3D%22M130%20150c-10-18-22-28-40-32%22%20opacity%3D%22.18%22/%3E%0A%20%20%3Ccircle%20cx%3D%22155%22%20cy%3D%22110%22%20r%3D%2216%22%20opacity%3D%22.10%22/%3E%0A%20%20%3Ccircle%20cx%3D%2295%22%20cy%3D%22105%22%20r%3D%2212%22%20opacity%3D%22.10%22/%3E%0A%3C/g%3E%3C/svg%3E");
-    }
-    .hero:before, .section:before{ top:-40px; left:-40px; }
-    .hero:after, .section:after{ bottom:-45px; right:-45px; transform: rotate(180deg); }
-    .section > * , .hero > * { position:relative; z-index:1; }
-    /* ===== Creative upgrades: section ornaments, progress nav, botanical drift ===== */
-    body{
-      background:
-        radial-gradient(1200px 500px at 20% -10%, rgba(184,155,94,.10), transparent 55%),
-        radial-gradient(900px 420px at 90% 10%, rgba(111,123,106,.10), transparent 52%),
-        var(--bg);
-    }
+    .cards{display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px;}
+    @media (min-width:760px){ .cards{grid-template-columns:1fr 1fr;} }
+    .cardMini{padding:14px 14px; border:1px solid var(--line); border-radius:18px; background:rgba(247,245,242,.55);}
+    .label{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;}
+    .value{font-size:15px; line-height:1.55;}
+    .muted{color:var(--muted);}
+    .note{margin-top:12px; padding:12px 12px; border:1px solid var(--line); border-radius:18px; background:rgba(184,155,94,.08); font-size:13px; line-height:1.6;}
 
-    /* right-side progress (mobile-friendly; hides on very small screens) */
-    .progressNav{
-      position:fixed;
-      right:14px;
-      top:50%;
-      transform:translateY(-50%);
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      z-index:20;
-      padding:10px 8px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      background:rgba(255,255,255,.65);
-      backdrop-filter: blur(8px);
-    }
-    @media (max-width:420px){
-      .progressNav{ display:none; }
-    }
-    .dot{
-      width:10px; height:10px;
-      border-radius:50%;
-      border:1px solid rgba(184,155,94,.55);
-      background:rgba(184,155,94,.12);
-      cursor:pointer;
-      transition:transform .15s ease, background .2s ease, border-color .2s ease;
-    }
-    .dot.active{
-      transform:scale(1.25);
-      background:rgba(184,155,94,.35);
-      border-color:rgba(184,155,94,.9);
-    }
-    .dot:hover{ transform:scale(1.15); }
+    .accordion{margin-top:14px; border:1px solid var(--line); border-radius:18px; overflow:hidden; background:rgba(255,255,255,.80);}
+    .accHead{width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 14px; background:rgba(255,255,255,.90); border:0; cursor:pointer; font-size:14px;}
+    .accHead strong{font-weight:500}
+    .chev{transition: transform .25s ease;}
+    .accordion.open .chev{transform: rotate(180deg);}
+    .accBody{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+    .accordion.open .accBody{max-height:1200px;}
+    form{padding:14px 14px 18px; display:grid; gap:12px;}
+    .row2{display:grid; gap:12px; grid-template-columns:1fr;}
+    @media (min-width:760px){ .row2{grid-template-columns:1fr 1fr;} }
+    input, select, textarea{width:100%; padding:12px 12px; border-radius:14px; border:1px solid var(--line); background:#fff; font-family:inherit; font-size:14px; outline:none;}
+    textarea{min-height:96px; resize:vertical;}
+    .help{font-size:12px; color:var(--muted); line-height:1.6;}
+    .status{display:none; margin-top:6px; padding:12px 12px; border-radius:18px; border:1px solid var(--line); background:rgba(111,123,106,.10); font-size:13px; line-height:1.6;}
+    .status.show{display:block;}
 
-    /* Section title ornament */
-    .section h2{
-      position:relative;
-      display:inline-block;
-      padding-bottom:10px;
-    }
-    .section h2:after{
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:0;
-      width:100%;
-      height:10px;
-      opacity:.9;
-      background-repeat:no-repeat;
-      background-size:contain;
-      background-position:left bottom;
-      /* elegant botanical divider (inline SVG) */
-      background-image:url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" width="420" height="22" viewBox="0 0 420 22">\
-<path d="M10 11 C45 2, 75 2, 110 11 C145 20, 175 20, 210 11 C245 2, 275 2, 310 11 C345 20, 375 20, 410 11" fill="none" stroke="%23B89B5E" stroke-width="1.4" stroke-linecap="round" opacity="0.9"/>\
-<path d="M210 11 C206 7, 202 5, 198 5 C202 8, 205 10, 210 11 Z" fill="%23B89B5E" opacity="0.35"/>\
-<path d="M210 11 C214 7, 218 5, 222 5 C218 8, 215 10, 210 11 Z" fill="%23B89B5E" opacity="0.35"/>\
-</svg>');
-    }
+    .petalsWrap{position:absolute; inset:0; pointer-events:none; overflow:hidden;}
+    .petal{position:absolute; top:-40px; width:14px; height:10px; border-radius: 100% 0 100% 0; opacity:.22;
+      background: linear-gradient(135deg, rgba(184,155,94,.55), rgba(255,255,255,.0));
+      animation: fall var(--dur) linear infinite;}
+    .petal::after{content:""; position:absolute; inset:0; border-radius: 100% 0 100% 0; background: linear-gradient(135deg, rgba(255,255,255,.55), rgba(111,123,106,.0)); opacity:.35; transform: translate(2px,1px);}
+    @keyframes fall{0% { transform: translate(var(--x0), -40px) rotate(20deg); } 100% { transform: translate(var(--x1), 520px) rotate(220deg); } }
 
-    /* Make sections feel like “chapters” */
-    .section{
-      padding:32px 22px;
-    }
-    .divider{ opacity:.85; }
+    @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none;} .petal{display:none;} .accBody{transition:none;} }
 
-    /* Softer reveal + subtle lift */
-    .reveal{
-      opacity:0;
-      transform: translateY(18px);
-      filter: blur(2px);
-      transition: opacity .9s ease, transform .9s ease, filter .9s ease;
-    }
-    .reveal.show{
-      opacity:1;
-      transform: translateY(0);
-      filter: blur(0);
-    }
+    .navDots{position:fixed; right:12px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:10px; z-index:20;}
+    .dot{width:10px; height:10px; border-radius:999px; border:1px solid rgba(0,0,0,.25); background:rgba(255,255,255,.65); cursor:pointer; transition: transform .12s ease, background .2s ease;}
+    .dot:hover{transform:scale(1.08);}
+    .dot.active{background:rgba(184,155,94,.38); border-color:rgba(184,155,94,.55);}
 
-    /* Botanical drift overlay (very subtle) */
-    .botanical{
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:0;
-      opacity:.18;
-      background-repeat:no-repeat;
-      background-size:520px 520px, 460px 460px, 380px 380px;
-      background-position:-120px -90px, calc(100% + 120px) 140px, 50% calc(100% + 160px);
-      background-image:
-        url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" width="520" height="520" viewBox="0 0 520 520">\
-<g fill="none" stroke="%23B89B5E" stroke-width="1.2" opacity="0.9">\
-<path d="M110 400 C170 330, 210 280, 240 220 C270 160, 310 120, 370 90" />\
-<path d="M240 220 C210 210, 185 195, 170 175" />\
-<path d="M255 205 C290 195, 320 175, 340 150" />\
-<path d="M185 250 C205 255, 220 265, 235 285" />\
-<path d="M285 165 C305 160, 325 148, 342 130" />\
-</g>\
-<g fill="%23B89B5E" opacity="0.12">\
-<circle cx="170" cy="175" r="5"/><circle cx="235" cy="285" r="5"/><circle cx="342" cy="130" r="5"/>\
-</g>\
-</svg>'),
-        url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" width="460" height="460" viewBox="0 0 460 460">\
-<g fill="none" stroke="%236F7B6A" stroke-width="1.2" opacity="0.7">\
-<path d="M360 360 C330 320, 300 290, 260 260 C220 230, 190 200, 160 150" />\
-<path d="M260 260 C240 250, 225 235, 215 215" />\
-<path d="M285 245 C305 235, 322 220, 335 200" />\
-</g>\
-</svg>'),
-        url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" width="380" height="380" viewBox="0 0 380 380">\
-<g fill="none" stroke="%23B89B5E" stroke-width="1.1" opacity="0.65">\
-<path d="M190 330 C180 290, 175 260, 165 230 C155 200, 140 170, 115 150" />\
-<path d="M165 230 C145 225, 128 214, 118 198" />\
-</g>\
-</svg>');
-      animation: drift 18s ease-in-out infinite;
-    }
-    @keyframes drift{
-      0%{ transform:translateY(0px); }
-      50%{ transform:translateY(-14px); }
-      100%{ transform:translateY(0px); }
-    }
-
-    /* ensure content over botanical layer */
-    .wrap, #cover{ position:relative; z-index:2; }
-
-    /* RSVP accordion */
-    .accordionBtn{
-      margin-top:14px;
-      width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:14px 14px;
-      border-radius:16px;
-      border:1px solid rgba(184,155,94,.35);
-      background:rgba(184,155,94,.10);
-      cursor:pointer;
-      font-size:14px;
-    }
-    .accordionBtn span{ color:var(--text); }
-    .chev{
-      width:10px; height:10px;
-      border-right:2px solid rgba(0,0,0,.45);
-      border-bottom:2px solid rgba(0,0,0,.45);
-      transform:rotate(45deg);
-      transition:transform .25s ease;
-      margin-right:4px;
-    }
-    .accordionBtn.open .chev{ transform:rotate(225deg); }
-
-    .accordionPanel{
-      overflow:hidden;
-      max-height:0;
-      opacity:0;
-      transform: translateY(-6px);
-      transition:max-height .5s ease, opacity .45s ease, transform .45s ease;
-    }
-    .accordionPanel.open{
-      max-height:1200px;
-      opacity:1;
-      transform: translateY(0);
-      margin-top:12px;
-    }
-
-    /* Copy-to-clipboard */
-    .copyRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:12px;
-      align-items:center;
-    }
-    .copyBtn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:#fff;
-      cursor:pointer;
-      font-size:13px;
-    }
-    .toast{
-      position:fixed;
-      left:50%;
-      bottom:18px;
-      transform:translateX(-50%) translateY(12px);
-      padding:10px 12px;
-      border-radius:999px;
-      background:rgba(28,28,28,.92);
-      color:#fff;
-      font-size:13px;
-      opacity:0;
-      z-index:50;
-      transition:opacity .25s ease, transform .25s ease;
-      pointer-events:none;
-    }
-    .toast.show{
-      opacity:1;
-      transform:translateX(-50%) translateY(0);
-    }
-
-
+    footer{text-align:center; color:var(--muted); font-size:13px; line-height:1.7; padding:10px 0 2px;}
+    .tiny{font-size:12px; color:var(--muted);}
   </style>
 </head>
 
 <body>
-  <div class="botanical" aria-hidden="true"></div>
-
-  <div id="cover" class="cover">
-    <div class="coverCard">
-      <div class="kicker" data-bm="Walimatulurus / Majlis Resepsi" data-en="Wedding Reception">Walimatulurus / Majlis Resepsi</div>
-      <div class="coverTitle">Wan Nadhirah<br>&amp; Alif Aimran</div>
-
-      <div class="coverMeta">
-        <div class="pill">
-          <span data-bm="Sabtu, 25 April 2026" data-en="Saturday, 25 April 2026">Sabtu, 25 April 2026</span>
-          <span aria-hidden="true">•</span>
-          <span data-bm="11:00 pagi – 4:00 petang" data-en="11:00 AM – 4:00 PM">11:00 pagi – 4:00 petang</span>
-        </div>
-        <div data-bm="Grandeur Beling Glasshall, Sungai Buloh" data-en="Grandeur Beling Glasshall, Sungai Buloh">Grandeur Beling Glasshall, Sungai Buloh</div>
-      </div>
-
-      <button id="openInvite" class="openBtn" type="button"
-              data-bm="Buka Undangan" data-en="Open Invitation">
-        Buka Undangan
-      </button>
-
-      <div class="tiny" style="margin-top:10px;"
-           data-bm="Skrol selepas buka untuk lihat maklumat majlis."
-           data-en="Scroll after opening to view the details.">
-        Skrol selepas buka untuk lihat maklumat majlis.
-      </div>
-    </div>
-  </div>
-
-
-  <div class="progressNav" aria-label="Section navigation">
-    <div class="dot" data-target="main" title="Top"></div>
-    <div class="dot" data-target="parents" title="Families"></div>
-    <div class="dot" data-target="details" title="Details"></div>
-    <div class="dot" data-target="rsvp" title="RSVP"></div>
-    <div class="dot" data-target="contact" title="Contact"></div>
+  <div class="navDots" aria-label="Quick navigation">
+    <div class="dot" data-to="cover" title="Cover"></div>
+    <div class="dot" data-to="families" title="Families"></div>
+    <div class="dot" data-to="details" title="Details"></div>
+    <div class="dot" data-to="rsvp" title="RSVP"></div>
+    <div class="dot" data-to="contact" title="Contact"></div>
   </div>
 
   <div class="wrap">
-    <div class="topline">
+    <div class="topbar">
       <div>Digital Invitation</div>
       <div class="lang" aria-label="Language toggle">
         <button id="bmBtn" class="active" type="button">BM</button>
@@ -674,21 +187,21 @@
       </div>
     </div>
 
-    <div class="card" id="main">
-      <div class="hero">
+    <section class="chapter cover reveal show" id="cover">
+      <div class="inner">
+        <div class="petalsWrap" id="petals"></div>
+
         <div class="kicker" data-bm="Walimatulurus / Majlis Resepsi" data-en="Wedding Reception">Walimatulurus / Majlis Resepsi</div>
+        <h1>Alif Aimran<br>&amp; Wan Nadhirah</h1>
 
-        <h1>Wan Nadhirah<br>&amp; Alif Aimran</h1>
-
-        <div class="sub" id="inviteLine"
-             data-bm="Dengan segala hormatnya menjemput anda ke majlis resepsi kami."
-             data-en="Cordially invite you to our wedding reception.">
+        <div class="chapterSub" data-bm="Dengan segala hormatnya menjemput anda ke majlis resepsi kami." data-en="Cordially invite you to our wedding reception.">
           Dengan segala hormatnya menjemput anda ke majlis resepsi kami.
         </div>
 
-        <div class="dateRow">
+        <div class="dateChip">
           <strong data-bm="Sabtu, 25 April 2026" data-en="Saturday, 25 April 2026">Sabtu, 25 April 2026</strong>
-          <div class="muted" data-bm="11:00 pagi – 4:00 petang" data-en="11:00 AM – 4:00 PM">11:00 pagi – 4:00 petang</div>
+          <div class="tiny" data-bm="11:00 pagi – 4:00 petang" data-en="11:00 AM – 4:00 PM">11:00 pagi – 4:00 petang</div>
+          <div class="tiny" data-bm="Grandeur Beling Glasshall, Sungai Buloh" data-en="Grandeur Beling Glasshall, Sungai Buloh">Grandeur Beling Glasshall, Sungai Buloh</div>
         </div>
 
         <div class="countdown" aria-label="Countdown timer">
@@ -698,301 +211,313 @@
           <div class="timebox"><div class="num" id="s">--</div><div class="unit" data-bm="Saat" data-en="Seconds">Saat</div></div>
         </div>
 
-        <div class="sub tiny" id="countdownNote"
-             data-bm="Kiraan detik menuju hari majlis."
-             data-en="Countdown to our wedding day.">
-          Kiraan detik menuju hari majlis.
+        <div class="btnRow" style="margin-top:18px;">
+          <button class="btn primary" id="openInvite" data-bm="Buka Undangan" data-en="Open Invitation">Buka Undangan</button>
+          <a class="btn" href="https://maps.app.goo.gl/9H7ujsBQ5UV1V9kw8?g_st=iw" target="_blank" rel="noopener">Google Maps</a>
+          <a class="btn" href="https://waze.com/ul/hw284qgfv2" target="_blank" rel="noopener">Waze</a>
         </div>
+
+        <div class="dividerOrn" aria-hidden="true">
+          <svg width="220" height="18" viewBox="0 0 220 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 9H72" stroke="rgba(0,0,0,.18)"/>
+            <path d="M148 9H219" stroke="rgba(0,0,0,.18)"/>
+            <path d="M110 2C114 6 116 7 118 9C116 11 114 12 110 16C106 12 104 11 102 9C104 7 106 6 110 2Z" fill="rgba(184,155,94,.55)"/>
+            <path d="M93 9C97 7 100 6 103 6C101 9 101 9 103 12C100 12 97 11 93 9Z" fill="rgba(111,123,106,.35)"/>
+            <path d="M127 9C123 7 120 6 117 6C119 9 119 9 117 12C120 12 123 11 127 9Z" fill="rgba(111,123,106,.35)"/>
+          </svg>
+        </div>
+
+        <footer class="tiny" data-bm="Kiraan detik menuju hari majlis." data-en="Countdown to our wedding day.">Kiraan detik menuju hari majlis.</footer>
       </div>
+    </section>
 
-      <hr class="divider" />
-
-
-      <div class="section reveal" id="parents">
-        <h2 data-bm="Keluarga" data-en="Families">Keluarga</h2>
-        <p data-bm="Dengan penuh kesyukuran, kami menjemput Tuan/Puan ke majlis resepsi kami."
-           data-en="With gratitude, we invite you to our wedding reception.">
-          Dengan penuh kesyukuran, kami menjemput Tuan/Puan ke majlis resepsi kami.
-        </p>
-
-        <div class="grid" style="margin-top:16px;">
-          <div class="mini" style="grid-column:1/-1">
-            <div class="label" data-bm="Keluarga Pengantin Perempuan" data-en="Bride’s Family">Keluarga Pengantin Perempuan</div>
-            <div class="value" style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600;">Wan Nadhirah</div>
-            <div class="muted" style="margin-top:8px; line-height:1.7;">
-              <div><span data-bm="Bapa:" data-en="Father:">Bapa:</span> Wan Nazuri bin Wan Mohamad Zain</div>
-              <div><span data-bm="Ibu:" data-en="Mother:">Ibu:</span> Roshazlin binti Roslan</div>
-            </div>
-          </div>
-
-          <div class="mini" style="grid-column:1/-1">
-            <div class="label" data-bm="Keluarga Pengantin Lelaki" data-en="Groom’s Family">Keluarga Pengantin Lelaki</div>
-            <div class="value" style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600;">Alif Aimran</div>
-            <div class="muted" style="margin-top:8px; line-height:1.7;">
-              <div><span data-bm="Bapa:" data-en="Father:">Bapa:</span> Ibrahim bin Salleh</div>
-              <div><span data-bm="Ibu:" data-en="Mother:">Ibu:</span> Basirah binti Hassan</div>
+    <section class="chapter reveal" id="families">
+      <div class="inner">
+        <div class="chapterHeader">
+          <div>
+            <div class="chapterTag" data-bm="Bab 1" data-en="Chapter 1">Bab 1</div>
+            <div class="chapterTitle" data-bm="Keluarga" data-en="Families">Keluarga</div>
+            <div class="chapterSub" data-bm="Dengan penuh hormat, kami menjemput Tuan/Puan untuk hadir memeriahkan majlis kami." data-en="With respect, we invite you to celebrate our special day with us.">
+              Dengan penuh hormat, kami menjemput Tuan/Puan untuk hadir memeriahkan majlis kami.
             </div>
           </div>
         </div>
+
+        <div class="cards">
+          <div class="cardMini">
+            <div class="label" data-bm="Ibu Bapa Pengantin Perempuan" data-en="Bride's Parents">Ibu Bapa Pengantin Perempuan</div>
+            <div class="value"><strong>Wan Nazuri bin Wan Mohamad Zain</strong></div>
+            <div class="value">Roshazlin binti Roslan</div>
+          </div>
+
+          <div class="cardMini">
+            <div class="label" data-bm="Ibu Bapa Pengantin Lelaki" data-en="Groom's Parents">Ibu Bapa Pengantin Lelaki</div>
+            <div class="value"><strong>Ibrahim bin Salleh</strong></div>
+            <div class="value">Basirah binti Hassan</div>
+          </div>
+        </div>
+
+        <div class="note" data-bm="Semoga kehadiran dan doa anda mengiringi keberkatan dalam perkahwinan kami." data-en="May your presence and prayers bring blessings to our marriage.">
+          Semoga kehadiran dan doa anda mengiringi keberkatan dalam perkahwinan kami.
+        </div>
       </div>
+    </section>
 
-      <hr class="divider" />
+    <section class="chapter reveal" id="details">
+      <div class="inner">
+        <div class="chapterHeader">
+          <div>
+            <div class="chapterTag" data-bm="Bab 2" data-en="Chapter 2">Bab 2</div>
+            <div class="chapterTitle" data-bm="Butiran Majlis" data-en="Event Details">Butiran Majlis</div>
+            <div class="chapterSub" data-bm="Maklumat ringkas majlis resepsi. Klik lokasi untuk navigasi." data-en="Reception details. Tap location for navigation.">
+              Maklumat ringkas majlis resepsi. Klik lokasi untuk navigasi.
+            </div>
+          </div>
+        </div>
 
-      <div class="section reveal" id="details">
-        <h2 data-bm="Butiran Majlis" data-en="Event Details">Butiran Majlis</h2>
-
-        <div class="grid">
-          <div class="mini">
+        <div class="cards">
+          <div class="cardMini">
             <div class="label" data-bm="Tarikh" data-en="Date">Tarikh</div>
             <div class="value" data-bm="Sabtu, 25 April 2026" data-en="Saturday, 25 April 2026">Sabtu, 25 April 2026</div>
           </div>
-          <div class="mini">
+          <div class="cardMini">
             <div class="label" data-bm="Masa" data-en="Time">Masa</div>
             <div class="value" data-bm="11:00 pagi – 4:00 petang" data-en="11:00 AM – 4:00 PM">11:00 pagi – 4:00 petang</div>
           </div>
-          <div class="mini" style="grid-column:1/-1">
+
+          <div class="cardMini" style="grid-column:1/-1">
             <div class="label" data-bm="Tempat" data-en="Venue">Tempat</div>
-            <div class="value">Grandeur Beling Glasshall</div>
-            <div class="muted" style="margin-top:6px;">Lorong Melati, 47000 Sungai Buloh, Selangor</div>
+            <div class="value"><strong>Grandeur Beling Glasshall</strong></div>
+            <div class="value muted">Lorong Melati, 47000 Sungai Buloh, Selangor</div>
 
-            <div class="copyRow">
-              <button class="copyBtn" type="button" id="copyVenue" data-bm="Salin alamat" data-en="Copy address">Salin alamat</button>
-            </div>
-
-            <div class="btnRow">
+            <div class="btnRow" style="justify-content:flex-start;">
               <a class="btn primary" href="https://maps.app.goo.gl/9H7ujsBQ5UV1V9kw8?g_st=iw" target="_blank" rel="noopener">Google Maps</a>
               <a class="btn" href="https://waze.com/ul/hw284qgfv2" target="_blank" rel="noopener">Waze</a>
+              <button class="btn" type="button" id="copyAddr" data-bm="Salin alamat" data-en="Copy address">Salin alamat</button>
             </div>
 
-            <div class="note" id="paxNote"
-              data-bm="Pax: Maksimum <b>2 orang dewasa</b> bagi setiap jemputan."
-              data-en="Pax: Maximum <b>2 adults</b> per invitation.">
+            <div class="note" id="paxNote" data-bm="Pax: Maksimum <b>2 orang dewasa</b> bagi setiap jemputan." data-en="Pax: Maximum <b>2 adults</b> per invitation.">
               Pax: Maksimum <b>2 orang dewasa</b> bagi setiap jemputan.
             </div>
+            <div class="status" id="toast"></div>
           </div>
         </div>
       </div>
+    </section>
 
-      <hr class="divider" />
-
-      <div class="section reveal" id="rsvp">
-        <h2 data-bm="RSVP" data-en="RSVP">RSVP</h2>
-        <p id="rsvpText"
-           data-bm="Sila sahkan kehadiran sebelum <b>Sabtu, 11 April 2026</b>."
-           data-en="Please respond by <b>Saturday, 11 April 2026</b>.">
-          Sila sahkan kehadiran sebelum <b>Sabtu, 11 April 2026</b>.
-        </p>
-
-        <!-- Hidden iframe for Google Form submit (no CORS issues) -->
-        
-        <button class="accordionBtn" type="button" id="rsvpToggle">
-          <span data-bm="Buka borang RSVP" data-en="Open RSVP form">Buka borang RSVP</span>
-          <i class="chev" aria-hidden="true"></i>
-        </button>
-
-<div class="accordionPanel" id="rsvpPanel">
-<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-
-        <form id="rsvpForm"
-              action="https://docs.google.com/forms/d/e/1FAIpQLSd2HP0NJ58am3Py63pIBG1Qn_DdlFZKw9gHF7sSU39N17yEKQ/formResponse"
-              method="POST"
-              target="hidden_iframe">
-          <div class="row2">
-            <div>
-              <div class="help" data-bm="Nama / Name" data-en="Name / Nama">Nama / Name</div>
-              <input required maxlength="80"
-                     name="entry.1498135098"
-                     placeholder="Nama / Name" />
-            </div>
-            <div>
-              <div class="help" data-bm="No. Telefon / Phone No." data-en="Phone No. / No. Telefon">No. Telefon / Phone No.</div>
-              <input required maxlength="30"
-                     name="entry.1450191657"
-                     placeholder="Contoh: 01X-XXXXXXX" />
-            </div>
-          </div>
-
-          <div class="row2">
-            <div>
-              <div class="help" data-bm="Kehadiran / Attendance" data-en="Attendance / Kehadiran">Kehadiran / Attendance</div>
-              <select required name="entry.1424661284" id="attendance">
-                <option value="" selected disabled>—</option>
-                <option value="Hadir">Hadir / Attending</option>
-                <option value="Tidak Hadir">Tidak dapat hadir / Unable to attend</option>
-              </select>
-            </div>
-            <div>
-              <div class="help" data-bm="Jumlah tetamu / Pax (1–2)" data-en="Pax (1–2)">Jumlah tetamu / Pax (1–2)</div>
-              <select required name="entry.38316735" id="pax">
-                <option value="" selected disabled>—</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-              </select>
-            </div>
-          </div>
-
+    <section class="chapter reveal" id="rsvp">
+      <div class="inner">
+        <div class="chapterHeader">
           <div>
-            <div class="help" data-bm="Ucapan (optional) / Wishes (optional)" data-en="Wishes (optional) / Ucapan (optional)">Ucapan (optional) / Wishes (optional)</div>
-            <textarea name="entry.2606285" placeholder="Ucapan ringkas / A short wish (optional)"></textarea>
+            <div class="chapterTag" data-bm="Bab 3" data-en="Chapter 3">Bab 3</div>
+            <div class="chapterTitle">RSVP</div>
+            <div class="chapterSub" data-bm="Sila sahkan kehadiran sebelum <b>Sabtu, 11 April 2026</b>." data-en="Please respond by <b>Saturday, 11 April 2026</b>.">
+              Sila sahkan kehadiran sebelum <b>Sabtu, 11 April 2026</b>.
+            </div>
           </div>
+        </div>
 
-          <button class="btn primary" type="submit" id="submitBtn"
-                  data-bm="Hantar RSVP" data-en="Submit RSVP">
-            Hantar RSVP
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+        <div class="accordion" id="acc">
+          <button class="accHead" type="button" id="accBtn">
+            <strong data-bm="Buka borang RSVP" data-en="Open RSVP form">Buka borang RSVP</strong>
+            <span class="chev">⌄</span>
           </button>
 
-          <div class="help" id="deadlineMsg"></div>
-          <div class="status" id="statusBox"></div>
+          <div class="accBody">
+            <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSd2HP0NJ58am3Py63pIBG1Qn_DdlFZKw9gHF7sSU39N17yEKQ/formResponse" method="POST" target="hidden_iframe">
+              <div class="row2">
+                <div>
+                  <div class="help" data-bm="Nama / Name" data-en="Name / Nama">Nama / Name</div>
+                  <input required maxlength="80" name="entry.1498135098" placeholder="Nama / Name" />
+                </div>
+                <div>
+                  <div class="help" data-bm="No. Telefon / Phone No." data-en="Phone No. / No. Telefon">No. Telefon / Phone No.</div>
+                  <input required maxlength="30" name="entry.1450191657" placeholder="Contoh: 01X-XXXXXXX" />
+                </div>
+              </div>
 
-          <div class="tiny" style="margin-top:8px;"
-               data-bm="Nota: RSVP ini akan direkodkan terus ke Google Sheet melalui Google Form."
-               data-en="Note: This RSVP will be recorded to a Google Sheet via Google Form.">
-            Nota: RSVP ini akan direkodkan terus ke Google Sheet melalui Google Form.
+              <div class="row2">
+                <div>
+                  <div class="help" data-bm="Kehadiran / Attendance" data-en="Attendance / Kehadiran">Kehadiran / Attendance</div>
+                  <select required name="entry.1424661284" id="attendance">
+                    <option value="" selected disabled>—</option>
+                    <option value="Hadir">Hadir / Attending</option>
+                    <option value="Tidak Hadir">Tidak Hadir / Unable to attend</option>
+                  </select>
+                </div>
+                <div>
+                  <div class="help" data-bm="Jumlah tetamu / Pax (1–2)" data-en="Pax (1–2)">Jumlah tetamu / Pax (1–2)</div>
+                  <select required name="entry.38316735" id="pax">
+                    <option value="" selected disabled>—</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <div class="help" data-bm="Ucapan (optional) / Wishes (optional)" data-en="Wishes (optional) / Ucapan (optional)">Ucapan (optional) / Wishes (optional)</div>
+                <textarea name="entry.2606285" placeholder="Ucapan ringkas / A short wish (optional)"></textarea>
+              </div>
+
+              <button class="btn primary" type="submit" id="submitBtn" data-bm="Hantar RSVP" data-en="Submit RSVP">Hantar RSVP</button>
+
+              <div class="help" id="deadlineMsg"></div>
+              <div class="status" id="statusBox"></div>
+
+              <div class="tiny" style="margin-top:8px;" data-bm="Nota: RSVP ini akan direkodkan terus ke Google Sheet melalui Google Form." data-en="Note: This RSVP will be recorded to a Google Sheet via Google Form.">
+                Nota: RSVP ini akan direkodkan terus ke Google Sheet melalui Google Form.
+              </div>
+            </form>
           </div>
-        </form>
         </div>
       </div>
+    </section>
 
-      <hr class="divider" />
+    <section class="chapter reveal" id="contact">
+      <div class="inner">
+        <div class="chapterHeader">
+          <div>
+            <div class="chapterTag" data-bm="Bab 4" data-en="Chapter 4">Bab 4</div>
+            <div class="chapterTitle" data-bm="Hubungi" data-en="Contact">Hubungi</div>
+            <div class="chapterSub" data-bm="Nombor WhatsApp akan dikemaskini. (TBC)" data-en="WhatsApp contacts will be updated. (TBC)">
+              Nombor WhatsApp akan dikemaskini. (TBC)
+            </div>
+          </div>
+        </div>
 
-      <div class="section reveal" id="contact">
-        <h2 data-bm="Hubungi" data-en="Contact">Hubungi</h2>
-        <p data-bm="Nombor WhatsApp akan dikemaskini. (TBC)"
-           data-en="WhatsApp contacts will be updated. (TBC)">
-          Nombor WhatsApp akan dikemaskini. (TBC)
-        </p>
-
-        <!-- When you have numbers, replace links like:
-             https://wa.me/60123456789?text=Hi%20...
-        -->
-        <div class="btnRow" style="opacity:.6; pointer-events:none;">
+        <div class="btnRow" style="justify-content:flex-start; opacity:.6; pointer-events:none;">
           <a class="btn" href="#">WhatsApp (Bride’s side) — TBC</a>
           <a class="btn" href="#">WhatsApp (Groom’s side) — TBC</a>
         </div>
 
         <footer>
-          <div data-bm="Terima kasih atas doa dan kehadiran anda."
-               data-en="Thank you for your prayers and presence.">
+          <div data-bm="Terima kasih atas doa dan kehadiran anda." data-en="Thank you for your prayers and presence.">
             Terima kasih atas doa dan kehadiran anda.
           </div>
         </footer>
       </div>
-    </div>
+    </section>
+
   </div>
 
   <script>
-    // ===== Language toggle =====
+    // Language toggle
     const bmBtn = document.getElementById('bmBtn');
     const enBtn = document.getElementById('enBtn');
     let lang = 'bm';
 
-    function applyLang(newLang){
+    function applyLang(newLang) {
       lang = newLang;
       bmBtn.classList.toggle('active', lang === 'bm');
       enBtn.classList.toggle('active', lang === 'en');
-
-      document.querySelectorAll('[data-bm]').forEach(el=>{
+      document.querySelectorAll('[data-bm]').forEach(el => {
         el.innerHTML = (lang === 'bm') ? el.getAttribute('data-bm') : el.getAttribute('data-en');
       });
-      document.querySelectorAll('[data-en]').forEach(el=>{
-        if(!el.hasAttribute('data-bm')) {
-          // if only data-en exists
-          el.innerHTML = el.getAttribute('data-en');
-        }
-      });
-    
-
-      // refresh dynamic UI strings
-      try{ checkDeadline(); }catch(e){}
-      try{
-        const isOpen = document.getElementById('rsvpPanel')?.classList.contains('open');
-        if(typeof setRsvpOpen === 'function') setRsvpOpen(!!isOpen);
-      }catch(e){}
+      checkDeadline();
     }
-    bmBtn.addEventListener('click', ()=>applyLang('bm'));
-    enBtn.addEventListener('click', ()=>applyLang('en'));
+    bmBtn.addEventListener('click', () => applyLang('bm'));
+    enBtn.addEventListener('click', () => applyLang('en'));
     applyLang('bm');
 
-
-    // ===== Cover open =====
-    const cover = document.getElementById('cover');
-    const openInvite = document.getElementById('openInvite');
-    document.body.classList.add('cover-locked');
-
-    function openCover(){
-      cover.classList.add('hidden');
-      document.body.classList.remove('cover-locked');
-      const main = document.getElementById('main');
-      if(main){ main.scrollIntoView({behavior:'smooth', block:'start'}); }
-      setTimeout(()=>{ window.dispatchEvent(new Event('scroll')); }, 150);
-    }
-    openInvite?.addEventListener('click', openCover);
-    cover.addEventListener('click', (e)=>{ if(e.target === cover) openCover(); });
-
-    // ===== Scroll reveal =====
+    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(ent=>{
-        if(ent.isIntersecting){
-          ent.target.classList.add('in');
-          io.unobserve(ent.target);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('show');
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(r => io.observe(r));
+
+    // Quick nav dots
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach(d => d.addEventListener('click', () => {
+      const id = d.getAttribute('data-to');
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }));
+
+    const sections = ['cover','families','details','rsvp','contact'].map(id => document.getElementById(id));
+    const io2 = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const id = e.target.id;
+          dots.forEach(d => d.classList.toggle('active', d.getAttribute('data-to') === id));
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.35 });
+    sections.forEach(s => io2.observe(s));
 
-    reveals.forEach(el=>io.observe(el));
+    // Open invitation scroll
+    document.getElementById('openInvite').addEventListener('click', () => {
+      document.getElementById('families').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
 
-
-    // ===== Countdown =====
-    // Target: 25 April 2026, 11:00 AM Malaysia time (Asia/Kuala_Lumpur, UTC+8)
-    // We compute using UTC millis with fixed offset (+8) to avoid device timezone issues.
-    const targetUTC = Date.UTC(2026, 3, 25, 3, 0, 0); // 11:00 MYT = 03:00 UTC (since MYT = UTC+8)
+    // Countdown (25 Apr 2026 11:00 MYT => 03:00 UTC)
+    const targetUTC = Date.UTC(2026, 3, 25, 3, 0, 0);
     const dEl = document.getElementById('d');
     const hEl = document.getElementById('h');
     const mEl = document.getElementById('m');
     const sEl = document.getElementById('s');
 
-    function tick(){
+    function tick() {
       const now = Date.now();
       let diff = targetUTC - now;
-
-      if(diff < 0) diff = 0;
-
+      if (diff < 0) diff = 0;
       const sec = Math.floor(diff / 1000);
       const days = Math.floor(sec / 86400);
-      const hrs  = Math.floor((sec % 86400) / 3600);
+      const hrs = Math.floor((sec % 86400) / 3600);
       const mins = Math.floor((sec % 3600) / 60);
       const secs = sec % 60;
 
       dEl.textContent = String(days);
-      hEl.textContent = String(hrs).padStart(2,'0');
-      mEl.textContent = String(mins).padStart(2,'0');
-      sEl.textContent = String(secs).padStart(2,'0');
+      hEl.textContent = String(hrs).padStart(2, '0');
+      mEl.textContent = String(mins).padStart(2, '0');
+      sEl.textContent = String(secs).padStart(2, '0');
     }
     tick();
     setInterval(tick, 1000);
 
-    // ===== RSVP deadline enforcement =====
-    // RSVP deadline: 11 April 2026, 23:59 MYT => 15:59 UTC
-    const rsvpDeadlineUTC = Date.UTC(2026, 3, 11, 15, 59, 59);
+    // Copy address toast
+    const toast = document.getElementById('toast');
+    const addr = "Grandeur Beling Glasshall, Lorong Melati, 47000 Sungai Buloh, Selangor";
+    document.getElementById('copyAddr').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(addr);
+        toast.classList.add('show');
+        toast.textContent = (lang === 'bm') ? "Alamat disalin." : "Address copied.";
+        setTimeout(() => toast.classList.remove('show'), 1600);
+      } catch (err) {
+        toast.classList.add('show');
+        toast.textContent = (lang === 'bm') ? "Tak dapat salin alamat." : "Could not copy address.";
+        setTimeout(() => toast.classList.remove('show'), 1600);
+      }
+    });
 
+    // RSVP accordion
+    const acc = document.getElementById('acc');
+    document.getElementById('accBtn').addEventListener('click', () => {
+      acc.classList.toggle('open');
+    });
+
+    // RSVP deadline
+    const rsvpDeadlineUTC = Date.UTC(2026, 3, 11, 15, 59, 59);
     const deadlineMsg = document.getElementById('deadlineMsg');
     const submitBtn = document.getElementById('submitBtn');
     const statusBox = document.getElementById('statusBox');
     const form = document.getElementById('rsvpForm');
     const pax = document.getElementById('pax');
-    const attendance = document.getElementById('attendance');
 
-    function checkDeadline(){
+    function checkDeadline() {
       const now = Date.now();
-      if(now > rsvpDeadlineUTC){
+      if (now > rsvpDeadlineUTC) {
         submitBtn.disabled = true;
-        submitBtn.style.opacity = 0.5;
+        submitBtn.style.opacity = 0.55;
         submitBtn.style.cursor = 'not-allowed';
         deadlineMsg.textContent = (lang === 'bm')
           ? "RSVP telah ditutup (selepas 11 April 2026)."
           : "RSVP is closed (after 11 April 2026).";
-        deadlineMsg.style.marginTop = "6px";
       } else {
         submitBtn.disabled = false;
         submitBtn.style.opacity = 1;
@@ -1000,130 +525,50 @@
         deadlineMsg.textContent = (lang === 'bm')
           ? "Maksimum 2 dewasa sahaja. Terima kasih!"
           : "Maximum 2 adults only. Thank you!";
-        deadlineMsg.style.marginTop = "6px";
       }
+      deadlineMsg.style.marginTop = "8px";
     }
     checkDeadline();
-    setInterval(checkDeadline, 60_000);
+    setInterval(checkDeadline, 60000);
 
-    // Simple guardrails + success message
     form.addEventListener('submit', (e) => {
-      // pax is already 1-2 by dropdown, but keep validation anyway
       const paxVal = pax.value ? parseInt(pax.value, 10) : 0;
-      if(paxVal < 1 || paxVal > 2){
+      if (paxVal < 1 || paxVal > 2) {
         e.preventDefault();
         statusBox.classList.add('show');
-        statusBox.textContent = (lang === 'bm')
-          ? "Sila pilih pax 1 atau 2 sahaja."
-          : "Please choose pax 1 or 2 only.";
+        statusBox.textContent = (lang === 'bm') ? "Sila pilih pax 1 atau 2 sahaja." : "Please choose pax 1 or 2 only.";
         return;
       }
-
-      // If unable to attend, allow pax blank? We keep it required for simplicity.
       statusBox.classList.add('show');
-      statusBox.textContent = (lang === 'bm')
-        ? "Terima kasih! RSVP anda sedang dihantar…"
-        : "Thank you! Your RSVP is being submitted…";
-
-      // After submit to hidden iframe, we show final success and reset form
-      // (Google Forms doesn't give us a callback reliably; we simulate a smooth UX)
+      statusBox.textContent = (lang === 'bm') ? "Terima kasih! RSVP anda sedang dihantar…" : "Thank you! Your RSVP is being submitted…";
       setTimeout(() => {
-        statusBox.textContent = (lang === 'bm')
-          ? "RSVP diterima. Terima kasih atas maklum balas anda."
-          : "RSVP received. Thank you for your response.";
+        statusBox.textContent = (lang === 'bm') ? "RSVP diterima. Terima kasih atas maklum balas anda." : "RSVP received. Thank you for your response.";
         form.reset();
-      }, 1500);
+      }, 1400);
     });
 
-    // ===== Progress nav (dots) =====
-    const dots = Array.from(document.querySelectorAll('.dot'));
-    function scrollToId(id){
-      const el = document.getElementById(id);
-      if(!el) return;
-      el.scrollIntoView({behavior:'smooth', block:'start'});
+    // Petals generator (subtle)
+    const petalsWrap = document.getElementById('petals');
+    const petalCount = 12;
+    for (let i=0; i<petalCount; i++) {
+      const p = document.createElement('span');
+      p.className = 'petal';
+      const left = Math.random() * 100;
+      const drift = (Math.random() * 160 - 80);
+      const drift2 = drift + (Math.random() * 120 - 60);
+      const dur = 10 + Math.random() * 8;
+      const delay = Math.random() * 6;
+
+      p.style.left = left + 'vw';
+      p.style.setProperty('--x0', drift + 'px');
+      p.style.setProperty('--x1', drift2 + 'px');
+      p.style.setProperty('--dur', dur + 's');
+      p.style.animationDelay = (-delay) + 's';
+      p.style.opacity = (0.14 + Math.random() * 0.14).toFixed(2);
+      p.style.transform = 'rotate(' + (Math.random() * 40).toFixed(1) + 'deg)';
+
+      petalsWrap.appendChild(p);
     }
-    dots.forEach(d=>{
-      d.addEventListener('click', ()=> scrollToId(d.getAttribute('data-target')));
-    });
-
-    // Observe key sections to highlight dot
-    const watchIds = ['main','parents','details','rsvp','contact'];
-    const watchEls = watchIds.map(id => document.getElementById(id)).filter(Boolean);
-    const dotById = new Map(dots.map(d=>[d.getAttribute('data-target'), d]));
-
-    const activeObs = new IntersectionObserver((entries)=>{
-      // pick the most visible entry
-      let best = null;
-      for(const e of entries){
-        if(!e.isIntersecting) continue;
-        if(!best || e.intersectionRatio > best.intersectionRatio) best = e;
-      }
-      if(!best) return;
-      const id = best.target.id;
-      dots.forEach(d=>d.classList.remove('active'));
-      const dot = dotById.get(id);
-      if(dot) dot.classList.add('active');
-    }, { threshold:[0.2,0.35,0.5,0.65] });
-
-    watchEls.forEach(el => activeObs.observe(el));
-
-    // Set initial active dot
-    setTimeout(()=>{ dotById.get('main')?.classList.add('active'); }, 200);
-
-    // ===== RSVP accordion =====
-    const rsvpToggle = document.getElementById('rsvpToggle');
-    const rsvpPanel = document.getElementById('rsvpPanel');
-    function setRsvpOpen(open){
-      if(!rsvpToggle || !rsvpPanel) return;
-      rsvpToggle.classList.toggle('open', open);
-      rsvpPanel.classList.toggle('open', open);
-      const label = rsvpToggle.querySelector('span');
-      if(label){
-        label.innerHTML = (lang === 'bm')
-          ? (open ? 'Tutup borang RSVP' : 'Buka borang RSVP')
-          : (open ? 'Close RSVP form' : 'Open RSVP form');
-      }
-    }
-    rsvpToggle?.addEventListener('click', ()=>{
-      const open = !rsvpPanel.classList.contains('open');
-      setRsvpOpen(open);
-      if(open){
-        setTimeout(()=>{ document.getElementById('rsvpForm')?.scrollIntoView({behavior:'smooth', block:'start'}); }, 150);
-      }
-    });
-
-    // If user jumps to RSVP via dot, auto-open
-    dotById.get('rsvp')?.addEventListener('click', ()=>{
-      setTimeout(()=> setRsvpOpen(true), 250);
-    });
-
-    // ===== Copy address + toast =====
-    const toast = document.getElementById('toast');
-    function showToast(msg){
-      if(!toast) return;
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(()=>toast.classList.remove('show'), 1400);
-    }
-    const copyVenue = document.getElementById('copyVenue');
-    copyVenue?.addEventListener('click', async ()=>{
-      const text = "Grandeur Beling Glasshall, Lorong Melati, 47000 Sungai Buloh, Selangor";
-      try{
-        await navigator.clipboard.writeText(text);
-        showToast(lang === 'bm' ? 'Alamat disalin' : 'Address copied');
-      }catch(e){
-        // fallback
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        ta.remove();
-        showToast(lang === 'bm' ? 'Alamat disalin' : 'Address copied');
-      }
-    });
-
   </script>
-  <div id="toast" class="toast" role="status" aria-live="polite">Copied</div>
 </body>
 </html>
