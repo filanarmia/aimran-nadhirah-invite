@@ -37,10 +37,17 @@
       overflow-x:hidden;
     }
     a{color:inherit; text-decoration:none}
+    
+    /* Fullscreen "pages" feel */
+    body{ overflow:hidden; }
+
     .wrap{
       max-width:860px;
       margin:0 auto;
-      padding:20px 16px 80px;
+      padding:20px 16px;
+      height:100vh;
+      display:flex;
+      flex-direction:column;
     }
 
     /* Top mini controls */
@@ -207,8 +214,14 @@
       background: linear-gradient(180deg, rgba(252,251,248,.92), rgba(255,255,255,.92));
       border:1px solid var(--line);
       box-shadow: var(--shadow);
-      overflow:hidden;
+      overflow-y:auto;
+      overflow-x:hidden;
       position:relative;
+      flex:1;
+      scroll-snap-type:y mandatory;
+      scroll-behavior:smooth;
+      -webkit-overflow-scrolling:touch;
+      scroll-padding-top:18px;
     }
     .sheet:before{
       content:"";
@@ -224,9 +237,55 @@
     .chapter{
       position:relative;
       padding:26px 20px;
+      min-height:100%;
+      scroll-snap-align:start;
+      scroll-snap-stop:always;
+      display:flex;
+      align-items:stretch;
     }
-    .chapterInner{ position:relative; z-index:1; }
-    .chapter + .chapter{ border-top:1px solid var(--line); }
+    .chapterInner{ position:relative; z-index:1; width:100%; }
+
+    .pageCard{
+      width:100%;
+      background:rgba(255,255,255,.70);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:22px 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+      position:relative;
+      overflow:hidden;
+    }
+    .pageCard:before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(420px 220px at 10% 12%, rgba(184,155,94,.12), transparent 55%),
+        radial-gradient(420px 220px at 90% 88%, rgba(111,123,106,.10), transparent 55%);
+      pointer-events:none;
+    }
+    .pageCard > *{ position:relative; z-index:1; }
+
+    .nextRow{
+      margin-top:16px;
+      display:flex;
+      justify-content:center;
+    }
+    .nextBtn{
+      border:1px solid rgba(184,155,94,.35);
+      background:rgba(184,155,94,.14);
+      padding:11px 16px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:14px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition:transform .08s ease, background .2s ease;
+    }
+    .nextBtn:hover{ transform:translateY(-1px); background:rgba(184,155,94,.20); }
+
+    .chapter + .chapter{ border-top:0; }
 
     .chapterHeader{
       display:flex;
@@ -529,7 +588,7 @@
     <div class="sheet">
       <!-- Families -->
       <section class="chapter reveal" id="secFamilies">
-        <div class="chapterInner">
+        <div class="chapterInner"><div class="pageCard">
           <div class="chapterHeader">
             <h2 class="chapterTitle" data-bm="Keluarga" data-en="Families">Keluarga</h2>
             <div class="chapterTag" data-bm="Bab 1" data-en="Chapter 1">Bab 1</div>
@@ -559,12 +618,17 @@
               <div class="value">Basirah binti Hassan</div>
             </div>
           </div>
-        </div>
+        
+          <div class="nextRow">
+            <button class="nextBtn" type="button" data-next="#secDetails"
+              data-bm="Seterusnya / Next" data-en="Next / Seterusnya">Seterusnya / Next</button>
+          </div>
+</div></div>
       </section>
 
       <!-- Details -->
       <section class="chapter reveal" id="secDetails">
-        <div class="chapterInner">
+        <div class="chapterInner"><div class="pageCard">
           <div class="chapterHeader">
             <h2 class="chapterTitle" data-bm="Butiran Majlis" data-en="Event Details">Butiran Majlis</h2>
             <div class="chapterTag" data-bm="Bab 2" data-en="Chapter 2">Bab 2</div>
@@ -599,12 +663,17 @@
               <div class="status" id="toast"></div>
             </div>
           </div>
-        </div>
+        
+          <div class="nextRow">
+            <button class="nextBtn" type="button" data-next="#secRSVP"
+              data-bm="RSVP" data-en="RSVP">RSVP</button>
+          </div>
+</div></div>
       </section>
 
       <!-- RSVP -->
       <section class="chapter reveal" id="secRSVP">
-        <div class="chapterInner">
+        <div class="chapterInner"><div class="pageCard">
           <div class="chapterHeader">
             <h2 class="chapterTitle">RSVP</h2>
             <div class="chapterTag" data-bm="Bab 3" data-en="Chapter 3">Bab 3</div>
@@ -687,12 +756,17 @@
               Terima kasih atas doa dan kehadiran anda.
             </div>
           </footer>
-        </div>
+        
+          <div class="nextRow">
+            <button class="nextBtn" type="button" data-next="#secContact"
+              data-bm="Hubungi / Contact" data-en="Contact / Hubungi">Hubungi / Contact</button>
+          </div>
+</div></div>
       </section>
 
       <!-- Contact -->
       <section class="chapter reveal" id="secContact">
-        <div class="chapterInner">
+        <div class="chapterInner"><div class="pageCard">
           <div class="chapterHeader">
             <h2 class="chapterTitle" data-bm="Hubungi" data-en="Contact">Hubungi</h2>
             <div class="chapterTag" data-bm="Bab 4" data-en="Chapter 4">Bab 4</div>
@@ -707,7 +781,7 @@
             <a class="btn" href="#">WhatsApp (Bride’s side) — TBC</a>
             <a class="btn" href="#">WhatsApp (Groom’s side) — TBC</a>
           </div>
-        </div>
+        </div></div>
       </section>
     </div>
   </div>
@@ -813,6 +887,16 @@
         const t = d.getAttribute('data-target');
         document.querySelector(t)?.scrollIntoView({behavior:'smooth', block:'start'});
       });
+
+    // Next buttons (chapter-to-chapter)
+    document.querySelectorAll('.nextBtn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const t = btn.getAttribute('data-next');
+        if(!t) return;
+        document.querySelector(t)?.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
     });
 
     const sections = ['#secFamilies','#secDetails','#secRSVP','#secContact'].map(sel=>document.querySelector(sel));
