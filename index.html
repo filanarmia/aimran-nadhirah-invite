@@ -726,6 +726,8 @@
   </div>
 
   <script>
+    window.__deadlineReady = false;
+
     // ===== Language toggle =====
     const bmBtn = document.getElementById('bmBtn');
     const enBtn = document.getElementById('enBtn');
@@ -737,8 +739,8 @@
       document.querySelectorAll('[data-bm]').forEach(el=>{
         el.innerHTML = (lang === 'bm') ? el.getAttribute('data-bm') : el.getAttribute('data-en');
       });
-      // keep deadline message updated
-      checkDeadline();
+      // keep deadline message updated (after RSVP init)
+      if (window.__deadlineReady) checkDeadline();
     }
     bmBtn.addEventListener('click', ()=>applyLang('bm'));
     enBtn.addEventListener('click', ()=>applyLang('en'));
@@ -830,7 +832,9 @@
         deadlineMsg.textContent = (lang === 'bm')
           ? "RSVP telah ditutup (selepas 11 April 2026)."
           : "RSVP is closed (after 11 April 2026).";
-      } else {
+      }
+      window.__deadlineReady = true;
+      else {
         submitBtn.disabled = false;
         submitBtn.style.opacity = 1;
         submitBtn.style.cursor = 'pointer';
