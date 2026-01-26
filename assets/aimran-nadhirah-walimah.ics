@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Aimran & Nadhirah//E-Card//MY
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:walimah-aimran-nadhirah-20260425@ecard
+DTSTAMP:20260125T130000Z
+DTSTART;TZID=Asia/Kuala_Lumpur:20260425T110000
+DTEND;TZID=Asia/Kuala_Lumpur:20260425T160000
+SUMMARY:Walimatulurus Dr. Wan Nadhirah & Aimran
+LOCATION:Grandeur Beling Glasshall, Sg Buloh
+DESCRIPTION:UNDANGAN MAJLIS PERKAHWINAN\\nDr. Wan Nadhirah & Aimran\\n\\nTarikh: Sabtu, 25 April 2026\\nJamuan Makan: 11.00 pagi – 4.00 petang\\nKetibaan Pengantin: 12.30 tengah hari\\n\\nLokasi (Google Maps): https://maps.app.goo.gl/6i3o6WUW9mum514o7
+END:VEVENT
+END:VCALENDAR

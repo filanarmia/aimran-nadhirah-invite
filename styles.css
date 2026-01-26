@@ -1,0 +1,1685 @@
+:root{
+  --bg: #fbf7f2;
+  --card: rgba(255,255,255,0.72);
+  --border: rgba(160,120,60,0.28);
+  --gold: #b18b46;
+  --text: #2a2a2a;
+  --muted: rgba(0,0,0,0.55);
+  --shadow: 0 18px 55px rgba(0,0,0,0.12);
+  --radius: 22px;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; color:var(--text); background: var(--bg); }
+a{ color: inherit; }
+
+.hidden { display: none !important; }
+
+.section{
+  padding: 64px 18px;
+  display:flex;
+  justify-content:center;
+}
+
+.card{
+  width: min(920px, 100%);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 30px 22px;
+  backdrop-filter: blur(10px);
+}
+
+.hero{ padding-top: 86px; }
+.hero-card{
+  position: relative;
+  overflow: hidden;
+}
+
+/* Minimal “petals” feel using gradients (you can replace with actual petals later) */
+.hero-card::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 18% 10%, rgba(255,183,197,0.18), transparent 40%),
+    radial-gradient(circle at 80% 18%, rgba(255,183,197,0.14), transparent 46%),
+    radial-gradient(circle at 55% 85%, rgba(255,183,197,0.12), transparent 48%);
+  pointer-events:none;
+}
+
+.bismillah{
+  text-align:center;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.kicker{
+  text-align:center;
+  letter-spacing: 2px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.monogram{
+  text-align:center;
+  font-size: 82px;
+  color: var(--gold);
+  margin: 18px 0 6px;
+  font-family: "Georgia", serif;
+}
+
+.names{
+  text-align:center;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.meta{
+  text-align:center;
+  margin-top: 14px;
+  color: var(--muted);
+}
+
+.quote{
+  text-align:center;
+  margin-top: 18px;
+  color: rgba(0,0,0,0.62);
+  font-style: italic;
+}
+.quote-sub{ font-style: normal; font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+.scroll-hint{
+  margin-top: 22px;
+  text-align:center;
+  color: var(--muted);
+}
+
+.section-title{
+  text-align:center;
+  letter-spacing: 2px;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.subtle{ color: var(--muted); }
+.center{ text-align:center; }
+
+.parents{
+  text-align:center;
+  margin: 16px 0;
+}
+.parent-name{
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.amp{ margin: 6px 0; color: var(--muted); }
+
+.para{
+  line-height: 1.7;
+  color: rgba(0,0,0,0.7);
+}
+
+.couple{
+  text-align:center;
+  margin-top: 18px;
+}
+.bride, .groom{
+  font-size: 20px;
+  font-weight: 700;
+}
+.with{ margin: 8px 0; color: var(--muted); }
+
+/* ===== MAKLUMAT MAJLIS (Single Card) ===== */
+
+.info-card{
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 42px 34px;
+  text-align: center;
+}
+
+.info-header{
+  font-weight: 700;
+  letter-spacing: 3px;
+  font-size: 14px;
+  margin-bottom: 26px;
+  opacity: 0.9;
+}
+
+.info-single{
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: center;
+}
+
+.info-block{
+  width: 100%;
+}
+
+.info-label{
+  font-size: 11px;
+  letter-spacing: 2px;
+  opacity: 0.6;
+  margin-bottom: 8px;
+}
+
+.info-value{
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.info-sub{
+  font-size: 13px;
+  opacity: 0.75;
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+.info-actions{
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.btn-row{
+  display:flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.btn{
+  border: 1px solid rgba(177,139,70,0.6);
+  background: rgba(177,139,70,0.12);
+  color: #3b2d16;
+  padding: 12px 14px;
+  border-radius: 14px;
+  text-decoration:none;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap: 8px;
+  cursor:pointer;
+}
+.btn:hover{ background: rgba(177,139,70,0.18); }
+
+.btn-outline{
+  background: rgba(255,255,255,0.55);
+}
+
+.w-full{ width:100%; }
+
+.timeline{
+  margin-top: 10px;
+  display:grid;
+  gap: 14px;
+}
+.t-item{
+  display:flex;
+  gap: 12px;
+  align-items:flex-start;
+}
+.dot{
+  width: 10px; height: 10px;
+  border-radius: 99px;
+  background: var(--gold);
+  margin-top: 6px;
+  flex: 0 0 auto;
+}
+.t-text{ line-height: 1.6; }
+
+.pill-row{
+  margin-top: 10px;
+  display:flex;
+  justify-content:center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+/* RSVP pills */
+.pill{
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(176,140,78,0.45);
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.pill-active{
+  background: rgba(176,140,78,0.95);
+  color: #fff;
+  border-color: rgba(176,140,78,0.95);
+}
+
+.pill-muted{
+  opacity: 0.85;
+}
+
+/* Make the RSVP form tighter */
+#rsvpForm{
+  margin-top: 14px;
+}
+
+/* Button disabled look */
+.btn:disabled{
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+.form{
+  margin-top: 16px;
+  display:grid;
+  gap: 10px;
+}
+.label{
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.input{
+  width:100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: rgba(255,255,255,0.72);
+  outline: none;
+}
+.textarea{ min-height: 120px; resize: vertical; }
+
+.form-msg{
+  text-align:center;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.honeypot{
+  position:absolute;
+  left:-9999px;
+  opacity:0;
+  height:0;
+}
+
+.guestbook{ margin-top: 26px; }
+
+.guestbook-head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-sm{
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+.sub-title{
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: rgba(0,0,0,0.72);
+}
+.guest-list{
+  margin-top: 12px;
+  display: grid;
+  gap: 12px;
+}
+.guest-item{
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 16px;
+  padding: 14px 14px;
+  background: rgba(255,255,255,0.55);
+}
+
+.guest-top{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.guest-name{
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.guest-date{
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.guest-msg{
+  font-size: 13px;
+  opacity: 0.82;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.thanks{ font-size: 18px; font-weight: 700; margin-top: 10px; }
+.divider{
+  height:1px;
+  background: rgba(177,139,70,0.25);
+  margin: 18px 0;
+}
+.contact{
+  text-align:center;
+  line-height: 1.9;
+}
+.footer{ margin-top: 20px; }
+
+/* ===== Fade-in animation for sections ===== */
+.fade-in{ opacity: 0; transform: translateY(14px); transition: opacity 800ms ease, transform 800ms ease; }
+.fade-in.visible{ opacity: 1; transform: translateY(0); }
+
+/* ===== Envelope Overlay ===== */
+.overlay{
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(255,206,216,0.22), transparent 40%),
+              radial-gradient(circle at 70% 80%, rgba(212,187,140,0.20), transparent 45%),
+              var(--bg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index: 9999;
+}
+.envelope{
+  width: min(420px, 88vw);
+  height: 280px;
+  position: relative;
+}
+.env-body{
+  position:absolute; inset: 30px 0 0 0;
+  border-radius: 18px;
+  border: 1px solid rgba(177,139,70,0.35);
+  background: rgba(255,255,255,0.68);
+  box-shadow: var(--shadow);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.env-top{
+  position:absolute; inset: 0 0 auto 0;
+  height: 120px;
+  border-radius: 18px;
+  border: 1px solid rgba(177,139,70,0.35);
+  background: rgba(255,255,255,0.74);
+  transform-origin: top;
+  transition: transform 700ms ease;
+}
+.seal{
+  text-align:center;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(177,139,70,0.55);
+  background: rgba(177,139,70,0.12);
+  cursor:pointer;
+}
+.seal span{ display:block; font-weight: 800; letter-spacing: 1px; }
+.seal small{ display:block; margin-top: 6px; color: var(--muted); }
+
+.env-shadow{
+  position:absolute;
+  inset: auto 0 0 0;
+  height: 24px;
+  transform: translateY(20px);
+  filter: blur(18px);
+  background: rgba(0,0,0,0.12);
+  border-radius: 99px;
+  opacity: 0.35;
+}
+
+.overlay.opening .env-top{
+  transform: rotateX(160deg);
+}
+.overlay.opening{
+  animation: fadeOut 850ms ease forwards;
+  animation-delay: 380ms;
+}
+@keyframes fadeOut{
+  to{ opacity:0; visibility:hidden; }
+}
+
+.nowrap{ white-space: nowrap; }
+
+.monogram img{
+  width: 170px;
+  height: auto;
+  display:block;
+  margin: 0 auto;
+}
+
+/* ===== ARCH HERO FRAME ===== */
+
+.arch-frame {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+
+/* Arch image as background frame */
+.arch-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.95;
+}
+
+/* Content placed INSIDE arch */
+.arch-content {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 78%;
+  text-align: center;
+}
+
+/* Bismillah sits at top inside arch */
+.arch-content .bismillah {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+/* Undangan text */
+.arch-content .kicker {
+  font-size: 12px;
+  letter-spacing: 2px;
+
+  margin-top: 110px;
+  margin-bottom: 12px;
+}
+
+/* AN monogram centered */
+.arch-content .monogram img {
+  width: 240px;
+  height: auto;
+  margin: 0 auto 6px;
+  margin-top: -80px;
+}
+
+/* Names */
+.arch-content .names {
+  margin-top: -80px;
+  font-size: 22px;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+/* Meta smaller */
+.arch-content .meta {
+  font-size: 13px;
+}
+
+/* Quran quote */
+.arch-content .quote {
+  font-size: 13px;
+}
+
+.kicker-2line .k1{
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--muted);
+}
+
+.kicker-2line .k2{
+  margin-top: 6px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--muted);
+}
+
+/* Give space after Undangan block */
+.kicker-2line{
+  margin-bottom: 22px;
+}
+
+/* ===== WALIMATULURUS SECTION ===== */
+.walima-card{
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 42px 34px;
+  text-align: center;
+}
+
+.walima-title{
+  font-size: 18px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.walima-salam{
+  font-size: 16px;
+  margin-bottom: 26px;
+  opacity: 0.9;
+}
+
+.walima-parents{
+  margin-bottom: 22px;
+}
+
+.walima-parent{
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 650;
+  margin: 10px 0 12px;
+}
+
+.walima-and{
+  margin: 10px 0;
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+.walima-invite{
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 14px 0;
+  opacity: 0.92;
+}
+
+.walima-divider{
+  width: min(520px, 86%);
+  height: 1px;
+  margin: 20px auto 16px;
+  background: rgba(0,0,0,0.12);
+}
+
+.walima-to{
+  font-size: 15px;
+  margin-bottom: 12px;
+  opacity: 0.92;
+}
+
+.walima-couple{
+  margin-top: 6px;
+}
+
+.walima-bride,
+.walima-groom{
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* “dengan pilihan hatinya” like physical card (softer) */
+.walima-with{
+  margin: 12px 0;
+  font-size: 15px;
+  font-style: italic;
+  opacity: 0.78;
+}
+
+/* Closing card spacing */
+.closing-card{
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 42px 34px;
+}
+
+/* Contact area */
+.contact-elegant{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.contact-row{
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.contact-person{
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.contact-link{
+  text-decoration: none;
+  font-weight: 700;
+  color: rgba(176,140,78,0.95); /* gold accent */
+}
+
+.contact-link:hover{
+  text-decoration: underline;
+}
+
+
+
+@media (max-width: 600px) {
+  .arch-content {
+    top: 16%;
+    width: 88%;
+  }
+
+  .arch-content .names {
+    font-size: 18px;
+  }
+
+  .arch-content .monogram img {
+    width: 110px;
+  }
+
+  .walima-card{
+    padding: 34px 18px;
+  }
+  .walima-parent{
+    font-size: 16px;
+  }
+  .walima-bride,
+  .walima-groom{
+    font-size: 19px;
+  }
+}
+
+
+
+/* ===== Layout override: premium narrow card (desktop) + card-like mobile ===== */
+:root{
+  --page-bg1: #fbf1ef;
+  --page-bg2: #fdf7f4;
+  --card-bg: rgba(255,255,255,0.78);
+  --card-border: rgba(176,140,78,0.22);
+  --shadow: 0 18px 40px rgba(0,0,0,0.08);
+}
+
+/* Page background */
+body{
+  background: radial-gradient(900px 600px at 20% 10%, var(--page-bg1) 0%, var(--page-bg2) 60%, #ffffff 100%);
+}
+
+/* Make each section closer (less gap between cards) */
+.section{
+  padding: 6px 14px; /* was 10px 14px */
+}
+
+/* Global card size */
+.card{
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 22px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
+}
+
+/* Inner padding */
+.section .card{
+  padding: 30px 24px;
+}
+
+#btnHadir, #btnTidak { margin-top: 6px; }
+
+.section .subtle{
+  text-align: center;
+}
+
+/* ===== Typography Upgrade ===== */
+
+/* Default body text */
+body{
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  color: #2b2b2b;
+}
+
+/* Section titles (MAKLUMAT MAJLIS etc.) */
+.section-title{
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+/* Big names (Dr. Nadhirah & Aimran) */
+.names{
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Walimatulurus main names */
+.wali-names{
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* Body paragraphs */
+.para, .meta, .quote, .subtle{
+  font-family: "Montserrat", sans-serif;
+  font-size: 13.5px;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+/* Quran quote italic */
+.quote{
+  font-style: italic;
+  opacity: 0.7;
+}
+
+
+.btn, .pill{
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.bismillah{
+  font-family: "Amiri", serif;
+  font-size: 28px;
+}
+
+/* ===== Premium Wedding Typography (Physical Card Style) ===== */
+
+/* Default body */
+body{
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  color: #2b2b2b;
+}
+
+/* Section titles (MAKLUMAT MAJLIS, RSVP, HUBUNGI) */
+.section-title{
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+/* Main couple names */
+.names{
+  font-family: "Cormorant Garamond", serif;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  margin-top: 10px;
+}
+
+/* Walimatulurus bride/groom names */
+.wali-names{
+  font-family: "Cormorant Garamond", serif;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Parents names (bold formal) */
+.parents{
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Body paragraphs */
+.para, .meta, .subtle{
+  font-family: "Montserrat", sans-serif;
+  font-size: 13.5px;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+/* Quran quote */
+.quote{
+  font-family: "Cormorant Garamond", serif;
+  font-size: 15px;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* Arabic Bismillah */
+.bismillah{
+  font-family: "Amiri", serif;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+
+.btn, .pill, input, textarea{
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+
+
+
+/* ===== Card 1 (Intro Cover) Gold Theme ===== */
+.intro-card{
+  background: radial-gradient(
+    circle at top,
+    rgba(255,240,245,0.92),
+    rgba(252,245,248,0.78)
+  );
+  border: 1px solid rgba(176,140,78,0.30);
+}
+
+/* Make ALL text inside intro card gold */
+.intro-card,
+.intro-card *{
+  color: rgba(176,140,78,0.95) !important;
+}
+
+/* Softer muted gold for small meta text */
+.intro-card .subtle,
+.intro-card .meta,
+.intro-card .quote{
+  color: rgba(176,140,78,0.70) !important;
+}
+
+/* Make Quran quote stronger (same level as meta/date) */
+.intro-card .quote{
+  font-weight: 500 !important;
+  opacity: 0.9 !important;
+  color: rgba(176,140,78,0.88) !important;
+}
+
+/* Make Surah reference line also readable */
+.intro-card .quote span,
+.intro-card .quote small{
+  font-weight: 500 !important;
+  opacity: 0.85 !important;
+}
+
+
+/* Scroll hint */
+.intro-card .scroll-hint{
+  margin-top: 18px;
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.intro-card .bismillah{
+  color: rgba(47, 35, 15, 0.85) !important;
+}
+
+/* ===== Card 2 Walimatulurus Theme ===== */
+.walima-card{
+  background: radial-gradient(
+    circle at top,
+    rgba(255,248,250,0.92),
+    rgba(255,252,253,0.75)
+  );
+  border: 1px solid rgba(176,140,78,0.30);
+}
+
+/* Walimatulurus heading in gold */
+.walima-card .section-title{
+  color: rgba(176,140,78,0.92);
+}
+
+/* Bride & Groom names slightly gold */
+.walima-card strong,
+.walima-card .walima-names{
+  color: rgba(176,140,78,0.88);
+  font-weight: 600;
+}
+
+/* Keep body text readable */
+.walima-card .para,
+.walima-card .subtle{
+  color: rgba(30,30,30,0.82);
+}
+
+.walima-card .couple-name{
+  font-family: "Cormorant Garamond", serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: rgba(176,140,78,0.90);
+}
+
+.walima-title{
+  font-size: 13px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  text-align: center;
+
+  /* GOLD */
+  color: rgba(176,140,78,0.95);
+
+  margin-bottom: 10px;
+}
+
+.walima-parent{
+  font-family: "Cormorant Garamond", serif; /* softer wedding serif */
+  font-size: 20px;
+  font-weight: 600;
+
+  text-transform: none;   /* remove harsh all caps */
+  letter-spacing: 0.5px;  /* less rigid */
+
+  color: rgba(25,25,25,0.88);
+
+  margin: 6px 0;
+}
+
+.walima-and{
+  font-size: 16px;
+  font-style: italic;
+  color: rgba(120,120,120,0.65);
+  margin: 6px 0;
+}
+
+.walima-salam,
+.walima-invite,
+.walima-to{
+  font-size: 14px;
+  color: rgba(50,50,50,0.90);
+  line-height: 1.6;
+}
+
+.walima-divider{
+  width: 70%;
+  height: 1px;
+  margin: 22px auto;
+  background: rgba(176,140,78,0.25);
+}
+
+
+/* ===== Card 3: Maklumat Majlis ===== */
+.info-card{
+  background: radial-gradient(
+    circle at top,
+    rgba(255,248,250,0.92),
+    rgba(255,252,253,0.75)
+  );
+  border: 1px solid rgba(176,140,78,0.18);
+}
+
+
+/* Header (MAKLUMAT MAJLIS) */
+.info-header{
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(176,140,78,0.92);
+  margin-bottom: 16px;
+}
+
+/* Each block */
+.info-block{
+  text-align: center;
+  margin: 12px 0;
+}
+
+/* Label (TARIKH/MASA/LOKASI) */
+.info-label{
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  color: rgba(176,140,78,0.75); /* gold-muted instead of grey */
+  font-weight: 600;            /* bolder */
+
+  margin-bottom: 6px;
+}
+
+
+/* Value lines */
+.info-value{
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;              /* add weight */
+  color: rgba(0,0,0,0.82);       /* darker */
+
+  line-height: 1.55;
+}
+
+
+/* Address sub-line */
+.info-sub{
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;              /* closer to venue size */
+  font-weight: 500;             /* same strength */
+  color: rgba(0,0,0,0.78);      /* same dark tone */
+  margin-top: 4px;
+}
+
+
+
+.info-actions{
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+
+.info-actions .btn{
+  padding: 10px 18px;
+  border-radius: 14px;
+  font-size: 13px;
+}
+
+/* Outline gold */
+.btn-outline{
+  background: transparent;
+  border: 1px solid rgba(176,140,78,0.55);
+  color: rgba(176,140,78,0.95);
+}
+
+/* Solid soft gold */
+.btn-solid{
+  background: rgba(176,140,78,0.14);
+  border: 1px solid rgba(176,140,78,0.35);
+  color: rgba(176,140,78,0.95);
+}
+
+/* ===== RSVP Card Theme ===== */
+.rsvp-card{
+  background: radial-gradient(
+    circle at top,
+    rgba(255,248,250,0.92),
+    rgba(255,252,253,0.75)
+  );
+  border: 1px solid rgba(176,140,78,0.18);
+}
+
+.rsvp-card .section-title{
+  color: rgba(176,140,78,0.92);
+}
+
+.rsvp-card .subtle{
+  color: rgba(0,0,0,0.75);
+}
+
+
+/* Pills row */
+.pill-row{
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+/* Pill base */
+.pill{
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(176,140,78,0.45);
+  background: transparent;
+  color: rgba(176,140,78,0.95);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* Active pill */
+.pill-active{
+  background: rgba(176,140,78,0.18);
+  border-color: rgba(176,140,78,0.55);
+  color: rgba(176,140,78,1);
+  font-weight: 600;
+}
+
+.rsvp-card .form{
+  margin-top: 18px;
+}
+
+.rsvp-card .label{
+  margin-top: 10px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(176,140,78,0.75);
+  font-weight: 600;
+}
+
+.rsvp-card .input{
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.10);
+  padding: 12px 14px;
+  font-size: 13px;
+}
+
+/* Submit button */
+.rsvp-card .btn{
+  margin-top: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(176,140,78,0.35);
+  background: rgba(176,140,78,0.14);
+  color: rgba(176,140,78,0.95);
+  font-weight: 600;
+}
+
+#rsvpTidakMsg{
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(176,140,78,0.08);
+  border: 1px solid rgba(176,140,78,0.15);
+}
+
+/* ============================= */
+/* GUESTBOOK SECTION STYLING     */
+/* ============================= */
+
+/* Make subtitle darker + bolder */
+#guestForm + .subtle,
+.section-title + .subtle {
+  color: rgba(0,0,0,0.65);
+  font-weight: 500;
+}
+
+/* Inputs + textarea look softer */
+#guestForm .input {
+  border: 1px solid rgba(180,140,70,0.25);
+  border-radius: 14px;
+  padding: 14px;
+  font-size: 14px;
+  background: rgba(255,255,255,0.6);
+}
+
+/* Gold focus glow */
+#guestForm .input:focus {
+  outline: none;
+  border-color: rgba(180,140,70,0.55);
+  box-shadow: 0 0 0 3px rgba(180,140,70,0.12);
+}
+
+/* Textarea height nicer */
+#guestForm textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+/* Submit button premium gold */
+#guestSubmitBtn {
+  background: rgba(180,140,70,0.18);
+  border: 1px solid rgba(180,140,70,0.55);
+  color: rgba(120,90,40,0.95);
+  font-weight: 600;
+  border-radius: 14px;
+  padding: 14px;
+  transition: 0.25s;
+}
+
+#guestSubmitBtn:hover {
+  background: rgba(180,140,70,0.28);
+}
+
+/* Guestbook header row */
+.guestbook-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+}
+
+/* Reload button smaller */
+#guestReloadBtn {
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(180,140,70,0.5);
+  color: rgba(140,100,40,0.95);
+}
+
+/* Guest list spacing */
+.guest-list {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Each approved message card */
+.guest-item {
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(180,140,70,0.20);
+  background: rgba(255,255,255,0.55);
+}
+
+/* Name + date row */
+.guest-meta {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: rgba(0,0,0,0.75);
+}
+
+/* Message text */
+.guest-text {
+  font-size: 13px;
+  color: rgba(0,0,0,0.60);
+  line-height: 1.5;
+}
+
+/* Guestbook title in gold */
+#guestForm ~ .guestbook,
+#guestForm {
+}
+
+.section-title {
+  color: rgba(180,140,70,0.85);
+}
+
+/* Soft pink background for Guestbook card */
+.guestbook-section .card {
+  background: radial-gradient(
+    circle at top,
+    rgba(252, 242, 245, 0.65),
+    rgba(255, 255, 255, 0.97)
+  );
+}
+
+/* Contact card same soft pink as others */
+.closing-card {
+  background: radial-gradient(
+    circle at top,
+    rgba(252, 242, 245, 0.70),
+    rgba(255, 255, 255, 0.97)
+  );
+}
+
+/* HUBUNGI title gold */
+.closing-card .section-title {
+  color: var(--gold);
+  letter-spacing: 3px;
+  font-size: 12px;
+  margin-top: 18px;
+}
+
+/* Thank you line */
+.closing-card .thanks {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 14px;
+  margin-bottom: 18px;
+  color: #222;
+}
+
+/* Contact layout */
+.contact-elegant {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Each row */
+.contact-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+/* Person label */
+.contact-person {
+  font-weight: 500;
+  color: #444;
+}
+
+/* Phone link gold */
+.contact-link {
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.closing-card .footer {
+  margin-top: 22px;
+  font-size: 12px;
+  color: #999;
+}
+
+/* ====== ENVELOPE OVERLAY (full screen) ====== */
+.overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  /* Soft pink background */
+  background: radial-gradient(
+    circle at top,
+    rgba(248, 230, 236, 0.95),
+    rgba(254, 193, 221, 0.9)
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Full screen envelope */
+.envelope{
+  position: relative;   /* FIX */
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Left + right panels */
+.env-top,
+.env-body{
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+
+  /* Soft pink envelope paper */
+  background: rgba(252, 229, 238, 0.92);
+
+  z-index: 1;
+}
+
+/* slight shade difference like your screenshot */
+.env-top{
+  left: 0;
+  filter: brightness(1.02);
+}
+
+/* Right flap */
+.env-body{
+  right: 0;
+  filter: brightness(0.97);
+}
+
+/* Center fold line */
+.envelope::after{
+  content:"";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  transform: translateX(-1px);
+  background: rgba(176,140,78,0.25);
+  z-index: 2;
+}
+
+/* Seal Button */
+.seal{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 150px;
+  height: 150px;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.92);
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,0.18),
+    inset 0 0 0 10px rgba(176,140,78,0.12);
+
+  display: grid;
+  place-items: center;
+  text-align: center;
+
+  cursor: pointer;
+  padding: 14px;
+  z-index: 5;
+}
+
+.seal span{
+  font-family: "Cormorant Garamond", serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(176,140,78,0.90);
+}
+
+.seal small{
+  margin-top: 6px;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  color: rgba(120,90,40,0.55);
+}
+
+/* Soft shadow at bottom */
+.env-shadow{
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -40px;
+  height: 160px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.35), rgba(0,0,0,0));
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* ====== OPEN ANIMATION ====== */
+.overlay.opening .seal{
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+  transition: 350ms ease;
+}
+
+.overlay.opening .env-top{
+  transform: translateX(-110%);
+  transition: 700ms cubic-bezier(.2,.9,.2,1);
+}
+
+.overlay.opening .env-body{
+  transform: translateX(110%);
+  transition: 700ms cubic-bezier(.2,.9,.2,1);
+}
+
+.overlay.opening{
+  background: transparent;
+}
+
+.overlay.opening .env-shadow{
+  opacity: 0;
+  transition: 500ms ease;
+}
+
+/* Hide overlay after open (optional, with JS adding .gone) */
+.overlay.gone{
+  display: none;
+}
+
+
+/* ===== Floating Music Button ===== */
+.music-btn{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  border: 1px solid rgba(176,140,78,0.35);
+  background: rgba(255,255,255,0.88);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 9998;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.music-btn svg{
+  width: 22px;
+  height: 22px;
+  fill: rgba(176,140,78,0.92);
+}
+
+.music-btn.is-playing{
+  box-shadow: 0 14px 30px rgba(0,0,0,0.18), inset 0 0 0 10px rgba(176,140,78,0.08);
+}
+
+#glitterCanvas{ display:none; }
+
+
+/* Glitter overlay */
+#glitterCanvas{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2; /* keep it above background */
+  opacity: 0.75;
+}
+
+/* Make sure content stays above glitter if needed */
+.wrap, .section, .card{
+  position: relative;
+  z-index: 5;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  #glitterCanvas{ display:none; }
+}
+
+
+
+
+/* Mobile: still card-like (not edge-to-edge) */
+@media (max-width: 640px){
+  .seal{
+    width: 125px;
+    height: 125px;
+  }
+  .seal span{ font-size: 18px; }
+  .seal small{ font-size: 10px; }
+
+  .section{
+    padding: 6px 12px; /* was 10px 12px */
+  }
+
+  .card{
+    max-width: 100%;
+    width: 100%;
+    border-radius: 18px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+  }
+
+  .section .card{
+    padding: 26px 18px;
+  }
+
+  .info-actions{
+    gap: 10px;
+  }
+  .info-actions .btn{
+    width: 100%;
+    text-align: center;
+  }
+
+  /* give intro card slightly less padding so arch fits */
+  .intro-card{
+    padding: 18px 14px !important;
+    padding-bottom: 26px !important;
+  }
+
+  /* arch container should scale with width */
+  .intro-card .arch-frame{
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* arch image: always fit container */
+  .intro-card .arch-bg{
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* content inside arch: use padding instead of fixed spacing */
+  .intro-card .arch-content{
+    padding-top: 6px !important;
+  }
+
+  /* bismillah smaller */
+  .intro-card .bismillah{
+    font-size: 18px !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* UNDANGAN / MAJLIS PERKAHWINAN tighter + smaller */
+  .intro-card .kicker-2line .k1,
+  .intro-card .kicker-2line .k2{
+    font-size: 10px !important;
+    letter-spacing: 2.5px !important;
+  }
+  .intro-card .kicker-2line{
+    margin-top: 70px !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* AN smaller */
+  .intro-card .monogram img{
+    margin-top: -50px !important;
+    margin-bottom: -50px !important;
+    width: 120px !important;
+  }
+
+  /* Names smaller so it doesn't collide with arch */
+  .intro-card .names{
+    font-size: 13px !important;
+    letter-spacing: 0.4px !important;
+    margin-top: 0px !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* Meta smaller + tighter */
+  .intro-card .meta{
+    font-size: 8px !important;
+    line-height: 1.35 !important;
+    margin-top: 4px !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* Quote smaller + tighter */
+  .intro-card .quote{
+    font-size: 8px !important;
+    line-height: 1.4 !important;
+    margin-top: 16px !important;
+  }
+  .intro-card .quote-sub{
+    font-size: 10px !important;
+    margin-top: 4px !important;
+  }
+
+  /* scroll hint spacing */
+  .intro-card .scroll-hint{
+    margin-top: 6px !important;
+    font-size: 11px !important;
+    opacity: 0.65;
+  }
+
+  .music-btn{
+    right: 14px;
+    bottom: 14px;
+    width: 50px;
+    height: 50px;
+  }
+}

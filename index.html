@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Undangan Majlis Perkahwinan | Nadhirah & Aimran</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <canvas id="glitterCanvas" aria-hidden="true"></canvas>
+
+
+  <!-- ========== ENVELOPE OVERLAY ========== -->
+  <div id="envelopeOverlay" class="overlay">
+    <div class="envelope">
+
+      <div class="env-top"></div>
+      <div class="env-body"></div>
+
+      <!-- ✅ Seal must be here -->
+      <div class="seal" id="openBtn">
+        <span>Selamat Datang</span>
+      </div>
+
+      <div class="env-shadow"></div>
+    </div>
+  </div>
+
+
+  <!-- ========== MAIN CONTENT (SCROLL) ========== -->
+  <main id="mainContent" class="hidden">
+
+    <!-- SECTION 1: COVER / ARCH -->
+    <section class="section hero fade-in">
+      <div class="card intro-card">
+
+        <!-- ARCH FRAME -->
+        <div class="arch-frame">
+
+          <!-- Arch Image -->
+          <img src="assets/arch.png" alt="Arch" class="arch-bg">
+
+          <!-- Content INSIDE Arch -->
+          <div class="arch-content">
+
+            <div class="bismillah">
+              بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+            </div>
+
+            <div class="kicker kicker-2line">
+              <div class="k1">UNDANGAN</div>
+              <div class="k2">MAJLIS PERKAHWINAN</div>
+            </div>
+
+            <div class="monogram">
+              <img src="assets/AN.png" alt="AN Monogram">
+            </div>
+
+            <h1 class="names">
+              DR. NADHIRAH &amp; AIMRAN
+            </h1>
+
+            <div class="meta">
+              <div class="meta-line">SABTU | 25 | 04 | 2026</div>
+              <div class="meta-line">GRANDEUR BELING GLASSHALL, SG BULOH</div>
+            </div>
+
+            <div class="quote">
+              “Dan Kami menciptakan kamu berpasang-pasangan”
+              <div class="quote-sub">(Surah An-Naba’, 78:8)</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Scroll hint outside arch -->
+        <div class="scroll-hint">↓ Skrol ke bawah</div>
+
+      </div>
+    </section>
+
+
+    <!-- SECTION 2: WALIMATULURUS -->
+    <section class="section walima fade-in" id="walima">
+      <div class="card walima-card">
+
+        <div class="walima-title">WALIMATULURUS</div>
+        <div class="walima-salam">Assalamualaikum wbt</div>
+
+        <div class="walima-invite">
+          Dengan penuh kesyukuran, kami
+        </div>
+
+        <div class="walima-parents">
+          <div class="walima-parent">WAN NAZURI BIN WAN MOHAMAD ZAIN</div>
+          <div class="walima-and">&amp;</div>
+          <div class="walima-parent">ROSHAZLIN BINTI ROSLAN</div>
+        </div>
+
+        <div class="walima-invite">
+          Menjemput Dato’ / Datin / Tuan / Puan / Encik / Cik
+        </div>
+
+        <div class="walima-divider"></div>
+
+        <div class="walima-to">
+          Ke majlis perkahwinan puteri sulung kami
+        </div>
+
+        <div class="walima-couple">
+          <div class="couple-name">Dr. Wan Nadhirah Binti Wan Nazuri</div>
+          <div class="walima-with">dengan pilihan hatinya</div>
+          <div class="couple-name">Muhammad Alif Aimran Bin Ibrahim</div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SECTION 3: MAKLUMAT MAJLIS -->
+    <section class="section info fade-in" id="maklumat">
+      <div class="card info-card">
+
+        <div class="info-header">MAKLUMAT MAJLIS</div>
+
+        <div class="info-single">
+
+          <!-- TARIKH -->
+          <div class="info-block">
+            <div class="info-label">TARIKH</div>
+            <div class="info-value">Sabtu, 25 April 2026</div>
+          </div>
+
+          <!-- MASA -->
+          <div class="info-block">
+            <div class="info-label">MASA</div>
+            <div class="info-value">Jamuan Makan: 11.00 pagi – 4.00 petang</div>
+            <div class="info-value">Ketibaan Pengantin: 12.30 tengah hari</div>
+          </div>
+
+          <!-- LOKASI -->
+          <div class="info-block">
+            <div class="info-label">LOKASI</div>
+            <div class="info-value">Grandeur Beling Glasshall, Sg Buloh</div>
+            <div class="info-sub">
+              Lorong Melati, 47000 Sungai Buloh, Selangor
+            </div>
+          </div>
+
+          <!-- BUTTONS -->
+          <div class="info-actions">
+            <a class="btn btn-outline"
+              href="https://maps.app.goo.gl/6i3o6WUW9mum514o7"
+              target="_blank" rel="noopener">
+              Buka Google Maps
+            </a>
+
+            <a class="btn btn-solid"
+              href="assets/walima-nadhirah-aimran.ics"
+              download>
+              Simpan ke Kalendar
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION 5: RSVP -->
+    <section class="section fade-in">
+      <div class="card rsvp-card">
+        <div class="section-title">PENGESAHAN KEHADIRAN (RSVP)</div>
+        <div class="subtle">Sila pilih kehadiran anda.</div>
+
+        <div class="pill-row">
+          <button class="pill pill-active" id="btnHadir" type="button">Hadir</button>
+          <button class="pill" id="btnTidak" type="button">Tidak Hadir</button>
+        </div>
+
+
+        <form id="rsvpForm" class="form hidden">
+          <label class="label">Nama</label>
+          <input class="input" name="name" placeholder="Contoh: Encik Ahmad" required />
+          <!-- Honeypot anti-spam (leave empty) -->
+          <input class="honeypot" name="hp" autocomplete="off" tabindex="-1" />
+          <button class="btn w-full" id="rsvpSubmitBtn" type="submit">Hantar</button>
+          <div class="form-msg" id="rsvpMsg"></div>
+        </form>
+
+        <div id="rsvpTidakMsg" class="hidden subtle center">
+          Terima kasih atas makluman. Semoga dipermudahkan urusan tuan/puan.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: GUESTBOOK -->
+    <section class="section fade-in guestbook-section">
+      <div class="card">
+        <div class="section-title">UCAPAN &amp; DOA</div>
+        <div class="subtle">Tinggalkan ucapan dan doa untuk kami.</div>
+
+        <form id="guestForm" class="form">
+          <label class="label">Nama</label>
+          <input class="input" name="name" placeholder="Nama anda" required />
+
+          <label class="label">Ucapan</label>
+          <textarea class="input textarea" name="message" placeholder="Tulis ucapan anda..." required></textarea>
+
+          <!-- Honeypot anti-spam (leave empty) -->
+          <input class="honeypot" name="hp" autocomplete="off" tabindex="-1" />
+
+          <button class="btn w-full" id="guestSubmitBtn" type="submit">Hantar Ucapan</button>
+          <div class="subtle center" style="margin-top:10px;">
+            Ucapan anda akan dipaparkan selepas semakan.
+          </div>
+          <div class="form-msg" id="guestMsg"></div>
+        </form>
+
+        <div class="guestbook">
+          <div class="guestbook-head">
+            <div class="sub-title">Ucapan Yang Telah Disahkan</div>
+            <button class="btn btn-outline btn-sm" id="guestReloadBtn" type="button">Muat semula</button>
+          </div>
+          <div class="subtle center" id="guestCount" style="margin-top:8px;"></div>
+
+          <div id="guestList" class="guest-list">
+            <div class="subtle center">Memuatkan ucapan...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: CLOSING + CONTACT -->
+    <section class="section fade-in" id="penutup">
+      <div class="card closing-card">
+
+        <p class="para center">
+          Semoga kehadiran tuan/puan menyerikan majlis dan diberkati Allah SWT.
+        </p>
+
+        <div class="thanks center">Terima kasih.</div>
+
+        <div class="divider"></div>
+
+        <div class="section-title center">HUBUNGI</div>
+
+        <div class="contact-elegant">
+          <div class="contact-row">
+            <span class="contact-person">Nazuri (Ayah)</span>
+            <a class="contact-link" href="tel:+6014578329">014-578 329</a>
+          </div>
+
+          <div class="contact-row">
+            <span class="contact-person">Alyn (Ibu)</span>
+            <a class="contact-link" href="tel:+6012748393">012-748 393</a>
+          </div>
+        </div>
+
+        <div class="footer subtle center">© 2026 Nadhirah &amp; Aimran</div>
+      </div>
+    </section>
+
+  
+  <!-- ===== Floating Music Button ===== -->
+  <audio id="bgMusic" preload="auto" loop>
+    <source src="assets/music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <button id="musicBtn" class="music-btn" type="button" aria-label="Toggle music">
+    <!-- icon will be injected by JS -->
+  </button>
+
+
+  </main>
+
+  
+
+  <script src="app.js"></script>
+</body>
+</html>
