@@ -1543,7 +1543,7 @@ body{
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 2; /* keep it above background */
+  z-index: 9998; /* keep it above background */
   opacity: 0.75;
 }
 
@@ -1552,6 +1552,40 @@ body{
   position: relative;
   z-index: 5;
 }
+
+/* ===== Card 1: Physical cover image ===== */
+.intro-photo-card{
+  padding: 0 !important;              /* remove spacing around image */
+  overflow: hidden;
+  background: radial-gradient(circle at top, rgba(255,240,245,0.92), rgba(252,245,248,0.78));
+  border: 1px solid rgba(176,140,78,0.30);
+}
+
+.cover-wrap{
+  width: 100%;
+}
+
+.cover-img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Put scroll hint on a soft area */
+.intro-photo-card .scroll-hint{
+  padding: 14px 18px 20px;
+  text-align: center;
+  color: rgba(176,140,78,0.85);
+}
+
+/* Mobile: keep it clean */
+@media (max-width: 640px){
+  .intro-photo-card .scroll-hint{
+    padding: 12px 14px 18px;
+    font-size: 13px;
+  }
+}
+
 
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce){
