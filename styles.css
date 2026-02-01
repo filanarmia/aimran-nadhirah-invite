@@ -1534,7 +1534,7 @@ body{
 .music-btn{
   position: fixed;
   right: 18px;
-  bottom: 18px;
+  bottom: 95px;
   width: 54px;
   height: 54px;
   border-radius: 999px;
@@ -1984,7 +1984,7 @@ body{
 
   .music-btn{
     right: 14px;
-    bottom: 14px;
+    bottom: 95px;
     width: 50px;
     height: 50px;
   }
