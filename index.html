@@ -60,6 +60,7 @@
     <section class="section walima fade-in" id="walima">
       <div class="card walima-card">
 
+        <img class="corner-orn corner-left" src="assets/lefttop.png" alt="" aria-hidden="true">
         <div class="walima-title">WALIMATULURUS</div>
         <div class="walima-salam">Assalamualaikum wbt</div>
 
@@ -97,8 +98,8 @@
     <section class="section info fade-in" id="maklumat">
       <div class="card info-card">
 
+        <img class="corner-orn corner-right" src="assets/lefttop.png" alt="" aria-hidden="true">
         <div class="info-header">MAKLUMAT MAJLIS</div>
-
         <div class="info-single">
 
           <!-- TARIKH -->
@@ -131,10 +132,10 @@
               Buka Google Maps
             </a>
 
-            <a class="btn btn-solid"
-              href="assets/walima-nadhirah-aimran.ics"
-              download>
-              Simpan ke Kalendar
+            <a class="btn btn-outline"
+              href="https://ul.waze.com/ul?place=ChIJz647mGZFzDERCYlXfITSmuU&ll=3.22952660%2C101.55044890&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location"
+              target="_blank" rel="noopener">
+              Buka Waze
             </a>
           </div>
 
@@ -144,8 +145,10 @@
 
 
     <!-- SECTION 5: RSVP -->
-    <section class="section fade-in">
+    <section class="section fade-in" id="rsvp">
       <div class="card rsvp-card">
+
+        <img class="corner-orn corner-left" src="assets/lefttop.png" alt="" aria-hidden="true">
         <div class="section-title">PENGESAHAN KEHADIRAN (RSVP)</div>
         <div class="subtle">Sila pilih kehadiran anda.</div>
 
@@ -173,6 +176,8 @@
     <!-- SECTION 6: GUESTBOOK -->
     <section class="section fade-in guestbook-section">
       <div class="card">
+
+        <img class="corner-orn corner-right" src="assets/lefttop.png" alt="" aria-hidden="true">
         <div class="section-title">UCAPAN &amp; DOA</div>
         <div class="subtle">Tinggalkan ucapan dan doa untuk kami.</div>
 
@@ -256,6 +261,140 @@
   </main>
 
   <canvas id="glitterCanvas" aria-hidden="true"></canvas>
+
+  <!-- ===== Bottom Navbar (Mobile) ===== -->
+  <nav class="bottom-nav" aria-label="Quick navigation">
+    <button class="nav-btn" type="button" data-open="modalCalendar">
+      <span class="nav-ico">📅</span>
+      <span class="nav-txt">Kalendar</span>
+    </button>
+
+    <button class="nav-btn" type="button" data-open="modalHubungi">
+      <span class="nav-ico">📞</span>
+      <span class="nav-txt">Hubungi</span>
+    </button>
+
+    <button class="nav-btn" type="button" data-open="modalLokasi">
+      <span class="nav-ico">📍</span>
+      <span class="nav-txt">Lokasi</span>
+    </button>
+
+    <a class="nav-btn" href="#rsvp" data-scroll>
+      <span class="nav-ico">✅</span>
+      <span class="nav-txt">RSVP</span>
+    </a>
+  </nav>
+
+  <!-- ===== Modal: Kalendar ===== -->
+  <div class="modal" id="modalCalendar" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="calTitle">
+      <div class="modal-head">
+        <div class="modal-head-center">
+          <div class="modal-title" id="calTitle">Kalendar</div>
+          <div class="modal-sub">Sabtu, 25 April 2026</div>
+          <div class="modal-info">11.00 pagi – 4.00 petang</div>
+        </div>
+
+
+        <button class="modal-close" type="button" data-close aria-label="Tutup">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-card">
+          <div class="modal-small">Tambah ke kalendar anda</div>
+          <!-- Use your existing ICS file path -->
+          <a class="btn btn-solid modal-btn"
+            target="_blank" rel="noopener"
+            href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Walimatulurus%20Nadhirah%20%26%20Aimran&dates=20260425T030000Z/20260425T080000Z&details=Majlis%20Perkahwinan%20Nadhirah%20%26%20Aimran&location=Grandeur%20Beling%20Glasshall%2C%20Sg%20Buloh%2C%20Selangor">
+            Tambah ke Google Calendar
+          </a>
+
+
+          <a class="btn btn-solid modal-btn"
+            href="assets/walima-nadhirah-aimran.ics"
+            download>
+            Tambah ke Apple Calendar
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Modal: Hubungi ===== -->
+  <div class="modal" id="modalHubungi" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="hubTitle">
+      <div class="modal-head">
+        
+        <div class="modal-head-center">
+          <div class="modal-title" id="hubTitle">Hubungi</div>
+        </div>
+        <button class="modal-close" type="button" data-close aria-label="Tutup">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-card">
+          <!-- Use SAME links you used before (tel:). If you later use whatsapp links, can add too -->
+          <div class="contact-row modal-contact">
+            <span class="contact-person">Nazuri (Ayah)</span>
+            <a class="contact-link" href="tel:+0132846060">013-2846060</a>
+          </div>
+
+          <div class="contact-row modal-contact">
+            <span class="contact-person">Alyn (Ibu)</span>
+            <a class="contact-link" href="tel:+0108984162">010-8984162</a>
+          </div>
+
+          <div class="contact-row modal-contact">
+            <span class="contact-person">Nureena (Adik)</span>
+            <a class="contact-link" href="tel:+0122967727">012-2967727</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Modal: Lokasi ===== -->
+  <div class="modal" id="modalLokasi" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="lokTitle">
+      <div class="modal-head">
+        <div class="modal-head-center">
+          <div class="modal-title" id="lokTitle">Lokasi</div>
+        </div>
+        
+        <button class="modal-close" type="button" data-close aria-label="Tutup">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-card">
+          <div class="modal-small">Grandeur Beling Glasshall, Sg Buloh</div>
+          <div class="modal-small">Lorong Melati, 47000 Sungai Buloh, Selangor</div>
+
+          <!-- Use your existing Google Maps link (same as in Maklumat Majlis) -->
+          <a class="btn btn-solid modal-btn"
+            href="https://maps.app.goo.gl/6i3o6WUW9mum514o7"
+            target="_blank" rel="noopener">
+            Buka Google Maps
+          </a>
+
+          <a class="btn btn-solid modal-btn"
+            href="https://ul.waze.com/ul?place=ChIJz647mGZFzDERCYlXfITSmuU&ll=3.22952660%2C101.55044890&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location"
+            target="_blank" rel="noopener">
+            Buka Waze
+          </a>
+
+          <!-- Optional: also scroll to Maklumat card -->
+          <a class="btn btn-solid modal-btn" href="#maklumat" data-scroll>
+            Lihat Maklumat Majlis
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   
 

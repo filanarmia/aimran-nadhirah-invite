@@ -443,3 +443,59 @@ loadGuestbook();
   requestAnimationFrame(loop);
 })();
 
+// ===== Bottom Nav + Modals =====
+(() => {
+  const modals = document.querySelectorAll(".modal");
+
+  function openModal(id){
+    const m = document.getElementById(id);
+    if(!m) return;
+
+    // close others
+    modals.forEach(x => x.classList.remove("is-open"));
+
+    m.classList.add("is-open");
+    m.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
+
+  function closeModal(){
+    modals.forEach(m => {
+      m.classList.remove("is-open");
+      m.setAttribute("aria-hidden", "true");
+    });
+    document.body.classList.remove("modal-open");
+  }
+
+  // Open buttons
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-open]");
+    if(btn){
+      e.preventDefault();
+      openModal(btn.getAttribute("data-open"));
+      return;
+    }
+
+    // Close on backdrop / close button
+    if(e.target.matches("[data-close]") || e.target.closest("[data-close]")){
+      e.preventDefault();
+      closeModal();
+      return;
+    }
+
+    // Smooth scroll for nav links
+    const a = e.target.closest('a[data-scroll]');
+    if(a && a.getAttribute("href")?.startsWith("#")){
+      e.preventDefault();
+      closeModal();
+      document.querySelector(a.getAttribute("href"))?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  });
+
+  // ESC to close
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape") closeModal();
+  });
+})();
+
+
