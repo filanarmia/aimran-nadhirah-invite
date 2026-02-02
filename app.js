@@ -275,11 +275,8 @@ async function loadGuestbook(force=false){
     if(guestCount) guestCount.textContent = `${data.length} ucapan disahkan`;
 
     guestList.innerHTML = data.map(item => `
-      <div class="guest-item">
-        <div class="guest-top">
-          <div class="guest-name">${escapeHTML(item.name || "")}</div>
-          <div class="guest-date">${escapeHTML(formatMYDate(item.timestamp))}</div>
-        </div>
+      <div class="guest-line">
+        <div class="guest-name">${escapeHTML(item.name || "")}</div>
         <div class="guest-msg">${escapeHTML(item.message || "")}</div>
       </div>
     `).join("");
