@@ -1390,9 +1390,11 @@ body{
   /* Soft pink background */
   background: radial-gradient(
     circle at top,
-    rgba(248, 230, 236, 0.95),
-    rgba(254, 193, 221, 0.9)
+    rgba(248, 230, 236, 1),
+    rgba(254, 193, 221, 1)
   );
+
+  
 
   display: flex;
   justify-content: center;
