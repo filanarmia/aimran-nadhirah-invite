@@ -204,7 +204,6 @@
             <div class="sub-title">Ucapan Yang Telah Disahkan</div>
             <button class="btn btn-outline btn-sm" id="guestReloadBtn" type="button">Muat semula</button>
           </div>
-          <div class="subtle center" id="guestCount" style="margin-top:8px;"></div>
 
           <div class="guestbook-box">
             <div id="guestList" class="guestbook-stream">
@@ -287,6 +286,12 @@
       <span class="nav-ico">✅</span>
       <span class="nav-txt">RSVP</span>
     </a>
+
+    <button class="nav-btn" type="button" data-open="modalGaleri">
+      <span class="nav-ico">🖼️</span>
+      <span class="nav-txt">Galeri</span>
+    </button>
+
   </nav>
 
   <!-- ===== Modal: Kalendar ===== -->
@@ -398,6 +403,43 @@
       </div>
     </div>
   </div>
+
+  <!-- ===== Modal: Galeri ===== -->
+  <div class="modal" id="modalGaleri" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+
+    <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="galeriTitle">
+      <div class="modal-head modal-head-center">
+        <div class="modal-title" id="galeriTitle">Galeri</div>
+        <button class="modal-close" type="button" data-close aria-label="Tutup">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-card">
+
+          <div class="doa-box">
+            <div class="doa-text">
+              Ya Allah Ya Rahman Ya Rahim,<br>
+              Berkatilah majlis perkahwinan ini.<br>
+              Limpahkanlah baraqah dan rahmatMu kepada kedua mempelai ini.<br>
+              Kurniakanlah mereka kelak zuriat yang soleh dan solehah.<br>
+              Kekalkanlah jodoh mereka hingga ke Jannah.
+            </div>
+          </div>
+
+          <div class="gallery-box">
+            <div class="gallery-scroll">
+              <!-- Use ONE collage (recommended) -->
+              <img src="assets/galeri1.PNG" alt="Galeri" class="gallery-img">
+              <img src="assets/galeri2.PNG" alt="Galeri 2" class="gallery-img">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
   
