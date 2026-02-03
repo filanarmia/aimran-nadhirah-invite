@@ -618,7 +618,7 @@ a{ color: inherit; }
 /* “dengan pilihan hatinya” like physical card (softer) */
 .walima-with{
   margin: 12px 0;
-  font-size: 15px;
+  font-size: 13px;
   font-style: italic;
   opacity: 0.78;
 }
@@ -1002,14 +1002,14 @@ body{
 .walima-and{
   font-size: 16px;
   font-style: italic;
-  color: rgba(120,120,120,0.65);
+  color: rgba(6, 6, 6, 0.65);
   margin: 6px 0;
 }
 
 .walima-salam,
 .walima-invite,
 .walima-to{
-  font-size: 14px;
+  font-size: 12px;
   color: rgba(50,50,50,0.90);
   line-height: 1.6;
 }
@@ -1058,7 +1058,7 @@ body{
   letter-spacing: 3px;
   text-transform: uppercase;
 
-  color: rgba(176,140,78,0.75); /* gold-muted instead of grey */
+  color: rgba(140, 100, 40, 0.95); /* gold-muted instead of grey */
   font-weight: 600;            /* bolder */
 
   margin-bottom: 6px;
