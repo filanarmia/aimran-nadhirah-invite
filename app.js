@@ -154,7 +154,7 @@ btnTidak.addEventListener("click", async () => {
 
   // send "Tidak Hadir"
   try{
-    await postJSON({ action:"rsvp", status:"Tidak Hadir", name:"", hp:"" });
+    await postJSON({ action:"rsvp", status:"Tidak Hadir", name:"", pax:"", hp:"" });
   }catch(err){
     console.warn(err);
   }
@@ -168,10 +168,17 @@ rsvpForm.addEventListener("submit", async (e) => {
 
   const fd = new FormData(rsvpForm);
   const name = (fd.get("name") || "").toString().trim();
-  const hp = (fd.get("hp") || "").toString().trim();
+  const pax  = (fd.get("pax") || "").toString().trim();
+  const hp   = (fd.get("hp") || "").toString().trim();
+
 
   if(!name){
     rsvpMsg.textContent = "Sila isi nama.";
+    return;
+  }
+
+  if(!pax){
+    rsvpMsg.textContent = "Sila pilih No. of Pax.";
     return;
   }
 
@@ -180,7 +187,7 @@ rsvpForm.addEventListener("submit", async (e) => {
   rsvpSubmitBtn.textContent = "Menghantar...";
 
   try{
-    await postJSON({ action:"rsvp", status:"Hadir", name, hp });
+    await postJSON({ action:"rsvp", status:"Hadir", name, pax, hp });
     rsvpMsg.textContent = "Terima kasih atas pengesahan. Jumpa anda di majlis nanti, insya-Allah.";
     rsvpForm.reset();
   }catch(err){

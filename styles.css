@@ -1963,6 +1963,30 @@ body{
   margin-bottom: 14px;
 }
 
+.wedding-tag{
+  text-align: center;
+  margin-top: 16px;
+
+  font-family: "Playfair Display", serif; /* or your main elegant font */
+  font-size: 18px;
+  letter-spacing: 1px;
+
+  color: #b08c4e;   /* gold theme */
+  opacity: 0.95;
+}
+
+
+.wedding-tag{
+  animation: tagFade 1.4s ease;
+}
+
+@keyframes tagFade{
+  from{opacity:0; transform:translateY(8px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+
+
 @media (max-width: 480px){
   .gallery-scroll{ max-height: 320px; }
 }
